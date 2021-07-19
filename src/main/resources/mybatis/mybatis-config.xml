@@ -19,5 +19,7 @@
     </environments>
     <mappers>
         <mapper resource="mybatis/mapper/UserMapper.xml"/>
+        <mapper resource="mybatis/mapper/RoleMapper.xml"/>
+        <mapper resource="mybatis/mapper/ProviderMapper.xml"/>
     </mappers>
 </configuration>

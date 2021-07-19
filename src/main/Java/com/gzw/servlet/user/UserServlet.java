@@ -3,13 +3,12 @@ package com.gzw.servlet.user;
 import com.alibaba.fastjson.JSONArray;
 import com.gzw.pojo.Role;
 import com.gzw.pojo.User;
-import com.gzw.service.role.RoleServiceImpl;
+import com.gzw.service.role.RoleServiceImplOld;
 import com.gzw.service.user.UserService;
 import com.gzw.service.user.UserServiceImpl;
 import com.gzw.util.Constants;
 import com.gzw.util.PageSupport;
 import com.mysql.cj.util.StringUtils;
-import com.mysql.cj.xdevapi.JsonArray;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -83,7 +82,7 @@ public class UserServlet extends HttpServlet {
         userList = userService.getUserList(queryNameInfo, queryUserRole, currentPageNo, pageSize);
         req.setAttribute("userList",userList);
         // 获取角色列表
-        RoleServiceImpl roleService = new RoleServiceImpl();
+        RoleServiceImplOld roleService = new RoleServiceImplOld();
         List<Role> roleList = roleService.getRoleList();
 
         // 给前端传值
