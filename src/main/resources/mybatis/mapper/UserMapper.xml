@@ -50,7 +50,8 @@
     </delete>
     <!--插入用户信息-->
     <insert id="insertStudent" parameterType="User">
-        insert into smbms_user (id) values (#{id})
+        insert into smbms_user (id, userCode, userName, userPassword, gender, birthday, phone, address, userRole, createdBy, creationDate, modifyBy, modifyDate)
+        values (#{id}, #{userCode}, #{userName}, #{userPassword}, #{gender}, #{birthday}, #{phone}, #{address}, #{userRole}, #{createdBy}, #{creationDate}, #{modifyBy}, #{modifyDate})
     </insert>
     <!--统计用户数-->
     <select id="countUser" parameterType="User" resultType="int">
