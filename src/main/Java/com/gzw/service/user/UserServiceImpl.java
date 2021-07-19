@@ -3,6 +3,7 @@ package com.gzw.service.user;
 import com.gzw.dao.BaseBao;
 import com.gzw.dao.user.UserDaoImpl;
 import com.gzw.pojo.User;
+import com.gzw.service.abstractService.GeneralSqlService;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -12,24 +13,17 @@ import org.junit.jupiter.api.Test;
 import java.io.IOException;
 import java.io.InputStream;
 import java.sql.Connection;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
-public class UserServiceImpl implements UserService {
+public class UserServiceImpl extends GeneralSqlService implements UserService {
 
     UserDaoImpl userDao = new UserDaoImpl();
-    private static final String resourcePath = "mybatis/mybatis-config.xml";
+
 
     @Override
     public User login(String userCode, String password) {
-        // 读取配置文件mybatis/mybatis-config.xml
-        InputStream inputStream = null;
-        try {
-            inputStream = Resources.getResourceAsStream(resourcePath);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        // 通过配置文件构建SqlSessionFactory
-        SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
         // 通过SqlSessionFactory创建SqlSession
         SqlSession sqlSession = sqlSessionFactory.openSession();
         // 创建用于查询的User对象
@@ -46,15 +40,6 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public boolean updatePwd(int id, String password) {
-        // 读取配置文件mybatis/mybatis-config.xml
-        InputStream inputStream = null;
-        try {
-            inputStream = Resources.getResourceAsStream(resourcePath);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        // 通过配置文件构建SqlSessionFactory
-        SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
         // 通过SqlSessionFactory创建SqlSession
         SqlSession sqlSession = sqlSessionFactory.openSession();
         // 创建用于查询的User对象
@@ -76,20 +61,21 @@ public class UserServiceImpl implements UserService {
     @Override
     public int getUserCount(String userName, int userRole) {
 
-        Connection connection = null;
-        int userCount = 0;
-        try {
-            connection = BaseBao.getConnection();
-            userCount = userDao.getUserCount(connection, userName, userRole);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }finally {
-            BaseBao.closeResource(connection,null,null);
-        }
-        return userCount;
+        SqlSession sqlSession = sqlSessionFactory.openSession();
+
+        User user = new User();
+        user.setUserName(userName);
+        user.setUserCode(String.valueOf(userRole));
+
+        int count = sqlSession.selectOne("mybatis.mapper.UserMapper.countUser",user);
+
+        sqlSession.commit();
+        sqlSession.close();
+
+        return count;
     }
 
-    @Override
+    /*@Override
     public List<User> getUserList(String queryUserName, int queryUserRole, int currentPageNo, int pageSize) {
         Connection connection = null;
         List<User> userList = null;
@@ -107,17 +93,42 @@ public class UserServiceImpl implements UserService {
             BaseBao.closeResource(connection, null, null);
         }
         return userList;
-    }
+    }*/
+    public List<User> getUserList(String queryUserName, int queryUserRole, int currentPageNo, int pageSize){
 
-    public static void main(String[] args) {
-        UserService userService = new UserServiceImpl();
-        userService.updatePwd(1,"123");
+        if (currentPageNo < 1){
+            return null;
+        }
+
+        SqlSession sqlSession = sqlSessionFactory.openSession();
+
+        Map<String,Object> queryMap = new HashMap<>();
+        queryMap.put("userName", queryUserName);
+        queryMap.put("UserRole", queryUserRole);
+        queryMap.put("index", (currentPageNo - 1) * pageSize);
+        queryMap.put("number", pageSize);
+
+        List<User> userList = sqlSession.selectList("mybatis.mapper.UserMapper.selectUserList",queryMap);
+        sqlSession.commit();
+        sqlSession.close();
+
+        return userList;
     }
 
     @Test
-    public void test(){
-        UserServiceImpl userService = new UserServiceImpl();
-        int count = userService.getUserCount(null,1);
+    public void testCountUser(){
+        UserService userService = new UserServiceImpl();
+        int count = this.getUserCount("张",3);
         System.out.println(count);
+    }
+
+    @Test
+    public void testGetUserList(){
+        UserService userService = new UserServiceImpl();
+        List<User> userList = userService.getUserList("",3,2, 10);
+        for (User user :
+                userList) {
+            System.out.println(user.getUserName());
+        }
     }
 }
