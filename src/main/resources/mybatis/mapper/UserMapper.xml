@@ -7,18 +7,10 @@
     <select id="selectUser" parameterType="User" resultType="User">
         select * from smbms_user
         <where>
-            <if test="id != null">
-                id = #{id}
-            </if>
-            <if test="userCode != null">
-                AND userCode = #{userCode}
-            </if>
-            <if test="userName != null">
-                AND userName = #{userName}
-            </if>
-            <if test="userPassword != null">
-                AND userPassword = #{userPassword}
-            </if>
+            <if test="id != null">AND id = #{id}</if>
+            <if test="userCode != null">AND userCode = #{userCode}</if>
+            <if test="userName != null">AND userName = #{userName}</if>
+            <if test="userPassword != null">AND userPassword = #{userPassword}</if>
         </where>
     </select>
     <!--更新用户信息-->
