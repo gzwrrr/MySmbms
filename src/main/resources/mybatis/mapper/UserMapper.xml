@@ -17,8 +17,18 @@
     <update id="updateUser" parameterType="User">
         update smbms_user
         <set>
-            <if test="userName != null">userName = #{userName},</if>
+            <if test="userCode != null">userCode = #{userCode}</if>
+            <if test="userName != null">userName = #{userName}</if>
             <if test="userPassword != null">userPassword = #{userPassword}</if>
+            <if test="gender != null">gender = #{gender}</if>
+            <if test="birthday != null">birthday = #{birthday}</if>
+            <if test="phone != null">phone = #{phone}</if>
+            <if test="address != null">address = #{address}</if>
+            <if test="userRole != null">userRole = #{userRole}</if>
+            <if test="createdBy != null">createdBy = #{createdBy}</if>
+            <if test="creationDate != null">creationDate = #{creationDate}</if>
+            <if test="modifyBy != null">modifyBy = #{modifyBy}</if>
+            <if test="modifyDate != null">modifyDate = #{modifyDate}</if>
         </set>
         where id = #{id}
     </update>
@@ -26,18 +36,10 @@
     <delete id="deleteUser" parameterType="User">
         delete from smbms_user
         <where>
-            <if test="id != null">
-                id = #{id}
-            </if>
-            <if test="userCode != null">
-                AND userCode = #{userCode}
-            </if>
-            <if test="userName != null">
-                AND userName = #{userName}
-            </if>
-            <if test="userPassword != null">
-                AND userPassword = #{userPassword}
-            </if>
+            <if test="id != null">AND id = #{id}</if>
+            <if test="userCode != null">AND userCode = #{userCode} </if>
+            <if test="userName != null">AND userName = #{userName}</if>
+            <if test="userPassword != null">AND userPassword = #{userPassword}</if>
         </where>
     </delete>
     <!--插入用户信息-->
