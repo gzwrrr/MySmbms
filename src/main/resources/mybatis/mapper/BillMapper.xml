@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mybatis.mapper.BillMapper">
+    <!--插入账单-->
+    <insert id="insertProvider" parameterType="Bill">
+        insert into smbms_bill
+        (id,billCode,productName,productDesc,productUnit,productCount,totalPrice,isPayment,createdBy,creationDate,modifyBy,modifyDate,providerId)
+        values
+        (#{id},#{billCode},#{productName},#{productDesc},#{productUnit},#{productCount},#{totalPrice},#{isPayment},#{createdBy},#{creationDate},#{modifyBy},#{modifyDate},#{providerId})
+    </insert>
+    <!--查找账单-->
+    <select id="selectProvider" parameterType="Bill" resultType="Bill">
+        select * from smbms_bill
+        <where>
+            <if test="id != null">and id = #{id}</if>
+        </where>
+    </select>
+    <!--删除账单-->
+    <delete id="deleteProvider" parameterType="Bill">
+        delete from smbms_bill
+        <where>
+            <if test="id">and id = #{id}</if>
+        </where>
+    </delete>
+    <!--更新账单-->
+    <update id="updateProvider" parameterType="Bill">
+        update smbms_bill
+        <set>
+            <if test="billCode">billCode = #{billCode},</if>
+            <if test="productName">productName = #{productName},</if>
+            <if test="productDesc">productDesc = #{productDesc},</if>
+            <if test="productUnit">productUnit = #{productUnit},</if>
+            <if test="productCount">productCount = #{productCount},</if>
+            <if test="totalPrice">totalPrice = #{totalPrice},</if>
+            <if test="isPayment">isPayment = #{isPayment},</if>
+            <if test="createdBy">createdBy = #{createdBy},</if>
+            <if test="creationDate">creationDate = #{creationDate},</if>
+            <if test="modifyBy">modifyBy = #{modifyBy},</if>
+            <if test="modifyDate">modifyDate = #{modifyDate},</if>
+            <if test="providerId">providerId = #{providerId},</if>
+        </set>
+        where id = #{id}
+    </update>
+</mapper>
