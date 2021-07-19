@@ -4,28 +4,28 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="mybatis.mapper.BillMapper">
     <!--插入账单-->
-    <insert id="insertProvider" parameterType="Bill">
+    <insert id="insertBill" parameterType="Bill">
         insert into smbms_bill
         (id,billCode,productName,productDesc,productUnit,productCount,totalPrice,isPayment,createdBy,creationDate,modifyBy,modifyDate,providerId)
         values
         (#{id},#{billCode},#{productName},#{productDesc},#{productUnit},#{productCount},#{totalPrice},#{isPayment},#{createdBy},#{creationDate},#{modifyBy},#{modifyDate},#{providerId})
     </insert>
     <!--查找账单-->
-    <select id="selectProvider" parameterType="Bill" resultType="Bill">
+    <select id="selectBill" parameterType="Bill" resultType="Bill">
         select * from smbms_bill
         <where>
             <if test="id != null">and id = #{id}</if>
         </where>
     </select>
     <!--删除账单-->
-    <delete id="deleteProvider" parameterType="Bill">
+    <delete id="deleteBill" parameterType="Bill">
         delete from smbms_bill
         <where>
             <if test="id">and id = #{id}</if>
         </where>
     </delete>
     <!--更新账单-->
-    <update id="updateProvider" parameterType="Bill">
+    <update id="updateBill" parameterType="Bill">
         update smbms_bill
         <set>
             <if test="billCode">billCode = #{billCode},</if>
