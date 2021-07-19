@@ -1,3 +1,7 @@
+/*:root{*/
+/*  --blue:#7698AD;*/
+/*    --deepBlue:#536B79;*/
+/*}*/
 *{
     margin: 0;
     padding: 0;
@@ -6,7 +10,6 @@ body{
     height: 99.9vh;
     width: 100%;
     font-size: 13px;
-    background-color: #035384;
 }
 .clear:after{
     content: '';
@@ -48,7 +51,7 @@ li{
     transition: all .5s ease;
 }
 #userForm:hover {
-    box-shadow: 2px 2px 2px 2px #99babf;
+    box-shadow: 2px 2px 2px 2px #536B79;
 }
 .password-common {
     position: absolute;
@@ -63,8 +66,9 @@ li{
 .password-common input {
     border: none;
     outline: none;
-    border-bottom: 2px solid #FFFFFF;
-    -webkit-box-shadow: 0 0 0 1000px #C6F1F8 inset;
+    border: 2px solid #FFFFFF;
+    border-radius: 5px;
+    background-color: rgba(0,0,0,0);
     height: 30px;
     width: 40%;
     font-size: 25px;
@@ -101,7 +105,7 @@ li{
     transition: all .5s ease;
 }
 .providerAddBtn input:hover {
-    box-shadow: 1px 2px 2px 2px #99babf;
+    box-shadow: 1px 2px 2px 2px #536B79;
 }
 
 /* 密码修改结束 */
@@ -110,7 +114,7 @@ li{
     position: relative;
     height: 100%;
     width: 100%;
-    background-color: #C6F1F8;
+    background-color: #7698AD;
 }
 #head span {
     position: absolute;
@@ -149,7 +153,7 @@ li{
 }
 #head #logout:hover{
     transform: scale(1.1);
-    box-shadow: 0px 2px 2px 2px #85c8c8;
+    box-shadow: 0px 2px 2px 2px #536B79;
 }
 #head #logout:active{
     background-color: #ffffff;
@@ -159,7 +163,7 @@ li{
 }
 .right {
     position: relative;
-    background-color: #C6F1F8;
+    background-color: #7698AD;
 }
 
 #welcome {
@@ -173,7 +177,7 @@ li{
     border: 5px solid #FFFFFF;
     padding: 10px 40px;
     border-radius: 20px;
-    box-shadow: 0px 2px 2px 2px #85c8c8;
+    box-shadow: 0px 2px 2px 2px #536B79;
     text-align: center;
     transition: all .5s ease-in-out;
 }
@@ -283,7 +287,7 @@ li{
     width: 10%;
     /*height: 520px;*/
     height: 100%;
-    background-color: #C6F1F8;
+    background-color: #7698AD;
     border: 2px solid #FFFFFF;
     border-top: none;
     box-sizing: border-box;
@@ -295,16 +299,14 @@ li{
     line-height: 30px;
     text-align: center;
     color: #fff;
-    background: #60b3e7;
     margin: 10px  auto;
-    box-shadow: 0px 2px 0px 0px rgb(238, 238, 238);
-    border: 2px solid #eef8ff;
+    background: #536B79;
+    box-shadow: 2px 2px 2px 2px #035384;
 }
 .leftH2 span{
     width: 10px;
     height: 10px;
     display: inline-block;
-    background: radial-gradient(#70c2f4,#3a8dc1, #035384, #4696c7,#83d1f5);
     border-radius: 50%;
 }
 .span1{
@@ -315,7 +317,6 @@ li{
 }
 
 .list{
-    margin: 0 20px;
     font-weight: bold;
 }
 .list li{
@@ -329,12 +330,12 @@ li{
 }
 .list li:hover{
     background-color: #ffffff;
-    color: #C6F1F8;
+    color: #7698AD;
     border-radius: 8px;
-    border-bottom: 3px solid #85c8c0;
+    border-bottom: 3px solid #536B79;
 }
 .list li:active, #active{
-    background-color: #8dd4d4;
+    background-color: #7698AD;
     border-radius: 4px;
 }
 .list a{
@@ -346,7 +347,7 @@ li{
     text-align: center;
 }
 .list li a:hover{
-    color: #C6F1F8;
+    color: #7698AD;
     transform: scale(1.1);
 }
 
@@ -387,7 +388,7 @@ li{
     height: 30px;
     outline: none;
     padding-left: 10px;
-    border: 1px solid #8ab2d5;
+    border: 1px solid #7698AD;
     border-radius: 4px;
 }
 .search input[type='button']{
@@ -406,21 +407,27 @@ li{
     /*background-color: #5d8410;*/
 }
 .search a{
-    width: 80px;
-    padding-left:40px;
+    width: 120px;
+    text-align: center;
     float: right;
     margin: 10px 60px;
     height: 30px;
     line-height: 30px;
     border: 1px solid #0c89de;
     border-radius: 4px;
+    box-sizing: border-box;
     color: #fff;
     font-weight: bold;
-    background:#47acf1 url("../images/tianjia.png") 10px center no-repeat;
+    background:#536B79 url("../images/tianjia.png") 10px center no-repeat;
     display: inline-block;
+    transition: all .5s ease;
 }
-.search a:hover,.search a:active{
-    background-color: #0778c5;
+.search a:hover{
+    transform: scale(1.1);
+    font-size: 15px;
+}
+.search a:active{
+    background-color: #FFF3F8;
 }
 .search span{
     margin-left: 10px;
@@ -431,6 +438,10 @@ li{
     border-radius: 4px;
     border: 1px solid #0c89de;
     outline: none;
+    width: 100px;
+    font-size: 15px;
+    font-weight: 700;
+    color: #035384;
 }
 
 .footer{
@@ -440,26 +451,10 @@ li{
     text-align: center;
     font-size: 25px;
     color: #fff;
-    background-color: #C6F1F8;
+    background-color: #7698AD;
     box-sizing: border-box;
     border: 2px solid #FFFFFF;
 }
-
-/*#searchbutton{*/
-/*    margin-left: 20px;*/
-/*    width: 100px;*/
-/*    padding: 0 20px;*/
-/*    height: 30px;*/
-/*    border: 1px solid #7ba92c;*/
-/*    border-radius: 4px;*/
-/*    color: #fff;*/
-/*    font-weight: bold;*/
-/*    background:#87c212 url("../images/search.png") 10px center no-repeat;*/
-/*}*/
-/*#searchbutton:focus{*/
-/*    outline: none;*/
-/*    background-color: #5d8410;*/
-/*}*/
 
 #login-left {
     position: absolute;
@@ -471,10 +466,134 @@ li{
     background-size: cover;
 }
 
+/* 用户列表 */
+.right .search {
+    background-color: #7698AD;
+    border-bottom: 2px solid #FFF3F8;
+}
+.search-text {
+    font-size: 20px;
+    font-weight: bold;
+    color: #FFF3F8;
+}
+.right .search #searchbutton{
+    display: inline-block;
+    height: 30px;
+    width: 100px;
+    font-size: 15px;
+    color: #FFF3F8;
+    font-weight: bold;
+    background-color: rgba(0,0,0,0);
+    border: 2px solid #FFF3F8;
+    border-radius: 5px;
+    transition: all .5s ease;
+}
+.right .search #searchbutton:hover{
+    box-shadow: 1px 1px 1px 1px #536B79;
+    font-size: 18px;
+}
+.providerTable {
+    width: 100%;
+}
+.firstTr{
+    width: 100%;
+    height: 40px;
+    background-color: #536B79;
+}
+.firstTr th {
+    color: #FFF3F8;
+    font-size: 15px;
+    font-weight: bold;
+    border-left: 2px solid #FFF3F8;
+    border-bottom: 2px solid #FFF3F8;
+}
+.firstTr th:nth-child(1) {
+    border-left: none;
+}
+.search-form {
+    height: 40px;
+    background-color: #7698AD;
+}
+.search-form td {
+    color: #FFF3F8;
+    font-size: 15px;
+    text-align: center;
+    border-left: 2px solid #FFF3F8;
+    border-bottom: 2px solid #FFF3F8;
+}
+.search-form td:nth-child(1){
+    border-left: none;
+}
+
+/* 用户列表结束 */
+
+/* 商品列表 */
+
+#billAdd-box {
+    border: 2px solid #FFF3F8;
+    border-radius: 8px;
+    position: relative;
+    height: 75%;
+    width: 30%;
+    transition: all .5s ease;
+}
+#billAdd-box:hover {
+    box-shadow: 2px 2px 2px 2px #536B79;
+}
+#billAdd-box .bill-common {
+    position: absolute;
+    width: 75%;
+    left: 50%;
+    transform: translate(-50%,0);
+}
+#billAdd-box #list-1 {
+    top: 10%;
+}#billAdd-box #list-2 {
+     top: 20%;
+ }#billAdd-box #list-3 {
+      top: 30%;
+  }#billAdd-box #list-4 {
+       top: 40%;
+   }#billAdd-box #list-5 {
+        top: 50%;
+    }#billAdd-box #list-6 {
+         top: 60%;
+     }#billAdd-box #list-7 {
+          top: 70%;
+          color: #FFF3F8;
+          font-size: 15px;
+      }
+#list-7 input {
+    width: 20px;
+    height: 20px;
+}
+#list-8 {
+    display: flex;
+    width: 60% !important;
+    justify-content: space-between;
+}
+#list-8 input {
+    width: 100px !important;
+    height: 40px !important;
+}
+#billAdd-box label {
+    font-size: 20px;
+    color: #FFF3F8;
+    font-weight: bold;
+}
+#billAdd-box input {
+    height: 25px;
+    border-radius: 5px;
+    font-size: 18px;
+    outline: none;
+    border: none;
+    border: 2px solid #FFF3F8;
+    background-color: rgba(0,0,0,0);
+}
 
 
 
-
+/* 商品列表结束 */
 
 
 
