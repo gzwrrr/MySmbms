@@ -1,26 +1,16 @@
 package com.gzw.service.role;
 
 import com.gzw.pojo.Role;
-import org.apache.ibatis.io.Resources;
+import com.gzw.service.abstractService.GeneralSqlService;
 import org.apache.ibatis.session.SqlSession;
-import org.apache.ibatis.session.SqlSessionFactory;
-import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.junit.jupiter.api.Test;
 
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.List;
 
-public class RoleServiceImpl implements RoleService {
+public class RoleServiceImpl extends GeneralSqlService implements RoleService {
 
-    private static final String configPath = "mybatis/mybatis-config.xml";
-    private SqlSessionFactory sqlSessionFactory;
-
-    public RoleServiceImpl() throws IOException{
-        // 读取配置文件
-        InputStream config  = Resources.getResourceAsStream(configPath);
-        // 通过配置文件构建SqlSessionFactory
-        this.sqlSessionFactory = new SqlSessionFactoryBuilder().build(config);
+    public RoleServiceImpl() {
+        super();
     }
 
     @Override
