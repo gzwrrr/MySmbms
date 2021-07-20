@@ -78,7 +78,23 @@ public class BillServiceImpl extends GeneralSqlService implements BillService{
 
     @Override
     public boolean modify(Bill bill) {
-        return false;
+        if (bill.getId() == null){
+            return false;
+        }
+        try(SqlSession sqlSession = sqlSessionFactory.openSession()) {
+            Bill queryBill = new Bill();
+            queryBill.setId(bill.getId());
+            if(sqlSession.selectOne("mybatis.mapper.BillMapper.selectBill",queryBill) == null){
+                return false;
+            }
+
+            sqlSession.update("mybatis.mapper.BillMapper.selectBill",bill);
+            sqlSession.commit();
+        } catch (Exception e){
+            e.printStackTrace();
+            return false;
+        }
+        return true;
     }
 
     @Test
