@@ -27,9 +27,11 @@ public class RegisterServlet extends HttpServlet {
         if (userCode != null) {
             if (!userPassword.equals(userPassword2) || userPassword == null || userPassword2 == null)
                 session.setAttribute("message", "密码不一致或为空，请重新输入");
-            else userService.register(userCode, userPassword);
+            else if(!userService.register(userCode, userPassword)){
+                session.setAttribute("message","用户名已经存在，请重新输入");
+            }
         }
-        else session.setAttribute("message", "用户名重复或为空，请重新输入");
+        else session.setAttribute("message", "用户名为空，请重新输入");
 
         req.getRequestDispatcher("login.jsp").forward(req,resp);
     }
