@@ -21,14 +21,13 @@ public class RegisterServlet extends HttpServlet {
         String userPassword2 = req.getParameter("userPassword2");
         //以下是可选信息 他们在jsp中的name值都一致才能使用getParameterValues()
         Object[] obj=req.getParameterValues("options");
-        UserServiceImpl userService = new UserServiceImpl();
+        UserService userService = new UserServiceImpl();
         HttpSession session = req.getSession();
 
-        if (userService.checkUserCode(userCode) == true && userCode != null) {
-
+        if (userCode != null) {
             if (!userPassword.equals(userPassword2) || userPassword == null || userPassword2 == null)
                 session.setAttribute("message", "密码不一致或为空，请重新输入");
-            else userService.registUser(userCode, userPassword,obj);
+            else userService.register(userCode, userPassword);
         }
         else session.setAttribute("message", "用户名重复或为空，请重新输入");
 
