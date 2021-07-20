@@ -8,7 +8,7 @@ public interface ProviderService {
     // 增加供应商
     public boolean add(Provider provider);
 
-    // 通过供应商名称、编码获取供应商列表providerList
+    // 通过供应商名称、编码获取供应商列表providerList(精确搜索)
     public List<Provider> getProviderList(String proName, String proCode);
 
     // 通过providerId删除供应商

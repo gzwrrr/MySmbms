@@ -31,17 +31,49 @@ public class BillServiceImpl extends GeneralSqlService implements BillService{
 
     @Override
     public List<Bill> getBillList(Bill bill) {
-        return null;
+        List<Bill> billList = null;
+        try(SqlSession sqlSession = sqlSessionFactory.openSession()){
+            billList = sqlSession.selectList("mybatis.mapper.BillMapper.selectBill",bill);
+            sqlSession.commit();
+        } catch (Exception e){
+            e.printStackTrace();
+            return null;
+        }
+        return  billList;
     }
 
     @Override
     public boolean deleteBillById(String delId) {
-        return false;
+        try(SqlSession sqlSession = sqlSessionFactory.openSession()) {
+            int id = Integer.parseInt(delId);
+            Bill bill = new Bill();
+            bill.setId(id);
+            if(sqlSession.selectOne("mybatis.mapper.BillMapper.selectBill",bill) == null){
+                return false;
+            }
+            sqlSession.delete("mybatis.mapper.BillMapper.deleteBill",bill);
+            sqlSession.commit();
+        } catch (Exception e){
+            e.printStackTrace();
+            return false;
+        }
+        return true;
     }
 
     @Override
     public Bill getBillById(String id) {
-        return null;
+        Bill bill = null;
+        try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
+            Bill queryBill = new Bill();
+            queryBill.setId(Integer.parseInt(id));
+
+            bill = sqlSession.selectOne("mybatis.mapper.BillMapper.selectBill",queryBill);
+            sqlSession.commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+        return bill;
     }
 
     @Override
