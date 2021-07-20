@@ -1,18 +1,11 @@
 package com.gzw.service.user;
 
-import com.gzw.dao.BaseBao;
 import com.gzw.dao.user.UserDaoImpl;
 import com.gzw.pojo.User;
 import com.gzw.service.abstractService.GeneralSqlService;
-import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
-import org.apache.ibatis.session.SqlSessionFactory;
-import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.junit.jupiter.api.Test;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.sql.Connection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -20,7 +13,6 @@ import java.util.Map;
 public class UserServiceImpl extends GeneralSqlService implements UserService {
 
     UserDaoImpl userDao = new UserDaoImpl();
-
 
     @Override
     public User login(String userCode, String password) {
@@ -39,8 +31,22 @@ public class UserServiceImpl extends GeneralSqlService implements UserService {
     }
 
     @Override
-    public User register(String userCode, String password) {
-        return null;
+    public boolean register(String userCode, String password) {
+        try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
+            User user = new User();
+            user.setUserCode(userCode);
+            if(sqlSession.selectOne("mybatis.mapper.UserMapper.selectUser",user) != null){
+                return false;
+            }
+            user.setUserPassword(password);
+            sqlSession.insert("mybatis.mapper.UserMapper.insertUser",user);
+
+            sqlSession.commit();
+        } catch (Exception e){
+            e.printStackTrace();
+            return false;
+        }
+        return true;
     }
 
     @Override
@@ -137,5 +143,12 @@ public class UserServiceImpl extends GeneralSqlService implements UserService {
                 userList) {
             System.out.println(user.getUserName());
         }
+    }
+
+    @Test
+    public void testRegisterUser() {
+        UserService userService = new UserServiceImpl();
+
+        System.out.println(register("717368","123456"));
     }
 }

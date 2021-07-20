@@ -2,7 +2,6 @@ package com.gzw.service.user;
 
 import com.gzw.pojo.User;
 
-import java.sql.Connection;
 import java.util.List;
 
 public interface UserService {
@@ -10,7 +9,7 @@ public interface UserService {
     public User login(String userCode, String password);
 
     // 用户注册
-    public User register(String userCode, String password);
+    public boolean register(String userCode, String password);
 
     // 根据用户id修改密码
     public boolean updatePwd(int id, String password);

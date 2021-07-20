@@ -4,7 +4,6 @@ import com.gzw.dao.BaseBao;
 import com.gzw.dao.user.UserDao;
 import com.gzw.dao.user.UserDaoImpl;
 import com.gzw.pojo.User;
-import org.junit.jupiter.api.Test;
 
 import java.sql.Connection;
 import java.util.List;
@@ -37,8 +36,8 @@ public class UserServiceImplOld implements UserService {
     }
 
     @Override
-    public User register(String userCode, String password) {
-        return null;
+    public boolean register(String userCode, String password) {
+        return false;
     }
 
 
