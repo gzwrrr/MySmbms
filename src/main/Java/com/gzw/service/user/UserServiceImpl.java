@@ -39,6 +39,11 @@ public class UserServiceImpl extends GeneralSqlService implements UserService {
     }
 
     @Override
+    public User register(String userCode, String password) {
+        return null;
+    }
+
+    @Override
     public boolean updatePwd(int id, String password) {
         // 通过SqlSessionFactory创建SqlSession
         try(SqlSession sqlSession = sqlSessionFactory.openSession()) {
@@ -46,7 +51,7 @@ public class UserServiceImpl extends GeneralSqlService implements UserService {
             queryUser.setId(id);
             if(sqlSession.selectOne("mybatis.mapper.UserMapper.selectUser", queryUser)==null){
                 return false;
-            };
+            }
             queryUser.setUserPassword(password);
             sqlSession.update("mybatis.mapper.UserMapper.updateUser", queryUser);
             sqlSession.commit();
@@ -114,6 +119,8 @@ public class UserServiceImpl extends GeneralSqlService implements UserService {
 
         return userList;
     }
+
+
 
     @Test
     public void testCountUser() {

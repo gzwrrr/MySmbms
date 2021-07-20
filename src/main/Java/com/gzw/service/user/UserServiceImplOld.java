@@ -36,6 +36,11 @@ public class UserServiceImplOld implements UserService {
         return user;
     }
 
+    @Override
+    public User register(String userCode, String password) {
+        return null;
+    }
+
 
     // 根据用户的id修改密码
     @Override

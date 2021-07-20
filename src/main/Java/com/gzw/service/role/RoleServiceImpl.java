@@ -9,10 +9,6 @@ import java.util.List;
 
 public class RoleServiceImpl extends GeneralSqlService implements RoleService {
 
-    public RoleServiceImpl() {
-        super();
-    }
-
     @Override
     public List<Role> getRoleList() {
         // 通过SqlSessionFactory创建SqlSession
