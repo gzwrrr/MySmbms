@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mybatis.mapper.ProviderMapper">
+    <!--插入供应商-->
+    <insert id="insertProvider" parameterType="Provider">
+        insert into smbms_provider
+        (id, proCode, proName, proDesc, proContact, proPhone, proAddress, proFax, createdBy, creationDate, modifyDate, modifyBy)
+        values (#{id}, #{proCode}, #{proName}, #{proDesc}, #{proContact}, #{proPhone}, #{proAddress}, #{proFax}, #{createdBy}, #{creationDate}, #{modifyDate}, #{modifyBy})
+    </insert>
+    <!--查找供应商-->
+    <select id="selectProvider" parameterType="Provider" resultType="Provider">
+        select * from smbms_provider
+        <where>
+            <if test="id != null">and id = #{id}</if>
+            <if test="proCode != null">and proCode like CONCAT('%',#{proCode},'%')</if>
+            <if test="proName != null">and proName like CONCAT('%',#{proName},'%')</if>
+        </where>
+    </select>
+    <!--删除供应商-->
+    <delete id="deleteProvider" parameterType="Provider">
+        delete from smbms_provider
+        <where>
+            <if test="id">and id = #{id}</if>
+        </where>
+    </delete>
+    <!--更新供应商-->
+    <update id="updateProvider" parameterType="Provider">
+        update smbms_provider
+        <set>
+            <if test="proCode != null">proCode = #{proCode},</if>
+            <if test="proName != null">proName = #{proName},</if>
+            <if test="proDesc != null">proDesc = #{proDesc},</if>
+            <if test="proContact != null">proContact = #{proContact},</if>
+            <if test="proPhone != null">proPhone = #{proPhone},</if>
+            <if test="proAddress != null">proAddress = #{proAddress},</if>
+            <if test="proFax != null">proFax = #{proFax},</if>
+            <if test="createdBy != null">createdBy = #{createdBy},</if>
+            <if test="creationDate != null">creationDate = #{creationDate},</if>
+            <if test="modifyDate != null">modifyDate = #{modifyDate},</if>
+            <if test="modifyBy != null">modifyBy = #{modifyBy},</if>
+        </set>
+        where id = #{id}
+    </update>
+</mapper>
