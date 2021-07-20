@@ -11,9 +11,6 @@ public class BillServiceImpl extends GeneralSqlService implements BillService{
 
     @Override
     public boolean add(Bill bill) {
-        if (bill.getId() == null){
-            return false;
-        }
         try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
             Bill queryBill = new Bill();
             queryBill.setId(bill.getId());
@@ -31,7 +28,7 @@ public class BillServiceImpl extends GeneralSqlService implements BillService{
 
     @Override
     public List<Bill> getBillList(Bill bill) {
-        List<Bill> billList = null;
+        List<Bill> billList;
         try(SqlSession sqlSession = sqlSessionFactory.openSession()){
             billList = sqlSession.selectList("mybatis.mapper.BillMapper.selectBill",bill);
             sqlSession.commit();
@@ -62,7 +59,7 @@ public class BillServiceImpl extends GeneralSqlService implements BillService{
 
     @Override
     public Bill getBillById(String id) {
-        Bill bill = null;
+        Bill bill;
         try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
             Bill queryBill = new Bill();
             queryBill.setId(Integer.parseInt(id));
@@ -101,7 +98,6 @@ public class BillServiceImpl extends GeneralSqlService implements BillService{
     public void TestAddBill(){
         BillService billService = new BillServiceImpl();
         Bill bill = new Bill();
-        bill.setId(20);
         bill.setBillCode("10086");
         boolean result = billService.add(bill);
         System.out.println(result);
