@@ -23,9 +23,16 @@ public class ProviderServlet extends HttpServlet {
     }
 
     private void add(HttpServletRequest req, HttpServletResponse resp) throws  ServletException ,IOException{
-        String[] paras = req.getParameterValues("paras");
-
-
+        Object[] paras = req.getParameterValues("paras");
+        Provider provider = new Provider();
+        provider.setProvider(paras,req,resp);
+        ProviderServiceImpl providerService = new ProviderServiceImpl();
+        boolean flag=providerService.add(provider);
+        if(flag==true)
+        {
+            req.setAttribute("message","添加成功！");
+        }else  req.setAttribute("message","添加失败请重试");
+        req.getRequestDispatcher("provideradd.jsp").forward(req,resp);
     }
 
     private void query(HttpServletRequest req, HttpServletResponse resp)throws ServletException,IOException {

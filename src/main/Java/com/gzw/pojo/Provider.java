@@ -29,11 +29,10 @@ public void setProvider(Object []obj, HttpServletRequest req, HttpServletRespons
     provider.setProPhone((String)obj[4]);
     provider.setProAddress((String)obj[5]);
     provider.setProFax((String)obj[6]);
-    provider.setCreatedBy(0);
+    provider.setCreatedBy((Integer) req.getSession().getAttribute("userID"));
     provider.setCreationDate(new Date());
     provider.setModifyDate(new Date());
-
-    provider.setModifyBy(0);
+    provider.setModifyBy((Integer) req.getSession().getAttribute("userID"));
 
 
 }
