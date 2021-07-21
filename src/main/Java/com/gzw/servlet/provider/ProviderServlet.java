@@ -25,6 +25,7 @@ public class ProviderServlet extends HttpServlet {
     private void add(HttpServletRequest req, HttpServletResponse resp) throws  ServletException ,IOException{
         String[] paras = req.getParameterValues("paras");
 
+
     }
 
     private void query(HttpServletRequest req, HttpServletResponse resp)throws ServletException,IOException {
@@ -47,7 +48,7 @@ public class ProviderServlet extends HttpServlet {
         if(queryProName==null)
             queryProCode="";
         ProviderServiceImpl providerService = new ProviderServiceImpl();
-        providerList=providerService.getProviderList(queryProCode,queryProName);
+        providerList=providerService.getProviderList(queryProName,queryProCode);
 
         req.setAttribute("providerList",providerList);
         req.setAttribute("totalCount",totalCount);
