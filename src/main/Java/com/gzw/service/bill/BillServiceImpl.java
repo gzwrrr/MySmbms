@@ -1,107 +1,106 @@
 package com.gzw.service.bill;
 
-import com.gzw.dao.BaseBao;
-import com.gzw.dao.bill.BillDao;
-import com.gzw.dao.bill.BillDaoImpl;
 import com.gzw.pojo.Bill;
+import com.gzw.service.abstractService.GeneralSqlService;
+import org.apache.ibatis.session.SqlSession;
+import org.junit.jupiter.api.Test;
 
-import java.sql.Connection;
 import java.util.List;
 
-public class BillServiceImpl  implements BillService{
+public class BillServiceImpl extends GeneralSqlService implements BillService{
 
-
-    private BillDao billDao;
-    public BillServiceImpl(){
-        billDao = new BillDaoImpl();
-    }
     @Override
     public boolean add(Bill bill) {
-        boolean flag = false;
-        Connection connection = null;
-        try {
-            connection = BaseBao.getConnection();
-            connection.setAutoCommit(false);//开启JDBC事务管理
-            if(billDao.add(connection,bill) > 0) {
-                flag = true;
+        try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
+            Bill queryBill = new Bill();
+            queryBill.setId(bill.getId());
+            if(sqlSession.selectOne("mybatis.mapper.BillMapper.selectBill",queryBill) != null){
+                return false;
             }
-            connection.commit();
-        } catch (Exception e) {
+            sqlSession.insert("mybatis.mapper.BillMapper.insertBill", bill);
+            sqlSession.commit();
+        } catch (Exception e){
             e.printStackTrace();
-            try {
-                connection.rollback();
-            } catch (Exception e1) {
-                e1.printStackTrace();
-            }
-        }finally{
-            //在service层进行connection连接的关闭
-            BaseBao.closeResource(connection, null, null);
+            return false;
         }
-        return flag;
+        return true;
     }
 
     @Override
     public List<Bill> getBillList(Bill bill) {
-        Connection connection = null;
-        List<Bill> billList = null;
-
-        try {
-            connection = BaseBao.getConnection();
-            billList = billDao.getBillList(connection, bill);
-        } catch (Exception e) {
+        List<Bill> billList;
+        try(SqlSession sqlSession = sqlSessionFactory.openSession()){
+            billList = sqlSession.selectList("mybatis.mapper.BillMapper.selectBill",bill);
+            sqlSession.commit();
+        } catch (Exception e){
             e.printStackTrace();
-        }finally{
-            BaseBao.closeResource(connection, null, null);
+            return null;
         }
-        return billList;
+        return  billList;
     }
 
     @Override
     public boolean deleteBillById(String delId) {
-        Connection connection = null;
-        boolean flag = false;
-        try {
-            connection = BaseBao.getConnection();
-            if(billDao.deleteBillById(connection, delId) > 0)
-                flag = true;
-        } catch (Exception e) {
+        try(SqlSession sqlSession = sqlSessionFactory.openSession()) {
+            int id = Integer.parseInt(delId);
+            Bill bill = new Bill();
+            bill.setId(id);
+            if(sqlSession.selectOne("mybatis.mapper.BillMapper.selectBill",bill) == null){
+                return false;
+            }
+            sqlSession.delete("mybatis.mapper.BillMapper.deleteBill",bill);
+            sqlSession.commit();
+        } catch (Exception e){
             e.printStackTrace();
-        }finally{
-            BaseBao.closeResource(connection, null, null);
+            return false;
         }
-        return flag;
+        return true;
     }
 
     @Override
     public Bill getBillById(String id) {
-        Bill bill = null;
-        Connection connection = null;
-        try{
-            connection = BaseBao.getConnection();
-            bill = billDao.getBillById(connection, id);
-        }catch (Exception e) {
+        Bill bill;
+        try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
+            Bill queryBill = new Bill();
+            queryBill.setId(Integer.parseInt(id));
+
+            bill = sqlSession.selectOne("mybatis.mapper.BillMapper.selectBill",queryBill);
+            sqlSession.commit();
+        } catch (Exception e) {
             e.printStackTrace();
-            bill = null;
-        }finally{
-            BaseBao.closeResource(connection, null, null);
+            return null;
         }
         return bill;
     }
 
     @Override
     public boolean modify(Bill bill) {
-        Connection connection = null;
-        boolean flag = false;
-        try {
-            connection = BaseBao.getConnection();
-            if(billDao.modify(connection,bill) > 0)
-                flag = true;
-        } catch (Exception e) {
-            e.printStackTrace();
-        }finally{
-            BaseBao.closeResource(connection, null, null);
+        if (bill.getId() == null){
+            return false;
         }
-        return flag;
+        try(SqlSession sqlSession = sqlSessionFactory.openSession()) {
+            Bill queryBill = new Bill();
+            queryBill.setId(bill.getId());
+            if(sqlSession.selectOne("mybatis.mapper.BillMapper.selectBill",queryBill) == null){
+                return false;
+            }
+
+            sqlSession.update("mybatis.mapper.BillMapper.selectBill",bill);
+            sqlSession.commit();
+        } catch (Exception e){
+            e.printStackTrace();
+            return false;
+        }
+        return true;
     }
 
+    @Test
+    public void TestAddBill(){
+        BillService billService = new BillServiceImpl();
+        Bill bill = new Bill();
+        bill.setBillCode("10086");
+        boolean result = billService.add(bill);
+        System.out.println(result);
+    }
 }
+

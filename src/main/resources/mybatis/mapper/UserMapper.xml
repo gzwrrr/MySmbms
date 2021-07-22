@@ -4,56 +4,62 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="mybatis.mapper.UserMapper">
     <!--查询用户-->
-    <!--TODO: where待完善-->
     <select id="selectUser" parameterType="User" resultType="User">
         select * from smbms_user
         <where>
-            <if test="id != null">
-                id = #{id}
-            </if>
-            <if test="userCode != null">
-                AND userCode = #{userCode}
-            </if>
-            <if test="userName != null">
-                AND userName = #{userName}
-            </if>
-            <if test="userPassword != null">
-                AND userPassword = #{userPassword}
-            </if>
+            <if test="id != null">AND id = #{id}</if>
+            <if test="userCode != null">AND userCode = #{userCode}</if>
+            <if test="userName != null">AND userName = #{userName}</if>
+            <if test="userPassword != null">AND userPassword = #{userPassword}</if>
         </where>
     </select>
     <!--更新用户信息-->
-    <!--TODO: set待完善-->
     <update id="updateUser" parameterType="User">
         update smbms_user
         <set>
+            <if test="userCode != null">userCode = #{userCode},</if>
             <if test="userName != null">userName = #{userName},</if>
-            <if test="userPassword != null">userPassword = #{userPassword}</if>
+            <if test="userPassword != null">userPassword = #{userPassword},</if>
+            <if test="gender != null">gender = #{gender},</if>
+            <if test="birthday != null">birthday = #{birthday},</if>
+            <if test="phone != null">phone = #{phone},</if>
+            <if test="address != null">address = #{address},</if>
+            <if test="userRole != null">userRole = #{userRole},</if>
+            <if test="createdBy != null">createdBy = #{createdBy},</if>
+            <if test="creationDate != null">creationDate = #{creationDate},</if>
+            <if test="modifyBy != null">modifyBy = #{modifyBy},</if>
+            <if test="modifyDate != null">modifyDate = #{modifyDate},</if>
         </set>
         where id = #{id}
     </update>
     <!--删除用户信息-->
-    <!--TODO:待测试和完善-->
     <delete id="deleteUser" parameterType="User">
         delete from smbms_user
         <where>
-            <if test="id != null">
-                id = #{id}
-            </if>
-            <if test="userCode != null">
-                AND userCode = #{userCode}
-            </if>
-            <if test="userName != null">
-                AND userName = #{userName}
-            </if>
-            <if test="userPassword != null">
-                AND userPassword = #{userPassword}
-            </if>
+            <if test="id != null">AND id = #{id}</if>
+            <if test="userCode != null">AND userCode = #{userCode} </if>
+            <if test="userName != null">AND userName = #{userName}</if>
+            <if test="userPassword != null">AND userPassword = #{userPassword}</if>
         </where>
     </delete>
     <!--插入用户信息-->
-    <!--TODO:待测试和完善-->
-    <insert id="insertStudent" parameterType="User">
-        insert into smbms_user (id) values (#{id})
+    <insert id="insertUser" parameterType="User">
+        insert into smbms_user (id, userCode, userName, userPassword, gender, birthday, phone, address, userRole, createdBy, creationDate, modifyBy, modifyDate)
+        values (#{id}, #{userCode}, #{userName}, #{userPassword}, #{gender}, #{birthday}, #{phone}, #{address}, #{userRole}, #{createdBy}, #{creationDate}, #{modifyBy}, #{modifyDate})
     </insert>
+    <!--统计用户数-->
+    <select id="countUser" parameterType="User" resultType="int">
+        select count(1) as count from smbms_user u,smbms_role r where u.userRole = r.id
+        <if test="userName != null"> and u.userName like CONCAT('%',#{userName,jdbcType=VARCHAR},'%') </if>
+        <if test="userRole != null"> and u.userRole = #{userCode} </if>
+    </select>
+    <!--获取用户列表-->
+    <select id="selectUserList" parameterType="Map" resultType="User">
+        select * from smbms_user
+        <where>
+            <if test="userName != null"> and userName like CONCAT('%',#{userName},'%') </if>
+            <if test="userRole != null"> and userRole = #{userCode} </if>
+        </where>
+        order by creationDate DESC limit #{index},#{number}
+    </select>
 </mapper>

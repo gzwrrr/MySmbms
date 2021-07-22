@@ -4,7 +4,6 @@ import com.gzw.dao.BaseBao;
 import com.gzw.dao.user.UserDao;
 import com.gzw.dao.user.UserDaoImpl;
 import com.gzw.pojo.User;
-import org.junit.jupiter.api.Test;
 
 import java.sql.Connection;
 import java.util.List;
@@ -36,6 +35,11 @@ public class UserServiceImplOld implements UserService {
         return user;
     }
 
+    @Override
+    public boolean register(String userCode, String password) {
+        return false;
+    }
+
 
     // 根据用户的id修改密码
     @Override
@@ -63,18 +67,8 @@ public class UserServiceImplOld implements UserService {
     }
 
     @Override
-    public boolean checkUserCode(String userCode) {
-        return false;
-    }
-
-    @Override
     public List<User> getUserList(String queryUserName, int queryUserRole, int currentPageNo, int pageSize) {
         return null;
-    }
-
-    @Override
-    public boolean registUser(String userCode, String userPassword, Object[] params) {
-        return false;
     }
 
 }
