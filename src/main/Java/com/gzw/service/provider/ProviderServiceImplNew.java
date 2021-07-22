@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
-public class ProviderServiceImpl extends GeneralSqlService implements ProviderService {
+public class ProviderServiceImplNew extends GeneralSqlService implements ProviderService {
 
     @Override
     public boolean add(Provider provider) {

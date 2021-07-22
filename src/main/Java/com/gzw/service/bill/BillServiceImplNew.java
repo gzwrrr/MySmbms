@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
-public class BillServiceImpl extends GeneralSqlService implements BillService{
+public class BillServiceImplNew extends GeneralSqlService implements BillService{
 
     @Override
     public boolean add(Bill bill) {
@@ -96,7 +96,7 @@ public class BillServiceImpl extends GeneralSqlService implements BillService{
 
     @Test
     public void TestAddBill(){
-        BillService billService = new BillServiceImpl();
+        BillService billService = new BillServiceImplNew();
         Bill bill = new Bill();
         bill.setBillCode("10086");
         boolean result = billService.add(bill);

@@ -4,9 +4,9 @@ import com.gzw.pojo.Bill;
 import com.gzw.pojo.Provider;
 import com.gzw.pojo.User;
 import com.gzw.service.bill.BillService;
-import com.gzw.service.bill.BillServiceImpl;
+import com.gzw.service.bill.BillServiceImplNew;
 import com.gzw.service.provider.ProviderService;
-import com.gzw.service.provider.ProviderServiceImpl;
+import com.gzw.service.provider.ProviderServiceImplNew;
 import com.gzw.util.Constants;
 import com.mysql.cj.util.StringUtils;
 
@@ -50,7 +50,7 @@ public class BillServlet extends HttpServlet {
             throws ServletException, IOException {
 
         List<Provider> providerList = new ArrayList<Provider>();
-        ProviderService providerService = new ProviderServiceImpl();
+        ProviderService providerService = new ProviderServiceImplNew();
         providerList = providerService.getProviderList("","");
         //把providerList转换成json对象输出
         response.setContentType("application/json");
@@ -63,7 +63,7 @@ public class BillServlet extends HttpServlet {
             throws ServletException, IOException {
         String id = request.getParameter("billid");
         if(!StringUtils.isNullOrEmpty(id)){
-            BillService billService = new BillServiceImpl();
+            BillService billService = new BillServiceImplNew();
             Bill bill = null;
             bill = billService.getBillById(id);
             request.setAttribute("bill", bill);
@@ -95,7 +95,7 @@ public class BillServlet extends HttpServlet {
         bill.setModifyBy(((User)request.getSession().getAttribute(Constants.USER_SESSION)).getId());
         bill.setModifyDate(new Date());
         boolean flag = false;
-        BillService billService = new BillServiceImpl();
+        BillService billService = new BillServiceImplNew();
         flag = billService.modify(bill);
         if(flag){
             response.sendRedirect(request.getContextPath()+"/jsp/bill.do?method=query");
@@ -108,7 +108,7 @@ public class BillServlet extends HttpServlet {
         String id = request.getParameter("billid");
         HashMap<String, String> resultMap = new HashMap<String, String>();
         if(!StringUtils.isNullOrEmpty(id)){
-            BillService billService = new BillServiceImpl();
+            BillService billService = new BillServiceImplNew();
             boolean flag = billService.deleteBillById(id);
             if(flag){//删除成功
                 resultMap.put("delResult", "true");
@@ -139,7 +139,7 @@ public class BillServlet extends HttpServlet {
         */
         // 创建Bill对象
         Bill bill = new Bill();
-        BillServiceImpl billService = new BillServiceImpl();
+        BillServiceImplNew billService = new BillServiceImplNew();
         // 获取表单信息
         String billCode = req.getParameter("billCode");
         String productName = req.getParameter("productName");
@@ -176,7 +176,7 @@ public class BillServlet extends HttpServlet {
     private void query(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         // 回传providerList
         List<Provider> providerList = new ArrayList<Provider>();
-        ProviderService providerService = new ProviderServiceImpl();
+        ProviderService providerService = new ProviderServiceImplNew();
         providerList = providerService.getProviderList("","");
         req.setAttribute("providerList",providerList);
         /*
@@ -190,7 +190,7 @@ public class BillServlet extends HttpServlet {
         String queryIsPayment = req.getParameter("queryIsPayment");
         List<Bill> billList = null;
         Bill bill = new Bill();
-        BillServiceImpl billService = new BillServiceImpl();
+        BillServiceImplNew billService = new BillServiceImplNew();
 
         if (StringUtils.isNullOrEmpty(queryProductName)){
             queryProductName = "";

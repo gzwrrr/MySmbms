@@ -2,7 +2,7 @@ package com.gzw.servlet.provider;
 
 import com.alibaba.fastjson.JSONArray;
 import com.gzw.pojo.Provider;
-import com.gzw.service.provider.ProviderServiceImpl;
+import com.gzw.service.provider.ProviderServiceImplNew;
 import com.mysql.cj.util.StringUtils;
 
 import javax.servlet.ServletException;
@@ -11,10 +11,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class ProviderServlet extends HttpServlet {
     @Override
@@ -35,7 +33,7 @@ public class ProviderServlet extends HttpServlet {
 
         Provider provider = new Provider();
         provider.setProvider(paras,req,resp);
-        ProviderServiceImpl providerService = new ProviderServiceImpl();
+        ProviderServiceImplNew providerService = new ProviderServiceImplNew();
 
         boolean flag=providerService.add(provider);
         if(flag==true)
@@ -48,7 +46,7 @@ public class ProviderServlet extends HttpServlet {
         String proid = req.getParameter("proid");
         HashMap<String,String > resultMap=new HashMap<>();
         if(!StringUtils.isNullOrEmpty(proid)) {
-            ProviderServiceImpl providerService = new ProviderServiceImpl();
+            ProviderServiceImplNew providerService = new ProviderServiceImplNew();
         int flag=providerService.deleteProviderById(proid);
         if(flag==0)
         {
@@ -94,7 +92,7 @@ public class ProviderServlet extends HttpServlet {
             queryProCode="";
         if(queryProName==null)
             queryProCode="";
-        ProviderServiceImpl providerService = new ProviderServiceImpl();
+        ProviderServiceImplNew providerService = new ProviderServiceImplNew();
         providerList=providerService.getProviderList(queryProName,queryProCode);
 
         req.setAttribute("providerList",providerList);
