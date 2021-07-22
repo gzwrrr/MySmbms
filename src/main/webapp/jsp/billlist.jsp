@@ -35,6 +35,19 @@
 			 <a href="${pageContext.request.contextPath }/jsp/billadd.jsp">添加订单</a>
 		</form>
        </div>
+	<!--点击删除按钮后弹出的页面-->
+	<div class="zhezhao" style="display: none">
+		<div class="remove" id="removeBi">
+			<div class="removerChid">
+				<h2>提示</h2>
+				<div class="removeMain">
+					<p>你确定要删除该订单吗？</p>
+					<a href="#" id="yes">确定</a>
+					<a href="#" id="no">取消</a>
+				</div>
+			</div>
+		</div>
+	</div>
        <!--账单表格 样式和供应商公用-->
       <table class="providerTable" cellpadding="0" cellspacing="0">
           <tr class="firstTr">
@@ -47,31 +60,31 @@
               <th width="30%">操作</th>
           </tr>
           <c:forEach var="bill" items="${billList }" varStatus="status">
-				<tr>
+				<tr class="search-form">
 					<td>
-					<span>${bill.billCode }</span>
+					<span style="width: 15%">${bill.billCode }</span>
 					</td>
 					<td>
-					<span>${bill.productName }</span>
+					<span style="width: 15%">${bill.productName }</span>
 					</td>
 					<td>
-					<span>${bill.providerName}</span>
+					<span style="width: 25%">${bill.providerName}</span>
 					</td>
 					<td>
-					<span>${bill.totalPrice}</span>
+					<span style="width: 10%">${bill.totalPrice}</span>
 					</td>
 					<td>
-					<span>
+					<span style="width: 10%">
 						<c:if test="${bill.isPayment == 1}">未付款</c:if>
 						<c:if test="${bill.isPayment == 2}">已付款</c:if>
 					</span>
 					</td>
 					<td>
-					<span>
+					<span style="width: 10%">
 					<fmt:formatDate value="${bill.creationDate}" pattern="yyyy-MM-dd"/>
 					</span>
 					</td>
-					<td>
+					<td style="width: 15%">
 					<span><a class="viewBill" href="javascript:;" billid=${bill.id } billcc=${bill.billCode }><img src="${pageContext.request.contextPath }/images/read.png" alt="查看" title="查看"/></a></span>
 					<span><a class="modifyBill" href="javascript:;" billid=${bill.id } billcc=${bill.billCode }><img src="${pageContext.request.contextPath }/images/xiugai.png" alt="修改" title="修改"/></a></span>
 					<span><a class="deleteBill" href="javascript:;" billid=${bill.id } billcc=${bill.billCode }><img src="${pageContext.request.contextPath }/images/schu.png" alt="删除" title="删除"/></a></span>
@@ -82,18 +95,5 @@
   </div>
 </section>
 
-<!--点击删除按钮后弹出的页面-->
-<div class="zhezhao"></div>
-<div class="remove" id="removeBi">
-    <div class="removerChid">
-        <h2>提示</h2>
-        <div class="removeMain">
-            <p>你确定要删除该订单吗？</p>
-            <a href="#" id="yes">确定</a>
-            <a href="#" id="no">取消</a>
-        </div>
-    </div>
-</div>
-
 <%@include file="/jsp/common/foot.jsp" %>
-<script type="text/javascript" src="${pageContext.request.contextPath }/js/billlist.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath }/js/billlist.js" charset="utf-8"></script>
