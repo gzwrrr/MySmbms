@@ -11,6 +11,8 @@ import java.util.List;
 @Deprecated
 public class UserServiceImplOld implements UserService {
 
+
+
     private UserDao userDao;
 
     public UserServiceImplOld() {
@@ -71,4 +73,33 @@ public class UserServiceImplOld implements UserService {
         return null;
     }
 
+    @Override
+    public User selectUserCodeExist(String userCode) {
+        return null;
+    }
+
+    @Override
+    public boolean deleteUserById(Integer delId) {
+        return false;
+    }
+
+    @Override
+    public User getUserById(String id) {
+        return null;
+    }
+
+    @Override
+    public boolean modify(User user) {
+        return false;
+    }
+
+    @Override
+    public boolean add(User user) {
+        return false;
+    }
+
+    @Override
+    public boolean registUser(String userCode, String userPassword, Object[] params) {
+        return false;
+    }
 }
