@@ -13,5 +13,6 @@ public int  add(Connection connection ,Good  good)throws Exception;
     int delete(Connection connection, Good good);
 
     List<GoodInCar> getGoodList(Connection connection, Integer userID)throws SQLException;
-    public Good getGoodByID(Connection connection,Integer goodID);
+    public Good getGoodByID(Connection connection,Integer goodID)throws SQLException;
+    public boolean addGoodIntoCar(Connection connection, Object [] paras)throws SQLException;
 }

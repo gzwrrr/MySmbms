@@ -13,6 +13,7 @@ public class Good {
     private Date createdDate;
     private  Integer createdBy;
     private  String url;
+
     public Integer getGoodID() {
         return goodID;
     }

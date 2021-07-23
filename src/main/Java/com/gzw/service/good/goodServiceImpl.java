@@ -84,6 +84,11 @@ public class goodServiceImpl implements goodService{
         return good;
     }
 
+    @Override
+    public boolean pay(Integer userId) {
+        return false;
+    }
+
 
     @Override
     public List<GoodInCar> getGoodList(Integer userID) {
@@ -99,5 +104,31 @@ public class goodServiceImpl implements goodService{
             BaseBao.closeResource(connection, null, null);
         }
         return shoppingList;
+    }
+    public boolean addGoodIntoCar( Object []paras)
+    {
+        Connection connection =null;
+        boolean flag=false;
+        try {
+            connection=BaseBao.getConnection();
+            connection.setAutoCommit(false);
+            if(goodDao.addGoodIntoCar(connection,paras))
+                flag=true;
+
+            connection.commit();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            try{
+                connection.rollback();
+            }catch (Exception E)
+            {
+                E.printStackTrace();
+            }finally{
+                //在service层进行connection连接的关闭
+                BaseBao.closeResource(connection, null, null);
+            }
+        }
+        return flag;
+
     }
 }

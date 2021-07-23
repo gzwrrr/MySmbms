@@ -11,6 +11,15 @@ public class GoodInCar {
     private  Integer goodNumber;
     private String addressDesc;
     private Date creationDate;
+    private  String url;
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
     public Double getGoodPrice() {
         return goodPrice;
     }
