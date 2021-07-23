@@ -69,7 +69,7 @@ public class ProviderServlet extends HttpServlet {
             throws ServletException, IOException {
         String proContact = request.getParameter("proContact");
         String proPhone = request.getParameter("proPhone");
-        String proAddress = request.getParameter("proAddress");
+        String proName = request.getParameter("proName");
         String proFax = request.getParameter("proFax");
         String proDesc = request.getParameter("proDesc");
         String id = request.getParameter("id");
@@ -78,7 +78,7 @@ public class ProviderServlet extends HttpServlet {
         provider.setProContact(proContact);
         provider.setProPhone(proPhone);
         provider.setProFax(proFax);
-        provider.setProAddress(proAddress);
+        provider.setProName(proName);
         provider.setProDesc(proDesc);
         provider.setModifyBy(((User)request.getSession().getAttribute(Constants.USER_SESSION)).getId());
         provider.setModifyDate(new Date());
