@@ -26,6 +26,7 @@ public class goodServiceImpl implements goodService{
             connection.setAutoCommit(false);
             if(goodDao.add(connection,good)>0)
                 flag=true;
+
             connection.commit();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -91,7 +92,6 @@ public class goodServiceImpl implements goodService{
         try{
             connection=BaseBao.getConnection();
            shoppingList=goodDao.getGoodList(connection,userID);
-
 
         }catch (Exception e ){
             e.printStackTrace();
