@@ -18,7 +18,7 @@ public class goodServiceImpl implements goodService{
     {
         goodDao=new goodDaoImpl();
     }
-    public boolean add(Good good) {
+    public boolean add(Good good) throws Exception {
         Connection connection =null;
         boolean flag=false;
         try {

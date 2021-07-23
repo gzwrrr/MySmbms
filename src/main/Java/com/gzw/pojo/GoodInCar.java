@@ -4,11 +4,30 @@ package com.gzw.pojo;
 import java.util.Date;
 
 public class GoodInCar {
+
+    private  Integer goodID;
     private String goodName;
-    private  String goodPrice;
-    private  Integer productNumber;
+    private  Double goodPrice;
+    private  Integer goodNumber;
     private String addressDesc;
     private Date creationDate;
+    public Double getGoodPrice() {
+        return goodPrice;
+    }
+
+    public void setGoodPrice(Double goodPrice) {
+        this.goodPrice = goodPrice;
+    }
+
+
+
+    public Integer getGoodID() {
+        return goodID;
+    }
+
+    public void setGoodID(Integer goodID) {
+        this.goodID = goodID;
+    }
 
     public String getGoodName() {
         return goodName;
@@ -18,12 +37,14 @@ public class GoodInCar {
         this.goodName = goodName;
     }
 
-    public String getGoodPrice() {
-        return goodPrice;
+
+
+    public Integer getGoodNumber() {
+        return goodNumber;
     }
 
-    public void setGoodPrice(String goodPrice) {
-        this.goodPrice = goodPrice;
+    public void setGoodNumber(Integer goodNumber) {
+        this.goodNumber = goodNumber;
     }
 
     public String getAddressDesc() {
@@ -34,14 +55,6 @@ public class GoodInCar {
         this.addressDesc = addressDesc;
     }
 
-    public Integer getProductNumber() {
-        return productNumber;
-    }
-
-    public void setProductNumber(Integer productNumber) {
-        this.productNumber = productNumber;
-    }
-
     public Date getCreationDate() {
         return creationDate;
     }
@@ -49,6 +62,9 @@ public class GoodInCar {
     public void setCreationDate(Date creationDate) {
         this.creationDate = creationDate;
     }
+
+
+
 
 
 }

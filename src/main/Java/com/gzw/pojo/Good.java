@@ -12,16 +12,7 @@ public class Good {
     private Double goodPrice;
     private Date createdDate;
     private  Integer createdBy;
-
-   public void setGood(Object [] paras, HttpServletRequest req)
-   {
-      this.setGoodID((Integer) paras[0]);
-      this.setGoodName((String) paras[1]);
-      this.setGoodPrice((Double) paras[2]);
-      this.setcreatedDate(new Date());
-      this.setCreatedBy((Integer) req.getSession().getAttribute("userId"));
-
-   }
+    private  String url;
     public Integer getGoodID() {
         return goodID;
     }
@@ -46,11 +37,11 @@ public class Good {
         this.goodPrice = goodPrice;
     }
 
-    public Date getcreatedDate() {
+    public Date getCreatedDate() {
         return createdDate;
     }
 
-    public void setcreatedDate(Date createdDate) {
+    public void setCreatedDate(Date createdDate) {
         this.createdDate = createdDate;
     }
 
@@ -61,6 +52,30 @@ public class Good {
     public void setCreatedBy(Integer createdBy) {
         this.createdBy = createdBy;
     }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
+
+
+
+
+
+   public void setGood(Object [] paras, HttpServletRequest req)
+   {
+      this.setGoodID(null);
+      this.setGoodName((String) paras[0]);
+      this.setGoodPrice((Double) paras[1]);
+    this.setUrl((String) paras[2]);
+      this.setCreatedDate(new Date());
+      this.setCreatedBy((Integer) req.getSession().getAttribute("userId"));
+   }
+
 
 
 
