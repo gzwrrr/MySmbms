@@ -105,11 +105,7 @@ public class GoodDaoImpl implements GoodDao {
 
 
     @Override
-    //添加商品到购物车
-    //paras中的参数
-    //contact~tel 是通过表单提交获取
-    //createdBy~userId通过Id查询用户信息获取
-    //goodName~url 通过页面getArribute获取
+
 
     public boolean addGoodIntoCar(Connection connection , GoodInCar goodInCar)throws SQLException
     {

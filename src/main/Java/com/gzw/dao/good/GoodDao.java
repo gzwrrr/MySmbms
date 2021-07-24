@@ -8,14 +8,19 @@ import java.sql.SQLException;
 import java.util.List;
 
 public interface GoodDao {
-public int  add(Connection connection ,Good  good)throws Exception;
+    public int add(Connection connection, Good good) throws Exception;
 
     int delete(Connection connection, Good good);
 
-    public  List<GoodInCar> getGoodList(Connection connection,Integer userID,Integer payOrNot)throws SQLException;
-    public Good getGoodByID(Connection connection,Integer goodID)throws SQLException;
+    public List<GoodInCar> getGoodList(Connection connection, Integer userID, Integer payOrNot) throws SQLException;
+
+    public Good getGoodByID(Connection connection, Integer goodID) throws SQLException;
+
     public boolean addGoodIntoCar(Connection connection, GoodInCar goodInCar) throws SQLException;
-    public boolean deleteGoodInCar(Connection connection, String goodName,Integer userId) ;
-    public boolean payOrNot(Connection connection, Integer userId,Integer payornot);
+
+    public boolean deleteGoodInCar(Connection connection, String goodName, Integer userId);
+
+    public boolean payOrNot(Connection connection, Integer userId, Integer payornot);
+
     boolean modify(Connection connection, Good good);
 }

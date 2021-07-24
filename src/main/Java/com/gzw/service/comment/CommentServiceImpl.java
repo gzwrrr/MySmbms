@@ -10,13 +10,14 @@ import java.sql.SQLException;
 
 public class CommentServiceImpl implements CommentService {
 
-    private  CommentDao commentDao;
-    CommentServiceImpl()
-    {
-        commentDao=new CommentDaoImpl();
+    private CommentDao commentDao;
+
+    CommentServiceImpl() {
+        commentDao = new CommentDaoImpl();
     }
-    public boolean add(Comment comment) throws SQLException{
-        Connection connection =null;
+
+    public boolean add(Comment comment) throws SQLException {
+        Connection connection = null;
         boolean flag = false;
         try {
             connection = BaseBao.getConnection();
@@ -25,8 +26,8 @@ public class CommentServiceImpl implements CommentService {
                 flag = true;
             connection.commit();
         } catch (Exception e) {
-                connection.rollback();
-                e.printStackTrace();
+            connection.rollback();
+            e.printStackTrace();
         } finally {
             BaseBao.closeResource(connection, null, null);
         }
@@ -34,8 +35,8 @@ public class CommentServiceImpl implements CommentService {
     }
 
     @Override
-    public boolean delete(Comment comment)throws SQLException {
-        Connection connection =null;
+    public boolean delete(Comment comment) throws SQLException {
+        Connection connection = null;
         boolean flag = false;
         try {
             connection = BaseBao.getConnection();
@@ -50,5 +51,20 @@ public class CommentServiceImpl implements CommentService {
             BaseBao.closeResource(connection, null, null);
         }
         return flag;
+    }
+
+    @Override
+    public Comment query(Integer goodId) throws SQLException {
+        Comment comment = null;
+        Connection connection = null;
+        try {
+            connection = BaseBao.getConnection();
+            comment = commentDao.query(connection, goodId);
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            BaseBao.closeResource(connection, null, null);
+        }
+        return comment;
     }
 }
