@@ -1,16 +1,11 @@
 package com.gzw.service.user;
 
 import com.gzw.dao.BaseBao;
+import com.gzw.dao.user.UserDao;
 import com.gzw.dao.user.UserDaoImpl;
 import com.gzw.pojo.User;
-import org.apache.ibatis.io.Resources;
-import org.apache.ibatis.session.SqlSession;
-import org.apache.ibatis.session.SqlSessionFactory;
-import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.junit.jupiter.api.Test;
 
-import java.io.IOException;
-import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -18,12 +13,13 @@ import java.util.List;
 
 public class UserServiceImpl implements UserService {
 
-    UserDaoImpl userDao = new UserDaoImpl();
-    private static final String resourcePath = "mybatis/mybatis-config.xml";
-
-
+    private UserDao userDao;
+    public UserServiceImpl(){
+        userDao = new UserDaoImpl();
+    }
     @Override
     public boolean add(User user) {
+
         boolean flag = false;
         Connection connection = null;
         try {
@@ -53,6 +49,41 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public User login(String userCode, String userPassword) {
+        Connection connection = null;
+        User user = null;
+        try {
+            connection = BaseBao.getConnection();
+            user = userDao.getLoginUser(connection, userCode);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }finally{
+            BaseBao.closeResource(connection, null, null);
+        }
+
+        //匹配密码
+        if(null != user){
+            if(!user.getUserPassword().equals(userPassword))
+                user = null;
+        }
+
+        return user;
+    }
+    @Override
+    public List<User> getUserList(String queryUserName, int queryUserRole, int currentPageNo, int pageSize) {
+        Connection connection = null;
+        List<User> userList = null;
+        try {
+            connection = BaseBao.getConnection();
+            userList = userDao.getUserList(connection, queryUserName,queryUserRole,currentPageNo,pageSize);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }finally{
+            BaseBao.closeResource(connection, null, null);
+        }
+        return userList;
+    }
+    @Override
     public User selectUserCodeExist(String userCode) {
         Connection connection = null;
         User user = null;
@@ -66,9 +97,9 @@ public class UserServiceImpl implements UserService {
         }
         return user;
     }
-
     @Override
     public boolean deleteUserById(Integer delId) {
+        // TODO Auto-generated method stub
         Connection connection = null;
         boolean flag = false;
         try {
@@ -76,6 +107,7 @@ public class UserServiceImpl implements UserService {
             if(userDao.deleteUserById(connection,delId) > 0)
                 flag = true;
         } catch (Exception e) {
+            // TODO Auto-generated catch block
             e.printStackTrace();
         }finally{
             BaseBao.closeResource(connection, null, null);
@@ -112,99 +144,37 @@ public class UserServiceImpl implements UserService {
         }
         return flag;
     }
-
     @Override
-    public User login(String userCode, String password) {
-        // 读取配置文件mybatis/mybatis-config.xml
-        InputStream inputStream = null;
-        try {
-            inputStream = Resources.getResourceAsStream(resourcePath);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        // 通过配置文件构建SqlSessionFactory
-        SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
-        // 通过SqlSessionFactory创建SqlSession
-        SqlSession sqlSession = sqlSessionFactory.openSession();
-        // 创建用于查询的User对象
-        User queryUser = new User();
-        queryUser.setUserCode(userCode);
-        queryUser.setUserPassword(password);
-        // 执行sql
-        User user = sqlSession.selectOne("mybatis.mapper.UserMapper.selectUser",queryUser);
-        // 提交并关闭sqlSession
-        sqlSession.commit();
-        sqlSession.close();
-        return user;
-    }
-
-    @Override
-    public boolean updatePwd(int id, String password) {
-        // 读取配置文件mybatis/mybatis-config.xml
-        InputStream inputStream = null;
-        try {
-            inputStream = Resources.getResourceAsStream(resourcePath);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        // 通过配置文件构建SqlSessionFactory
-        SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
-        // 通过SqlSessionFactory创建SqlSession
-        SqlSession sqlSession = sqlSessionFactory.openSession();
-        // 创建用于查询的User对象
-        User queryUser = new User();
-        queryUser.setId(id);
-        queryUser.setUserPassword(password);
-        // 执行sql
-        try {
-            sqlSession.update("mybatis.mapper.UserMapper.updateUser",queryUser);
-        } catch (Exception e){
-            e.printStackTrace();
-            return false;
-        }
-        sqlSession.commit();
-        sqlSession.close();
-        return true;
-    }
-
-    @Override
-    public int getUserCount(String userName, int userRole) {
-
+    public boolean updatePwd(int id, String pwd) {
+        boolean flag = false;
         Connection connection = null;
-        int userCount = 0;
-        try {
+        try{
             connection = BaseBao.getConnection();
-            userCount = userDao.getUserCount(connection, userName, userRole);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }finally {
-            BaseBao.closeResource(connection,null,null);
-        }
-        return userCount;
-    }
-
-    @Override
-    public List<User> getUserList(String queryUserName, int queryUserRole, int currentPageNo, int pageSize) {
-        Connection connection = null;
-        List<User> userList = null;
-        try {
-            connection = BaseBao.getConnection();
-            userList = userDao.getUserList(connection, queryUserName,queryUserRole,currentPageNo,pageSize);
-        } catch (Exception e) {
+            if(userDao.updatePwd(connection,id,pwd) > 0)
+                flag = true;
+        }catch (Exception e) {
             e.printStackTrace();
         }finally{
             BaseBao.closeResource(connection, null, null);
         }
-        return userList;
+        return flag;
     }
-
-
-
-    public static void main(String[] args) {
-        UserService userService = new UserServiceImpl();
-        userService.updatePwd(1,"123");
+    @Override
+    public int getUserCount(String queryUserName, int queryUserRole) {
+        // TODO Auto-generated method stub
+        Connection connection = null;
+        int count = 0;
+        try {
+            connection = BaseBao.getConnection();
+            count = userDao.getUserCount(connection, queryUserName,queryUserRole);
+        } catch (Exception e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }finally{
+            BaseBao.closeResource(connection, null, null);
+        }
+        return count;
     }
-
 
     @Override
     public boolean checkUserCode(String userCode) {
@@ -228,6 +198,7 @@ public class UserServiceImpl implements UserService {
 
     }
 
+
     @Override
     public boolean registUser(String userCode, String userPassword,Object[]params) {
         Connection connection=null;
@@ -247,12 +218,5 @@ public class UserServiceImpl implements UserService {
         if(flag==0)
             return false;
         else return true;
-    }
-
-    @Test
-    public void test(){
-        UserServiceImpl userService = new UserServiceImpl();
-        int count = userService.getUserCount(null,1);
-        System.out.println(count);
     }
 }

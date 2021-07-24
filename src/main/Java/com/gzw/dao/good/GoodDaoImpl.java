@@ -3,18 +3,15 @@ package com.gzw.dao.good;
 import com.gzw.dao.BaseBao;
 import com.gzw.pojo.Good;
 import com.gzw.pojo.GoodInCar;
-import com.gzw.pojo.Provider;
-import com.gzw.pojo.User;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
 
-public class goodDaoImpl implements  goodDao{
+public class GoodDaoImpl implements GoodDao {
     @Override
     //管理员上架商品
     public int add(Connection connection, Good good) throws Exception  {
@@ -23,7 +20,7 @@ public class goodDaoImpl implements  goodDao{
             int flag = 0;
             if(null != connection){
                 String sql = "insert into smbms_good (goodName,goodPrice,createDate,createdBy,url)" +
-                        "values(?,?,?,?,?)";
+                        "values(?,?,?,?,?);";
                 Object[] params = {good.getGoodName(),good.getGoodPrice(),good.getCreatedDate(),good.getCreatedBy(),good.getUrl()};
                 flag = BaseBao.execute(connection, sql, params,pstm);
                 BaseBao.closeResource(null, pstm, null);
@@ -37,7 +34,7 @@ public class goodDaoImpl implements  goodDao{
         PreparedStatement pstm = null;
         int flag = 0;
         if(null != connection){
-            String sql = "delete from smbms_good where id="+good.getGoodID();
+            String sql = "delete from smbms_good where id=?";
             Object[] params = {good.getGoodID()};
             try {
                 flag = BaseBao.execute(connection, sql, params,pstm);
@@ -51,12 +48,12 @@ public class goodDaoImpl implements  goodDao{
 
     @Override
     //显示用户的购物车内容
-    public List<GoodInCar> getGoodList(Connection connection, Integer userID)throws  SQLException {
+    public  List<GoodInCar> getGoodList(Connection connection,Integer userID,Integer payOrNot)throws  SQLException {
         PreparedStatement pstm=null;
         ResultSet resultSet=null;
         List<GoodInCar> shoppingList = new ArrayList<GoodInCar>();
-        Object [] paras= {userID};
-        String sql="select addressDesc,creationDate,goodId,goodNumber,goodName,goodPrice,url from smbms_address where userId=? and isPayment=1";
+        Object [] paras= {userID,payOrNot};
+        String sql="select addressDesc,creationDate,goodId,goodNumber,goodName,goodPrice,url from smbms_address where userId=? and isPayment=?;";
        if(connection!=null) {
            resultSet = BaseBao.execute(connection, pstm, resultSet, sql, paras);
            while (resultSet.next()) {
@@ -85,8 +82,8 @@ public class goodDaoImpl implements  goodDao{
         Object [] paras= {goodID};
         String sql;
         if(goodID!=null)
-            sql="select *  from smbms_good where goodId= ?";
-        else sql="select * from smbms_good ";
+            sql="select *  from smbms_good where goodId= ?;";
+        else sql="select * from smbms_good; ";
         if(connection!=null)
         {
             resultSet = BaseBao.execute(connection, pstm, resultSet, sql, paras);
@@ -114,14 +111,15 @@ public class goodDaoImpl implements  goodDao{
     //createdBy~userId通过Id查询用户信息获取
     //goodName~url 通过页面getArribute获取
 
-    public boolean addGoodIntoCar(Connection connection , Object []paras)throws SQLException
+    public boolean addGoodIntoCar(Connection connection , GoodInCar goodInCar)throws SQLException
     {
+            Object[] paras={goodInCar.getGoodID(),goodInCar.getGoodName(),goodInCar.getGoodPrice(),goodInCar.getGoodNumber()
+                    ,goodInCar.getAddressDesc(),goodInCar.getCreationDate(),goodInCar.getUrl()};
         PreparedStatement pstm = null;
         int flag = 0;
         if(null != connection){
-            String sql = "insert into smbms_address (contact,addressDesc,postCode,tel,createdBy,creationDate," +
-                    "userId,goodName,goodId,goodNumber,goodPrice,url)" +
-                    "values(?,?,?,?,?,?,?,?,?,?,?,?)";
+            String sql = "insert into smbms_address (goodId,goodName,goodPrice,goodNumber,addressDesc,creationDate,url,isPayment)" +
+                    "values(?,?,?,?,?,?,?,1);";
 
             flag = BaseBao.execute(connection, sql, paras,pstm);
             BaseBao.closeResource(null, pstm, null);
@@ -138,7 +136,7 @@ public class goodDaoImpl implements  goodDao{
         Object [] paras={goodName,userId};
         int flag = 0;
         if(null != connection){
-            String sql = "delete from smbms_address where goodName=? and userId=? and isPayment=1 ";
+            String sql = "delete from smbms_address where goodName=? and userId=? and isPayment=1 ;";
             try {
                 flag = BaseBao.execute(connection, sql, paras,pstm);
             } catch (SQLException e) {
@@ -160,7 +158,7 @@ public class goodDaoImpl implements  goodDao{
         Object [] paras={payOrNot,userId};
         int flag = 0;
         if(null != connection){
-            String sql = "update smbms_address set isPayment=? where userId=?";
+            String sql = "update smbms_address set isPayment=? where userId=?;";
             try {
                 flag = BaseBao.execute(connection, sql, paras,pstm);
             } catch (SQLException e) {
@@ -171,6 +169,27 @@ public class goodDaoImpl implements  goodDao{
 
         if(flag>0)
             return  true;
+        else return false;
+    }
+
+    @Override
+    public boolean modify(Connection connection, Good good) {
+        int flag = 0;
+        PreparedStatement pstm = null;
+        if(null != connection){
+            String sql = "update smbms_good set goodId=?,goodName=?,goodPrice=?," +
+                    "createdDate=?,createdBy=?,url=?;";
+            Object[] params = {good.getGoodID(),good.getGoodName(),good.getGoodPrice(),good.getCreatedDate(),
+                    good.getCreatedBy(),good.getUrl()};
+            try {
+                flag = BaseBao.execute(connection, sql, params, pstm);
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+            BaseBao.closeResource(null, pstm, null);
+        }
+        if(flag>0)
+        return true;
         else return false;
     }
 

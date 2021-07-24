@@ -1,22 +1,21 @@
 package com.gzw.service.good;
 
 import com.gzw.dao.BaseBao;
-import com.gzw.dao.good.goodDao;
-import com.gzw.dao.good.goodDaoImpl;
+import com.gzw.dao.good.GoodDao;
+import com.gzw.dao.good.GoodDaoImpl;
 import com.gzw.pojo.Good;
 import com.gzw.pojo.GoodInCar;
 
 import java.sql.Connection;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 
 
-public class goodServiceImpl implements goodService{
-    private goodDao goodDao;
-    public goodServiceImpl()
+public class GoodServiceImpl implements GoodService {
+    private GoodDao goodDao;
+    public GoodServiceImpl()
     {
-        goodDao=new goodDaoImpl();
+        goodDao=new GoodDaoImpl();
     }
     public boolean add(Good good) throws Exception {
         Connection connection =null;
@@ -69,6 +68,23 @@ public class goodServiceImpl implements goodService{
     }
 
     @Override
+    public boolean modify(Good good) {
+        Connection connection = null;
+        boolean flag = false;
+        try {
+            connection = BaseBao.getConnection();
+            if(goodDao.modify(connection,good) )
+                flag = true;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }finally{
+            BaseBao.closeResource(connection, null, null);
+        }
+        return flag;
+    }
+
+
+    @Override
     public Good getGoodByID(Integer goodID) {
         Connection connection=null;
         Good good=null;
@@ -85,7 +101,7 @@ public class goodServiceImpl implements goodService{
     }
 
     @Override
-    public boolean pay(Integer userId,Integer payOrNot) {
+    public boolean payOrNot(Integer userId,Integer payOrNot) {
         Connection connection =null;
         boolean flag=false;
         try {
@@ -105,12 +121,12 @@ public class goodServiceImpl implements goodService{
 
 
     @Override
-    public List<GoodInCar> getGoodList(Integer userID) {
+    public  List<GoodInCar> getGoodList(Integer userID,Integer payOrNot) {
         Connection connection=null;
         List <GoodInCar> shoppingList=null;
         try{
             connection=BaseBao.getConnection();
-           shoppingList=goodDao.getGoodList(connection,userID);
+           shoppingList=goodDao.getGoodList(connection,userID,payOrNot);
 
         }catch (Exception e ){
             e.printStackTrace();
@@ -119,14 +135,14 @@ public class goodServiceImpl implements goodService{
         }
         return shoppingList;
     }
-    public boolean addGoodIntoCar( Object []paras)
+    public boolean addGoodIntoCar(GoodInCar goodInCar)
     {
         Connection connection =null;
         boolean flag=false;
         try {
             connection=BaseBao.getConnection();
             connection.setAutoCommit(false);
-            if(goodDao.addGoodIntoCar(connection,paras))
+            if(goodDao.addGoodIntoCar(connection,goodInCar))
                 flag=true;
 
             connection.commit();
