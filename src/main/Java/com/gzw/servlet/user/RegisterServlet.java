@@ -1,6 +1,5 @@
 package com.gzw.servlet.user;
 
-import com.gzw.service.user.UserService;
 import com.gzw.service.user.UserServiceImpl;
 
 import javax.servlet.ServletException;
@@ -9,7 +8,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.text.ParseException;
 
 //用户注册的Servlet
 public class RegisterServlet extends HttpServlet {
