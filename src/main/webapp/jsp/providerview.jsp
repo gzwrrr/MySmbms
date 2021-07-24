@@ -7,12 +7,12 @@
             <span>供应商管理页面 >> 信息查看</span>
         </div>
         <div class="providerView" id="view">
-            <p><strong>供应商编码：</strong><span>${provider.proCode }</span></p>
-            <p><strong>供应商名称：</strong><span>${provider.proName }</span></p>
-            <p><strong>联系人：</strong><span>${provider.proContact }</span></p>
-            <p><strong>联系电话：</strong><span>${provider.proPhone }</span></p>
-            <p><strong>传真：</strong><span>${provider.proFax }</span></p>
-            <p><strong>描述：</strong><span>${provider.proDesc}</span></p>
+            <p><strong>1.供应商编码：</strong><span>${provider.proCode }</span></p>
+            <p><strong>2.供应商名称：</strong><span>${provider.proName }</span></p>
+            <p><strong>3.联系人：</strong><span>${provider.proContact }</span></p>
+            <p><strong>4.联系电话：</strong><span>${provider.proPhone }</span></p>
+            <p><strong>5.传真：</strong><span>${provider.proFax }</span></p>
+            <p><strong>6.描述：</strong><span>${provider.proDesc}</span></p>
 			<div class="providerAddBtn" id="view-button">
             	<input type="button" id="back" name="back" value="返回" >
             </div>

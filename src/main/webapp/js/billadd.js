@@ -7,6 +7,10 @@ var providerId = null;
 var addBtn = null;
 var backBtn = null;
 
+var green = {"color":"#437247","font-size":"15px"};
+var red = {"color":"#96251D","font-size":"15px"};
+var grey = {"color":"#999191","font-size":"15px"};
+
 function priceReg (value){
 	value = value.replace(/[^\d.]/g,"");  //清除“数字”和“.”以外的字符
 		value = value.replace(/^\./g,"");  //验证第一个字符是数字而不是.
@@ -54,7 +58,7 @@ $(function(){
 			}
 		},
 		error:function(data){//当访问时候，404，500 等非200的错误状态码
-			validateTip(providerId.next(),{"color":"red"},imgNo+" 获取供应商列表error",false);
+			validateTip(providerId.next(),red,imgNo+" 获取供应商列表error",false);
 		}
 	});
 	/*
@@ -64,50 +68,50 @@ $(function(){
 	 */
 	billCode.on("blur",function(){
 		if(billCode.val() != null && billCode.val() != ""){
-			validateTip(billCode.next(),{"color":"green"},imgYes,true);
+			validateTip(billCode.next(),green,imgYes,true);
 		}else{
-			validateTip(billCode.next(),{"color":"red"},imgNo+" 编码不能为空，请重新输入",false);
+			validateTip(billCode.next(),red,imgNo+" 编码不能为空，请重新输入",false);
 		}
 	}).on("focus",function(){
 		//显示友情提示
-		validateTip(billCode.next(),{"color":"#666666"},"* 请输入订单编码",false);
+		validateTip(billCode.next(),grey,"* 请输入订单编码",false);
 	}).focus();
 	
 	productName.on("focus",function(){
-		validateTip(productName.next(),{"color":"#666666"},"* 请输入商品名称",false);
+		validateTip(productName.next(),grey,"* 请输入商品名称",false);
 	}).on("blur",function(){
 		if(productName.val() != null && productName.val() != ""){
-			validateTip(productName.next(),{"color":"green"},imgYes,true);
+			validateTip(productName.next(),green,imgYes,true);
 		}else{
-			validateTip(productName.next(),{"color":"red"},imgNo+" 商品名称不能为空，请重新输入",false);
+			validateTip(productName.next(),red,imgNo+" 商品名称不能为空，请重新输入",false);
 		}
 		
 	});
 	
 	productUnit.on("focus",function(){
-		validateTip(productUnit.next(),{"color":"#666666"},"* 请输入商品单位",false);
+		validateTip(productUnit.next(),grey,"* 请输入商品单位",false);
 	}).on("blur",function(){
 		if(productUnit.val() != null && productUnit.val() != ""){
-			validateTip(productUnit.next(),{"color":"green"},imgYes,true);
+			validateTip(productUnit.next(),green,imgYes,true);
 		}else{
-			validateTip(productUnit.next(),{"color":"red"},imgNo+" 单位不能为空，请重新输入",false);
+			validateTip(productUnit.next(),red,imgNo+" 单位不能为空，请重新输入",false);
 		}
 		
 	});
 	
 	providerId.on("focus",function(){
-		validateTip(providerId.next(),{"color":"#666666"},"* 请选择供应商",false);
+		validateTip(providerId.next(),grey,"* 请选择供应商",false);
 	}).on("blur",function(){
 		if(providerId.val() != null && providerId.val() != "" && providerId.val() != 0){
-			validateTip(providerId.next(),{"color":"green"},imgYes,true);
+			validateTip(providerId.next(),green,imgYes,true);
 		}else{
-			validateTip(providerId.next(),{"color":"red"},imgNo+" 供应商不能为空，请选择",false);
+			validateTip(providerId.next(),red,imgNo+" 供应商不能为空，请选择",false);
 		}
 		
 	});
 	
 	productCount.on("focus",function(){
-		validateTip(productCount.next(),{"color":"#666666"},"* 请输入大于0的正自然数，小数点后保留2位",false);
+		validateTip(productCount.next(),grey,"* 请输入大于0的正自然数，小数点后保留2位",false);
 	}).on("keyup",function(){
 		this.value = priceReg(this.value);
 	}).on("blur",function(){
@@ -115,7 +119,7 @@ $(function(){
 	});
 	
 	totalPrice.on("focus",function(){
-		validateTip(totalPrice.next(),{"color":"#666666"},"* 请输入大于0的正自然数，小数点后保留2位",false);
+		validateTip(totalPrice.next(),grey,"* 请输入大于0的正自然数，小数点后保留2位",false);
 	}).on("keyup",function(){
 		this.value = priceReg(this.value);
 	}).on("blur",function(){
@@ -139,10 +143,7 @@ $(function(){
 	});
 	
 	backBtn.on("click",function(){
-		if(referer != undefined 
-			&& null != referer 
-			&& "" != referer
-			&& "null" != referer
+		if(referer !== undefined && "" !== referer && "null" !== referer
 			&& referer.length > 4){
 		 window.location.href = referer;
 		}else{

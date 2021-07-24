@@ -14,7 +14,7 @@
 				<input name="queryProCode" type="text" value="${queryProCode }">
 
 				<span>供应商名称：</span>
-				<input name="queryProName" type="text" value="${queryProName }">
+				<input name="queryProName" style="display: inline-block; margin-left: 15px; margin-top: 5px" type="text" value="${queryProName }">
 
 				<input value="查 询" type="submit" id="searchbutton">
 				<a href="${pageContext.request.contextPath }/jsp/provideradd.jsp">添加供应商</a>
@@ -67,9 +67,9 @@
 					</span>
 				</td>
 				<td>
-					<span><a class="viewProvider" href="javascript:;" proid=${provider.id } proname=${provider.proName }><img src="${pageContext.request.contextPath }/images/read.png" alt="查看" title="查看"/></a></span>
-					<span><a class="modifyProvider" href="javascript:;" proid=${provider.id } proname=${provider.proName }><img src="${pageContext.request.contextPath }/images/xiugai.png" alt="修改" title="修改"/></a></span>
-					<span><a class="deleteProvider" href="javascript:;" proid=${provider.id } proname=${provider.proName }><img src="${pageContext.request.contextPath }/images/schu.png" alt="删除" title="删除"/></a></span>
+					<span class="icon"><a class="viewProvider" href="javascript:;" proid=${provider.id } proname=${provider.proName }><img src="${pageContext.request.contextPath }/images/read.png" alt="查看" title="查看"/></a></span>
+					<span class="icon"><a class="modifyProvider" href="javascript:;" proid=${provider.id } proname=${provider.proName }><img src="${pageContext.request.contextPath }/images/xiugai.png" alt="修改" title="修改"/></a></span>
+					<span class="icon"><a class="deleteProvider" href="javascript:;" proid=${provider.id } proname=${provider.proName }><img src="${pageContext.request.contextPath }/images/schu.png" alt="删除" title="删除"/></a></span>
 				</td>
 			</tr>
 		</c:forEach>

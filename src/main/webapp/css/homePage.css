@@ -5,7 +5,7 @@
 	--theme: #BFDDEC;
 	--themeDeep: #aac4d1;
 	--homeHeight: 300vh;
-	--frameWidth: 65%;
+	--frameWidth: 55%;
 	--black: #353535;
 	--money: #FE7631;
 }
@@ -330,7 +330,7 @@ li {
 	width: 40%;
 	height: 300px;
 	font-size: 20px;
-	background-color: --(cardWhite);
+	background-color: var(--cardWhite);
 }
 #hotSale-Text textarea {
 	background-color: rgba(0,0,0,0);

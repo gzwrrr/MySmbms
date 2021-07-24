@@ -5,15 +5,17 @@
     font-size: 20px;
     color: #FFFFFF;
     font-weight: bold;
+    margin-top: 20px;
 }
 .providerAdd {
     position: absolute;
     left: 50%;
     top: 50%;
     transform: translate(-50%,-50%);
-    width: 50%;
-    height: 50%;
+    width: 500px;
+    height: 450px;
     border: none;
+    text-align: center;
 }
 .providerAdd #userForm {
 
@@ -32,8 +34,7 @@
     position: absolute;
     left: 50%;
     transform: translate(-50%,0);
-    width: 90%;
-    height: 50px;
+    width: 390px;
     color: white;
     font-size: 20px;
     font-weight: bold;
@@ -45,7 +46,7 @@
     border-radius: 5px;
     background-color: rgba(0,0,0,0);
     height: 30px;
-    width: 40%;
+    width: 250px;
     font-size: 25px;
     font-weight: bold;
     color: #FFF3F8;
@@ -63,7 +64,7 @@
     position: absolute;
     width: 60%;
     left: 50%;
-    top: 80%;
+    top: 75%;
     transform: translate(-50%,0);
 }
 .providerAddBtn input {
@@ -77,10 +78,12 @@
     color: #FFF3F8;
     line-height: 40px;
     padding-bottom: 5px;
-    transition: all .5s ease;
 }
 .providerAddBtn input:hover {
-    box-shadow: 1px 2px 2px 2px #536B79;
+    background-color: #678d9e !important;
 }
-
+.providerAddBtn input:active {
+    background-color: #FFFFFF !important;
+    color: var(--deepBlue);
+}
 /* 密码修改结束 */

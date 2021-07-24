@@ -1,9 +1,8 @@
 :root{
-    --blue: #C0DEEC;
-    --deepBlue: #8EC0DA;
-    --darkBlue: #0b0f12;
-    --dark: #374c5b;
-    --white: #FFF3F8;
+    --blue:#C0DEEC;
+    --deepBlue:#8EC0DA;
+    --darkBlue:#628496;
+    --white: #ffffff;
 }
 *{
     margin: 0;
@@ -333,6 +332,7 @@ li{
 
 /* 删除框 */
 .zhezhao{
+    position: relative;
     height: 50px;
     width: 100%;
     background-color: #536B79;
@@ -359,6 +359,9 @@ li{
     transition: all .5s ease;
 }
 .removerChid {
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%,0);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -371,11 +374,10 @@ li{
     display: flex;
     line-height: 25px;
     background-color: #536B79;
-    width: 300px;
     height: 25px;
 }
 .removeMain p{
-    color: #780000;
+    color: #FFFFFF;
 }
 .remove a{
     margin-left: 10px;
@@ -392,4 +394,12 @@ li{
 
 /* 查删改的公共部分结束 */
 
-
+.icon img {
+    transition: all .3s ease;
+}
+.icon img:hover {
+    transform: scale(1.1);
+}
+td:hover {
+    background-color: #7eabc1;
+}
