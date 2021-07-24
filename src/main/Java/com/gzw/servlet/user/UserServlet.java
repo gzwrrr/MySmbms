@@ -10,7 +10,6 @@ import com.gzw.service.user.UserServiceImpl;
 import com.gzw.util.Constants;
 import com.gzw.util.PageSupport;
 import com.mysql.cj.util.StringUtils;
-import com.mysql.cj.xdevapi.JsonArray;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
