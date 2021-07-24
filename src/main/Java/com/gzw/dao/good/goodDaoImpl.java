@@ -56,7 +56,7 @@ public class goodDaoImpl implements  goodDao{
         ResultSet resultSet=null;
         List<GoodInCar> shoppingList = new ArrayList<GoodInCar>();
         Object [] paras= {userID};
-        String sql="select addressDesc,creationDate,goodId,goodNumber,goodName,goodPrice from smbms_address where id= ?";
+        String sql="select addressDesc,creationDate,goodId,goodNumber,goodName,goodPrice,url from smbms_address where userId=? and isPayment=1";
        if(connection!=null) {
            resultSet = BaseBao.execute(connection, pstm, resultSet, sql, paras);
            while (resultSet.next()) {
@@ -113,6 +113,7 @@ public class goodDaoImpl implements  goodDao{
     //contact~tel 是通过表单提交获取
     //createdBy~userId通过Id查询用户信息获取
     //goodName~url 通过页面getArribute获取
+
     public boolean addGoodIntoCar(Connection connection , Object []paras)throws SQLException
     {
         PreparedStatement pstm = null;
@@ -128,6 +129,48 @@ public class goodDaoImpl implements  goodDao{
 
         if(flag>0)
         return  true;
+        else return false;
+    }
+
+    @Override
+    public boolean deleteGoodInCar(Connection connection, String goodName,Integer userId) {
+        PreparedStatement pstm = null;
+        Object [] paras={goodName,userId};
+        int flag = 0;
+        if(null != connection){
+            String sql = "delete from smbms_address where goodName=? and userId=? and isPayment=1 ";
+            try {
+                flag = BaseBao.execute(connection, sql, paras,pstm);
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+            BaseBao.closeResource(null, pstm, null);
+        }
+
+        if(flag>0)
+            return  true;
+        else return false;
+
+
+    }
+
+    @Override
+    public boolean payOrNot(Connection connection, Integer userId,Integer payOrNot) {
+        PreparedStatement pstm = null;
+        Object [] paras={payOrNot,userId};
+        int flag = 0;
+        if(null != connection){
+            String sql = "update smbms_address set isPayment=? where userId=?";
+            try {
+                flag = BaseBao.execute(connection, sql, paras,pstm);
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+            BaseBao.closeResource(null, pstm, null);
+        }
+
+        if(flag>0)
+            return  true;
         else return false;
     }
 

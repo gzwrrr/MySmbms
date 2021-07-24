@@ -85,8 +85,22 @@ public class goodServiceImpl implements goodService{
     }
 
     @Override
-    public boolean pay(Integer userId) {
-        return false;
+    public boolean pay(Integer userId,Integer payOrNot) {
+        Connection connection =null;
+        boolean flag=false;
+        try {
+            connection=BaseBao.getConnection();
+            if(goodDao.payOrNot(connection,userId,payOrNot))
+                flag=true;
+           } catch (Exception E)
+            {
+                E.printStackTrace();
+            }finally{
+                //在service层进行connection连接的关闭
+                BaseBao.closeResource(connection, null, null);
+            }
+
+        return flag;
     }
 
 
@@ -128,6 +142,26 @@ public class goodServiceImpl implements goodService{
                 BaseBao.closeResource(connection, null, null);
             }
         }
+        return flag;
+
+    }
+
+    @Override
+    public boolean deleteGoodInCar(String goodName, Integer userId) {
+        Connection connection =null;
+        boolean flag=false;
+        try {
+            connection=BaseBao.getConnection();
+            if(goodDao.deleteGoodInCar(connection,goodName,userId))
+                flag=true;
+        } catch (Exception E)
+        {
+            E.printStackTrace();
+        }finally{
+            //在service层进行connection连接的关闭
+            BaseBao.closeResource(connection, null, null);
+        }
+
         return flag;
 
     }
