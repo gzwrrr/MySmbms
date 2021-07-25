@@ -32,7 +32,7 @@ public class LoginServlet extends HttpServlet {
             if(user.getUserRole()==1||user.getUserRole()==2){
                 resp.sendRedirect("jsp/frame.jsp");
             } else {
-                resp.sendRedirect("jsp/homePage.jsp");
+                resp.sendRedirect("jsp/daily.jsp");
             }
         }else{
             // 没有则转发会登录页面并提示用户名或者密码错误
