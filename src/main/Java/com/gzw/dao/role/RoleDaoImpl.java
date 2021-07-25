@@ -19,21 +19,22 @@ public class RoleDaoImpl implements RoleDao {
             ResultSet resultSet = null;
             ArrayList<Role> roleList = new ArrayList<Role>();
 
-            if (connection != null){
-                String sql = "select * from smbms_role";
-                Object[] params = {};
-                resultSet = BaseBao.execute(connection,preparedStatement, resultSet,sql,params);
+            if (connection == null)
+                return roleList;
+            String sql = "select * from smbms_role";
+            Object[] params = {};
+            resultSet = BaseBao.execute(connection,preparedStatement, resultSet,sql,params);
 
-                while (resultSet.next()){
-                    Role _role = new Role();
-                    _role.setId(resultSet.getInt("id"));
-                    _role.setRoleCode(resultSet.getString("roleCode"));
-                    _role.setRoleName(resultSet.getString("roleName"));
-                    roleList.add(_role);
-                }
-                BaseBao.closeResource(null,preparedStatement,resultSet);
-
+            while (resultSet.next()){
+                Role _role = new Role();
+                _role.setId(resultSet.getInt("id"));
+                _role.setRoleCode(resultSet.getString("roleCode"));
+                _role.setRoleName(resultSet.getString("roleName"));
+                roleList.add(_role);
             }
+            BaseBao.closeResource(null,preparedStatement,resultSet);
+
+
             return roleList;
         }
 }
