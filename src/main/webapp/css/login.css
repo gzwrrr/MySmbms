@@ -1,8 +1,10 @@
 :root{
     --blue:#C0DEEC;
+    --blueDeep: #9bb3be;
     --deepBlue:#8EC0DA;
     --darkBlue:#628496;
     --white: #FFF3F8;
+    --cardWhite: #FFFFFF;
 }
 *{
     margin: 0;
@@ -48,24 +50,48 @@
     width: 400px;
     height: 370px;
     border-radius: 5px;
-    border: 5px solid var(--white);
+    border: 5px solid var(--cardWhite);
     font-size: 30px;
-    color: var(--white);
+    color: var(--cardWhite);
     font-weight: bold;
     transition: all .5s ease;
 }
 
 .login-info{
+    position: relative;
     height: 50px;
     width: 100%;
+    margin: 0 auto;
     line-height: 50px;
     text-align: center;
     font-weight: bold;
     font-size: 25px;
-    color: #DD7777;
+    color: var(--cardWhite);
+}
+a {
+    position: absolute;
+    right: 10%;
+    bottom: 0%;
+    background-color: rgba(0,0,0,0);
+    border-radius: 10px;
+    display: block;
+    height: 40px;
+    width: 80px;
+    line-height: 40px;
+    color: var(--cardWhite);
+    text-decoration: none;
+    font-size: 20px;
+    border: 3px solid var(--cardWhite);
+}
+a:hover {
+    background-color: var(--blueDeep);
+}
+a:active {
+    background-color: var(--cardWhite);
+    color: var(--blue);
 }
 .loginCont #login-right #login-text {
-    color: var(--white);
+    color: var(--cardWhite);
     font-size: 30px;
 }
 #login-right:hover{
@@ -94,13 +120,13 @@
     height: 30px;
     background-color: var(--blue);
     border: none;
-    border-bottom: 3px solid var(--white);
+    border-bottom: 3px solid var(--cardWhite);
     padding: 0;
     outline: none;
     font-size: 25px;
     font-weight: bold;
     -webkit-box-shadow: 0 0 0 1000px var(--blue) inset;
-    color: var(--white);
+    color: var(--cardWhite);
 }
 .subBtn {
     display: flex;
@@ -116,10 +142,10 @@
     width: 120px;
     height: 40px;
     background-color: rgba(0,0,0,0);
-    border: 3px solid var(--white);
+    border: 3px solid var(--cardWhite);
     border-radius: 10px;
     transition: all .5s ease;
-    color: var(--white);
+    color: var(--cardWhite);
 }
 .subBtn input:hover{
     box-shadow: 0 2px 2px 2px var(--deepBlue);

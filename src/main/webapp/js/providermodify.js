@@ -3,6 +3,10 @@ var proPhone = null;
 var saveBtn = null;
 var backBtn = null;
 
+var green = {"color":"#437247","font-size":"15px"};
+var red = {"color":"#96251D","font-size":"15px"};
+var grey = {"color":"#999191","font-size":"15px"};
+
 $(function(){
 	proContact = $("#proContact");
 	proPhone = $("#proPhone");
@@ -19,24 +23,24 @@ $(function(){
 	 * jquery的方法传递
 	 */
 	proContact.on("focus",function(){
-		validateTip(proContact.next(),{"color":"#666666"},"* 请输入联系人",false);
+		validateTip(proContact.next(),grey,"* 请输入联系人",false);
 	}).on("blur",function(){
 		if(proContact.val() != null && proContact.val() != ""){
-			validateTip(proContact.next(),{"color":"green"},imgYes,true);
+			validateTip(proContact.next(),green,imgYes,true);
 		}else{
-			validateTip(proContact.next(),{"color":"red"},imgNo+" 联系人不能为空，请重新输入",false);
+			validateTip(proContact.next(),red,imgNo+" 联系人不能为空，请重新输入",false);
 		}
 		
 	});
 	
 	proPhone.on("focus",function(){
-		validateTip(proPhone.next(),{"color":"#666666"},"* 请输入手机号",false);
+		validateTip(proPhone.next(),grey,"* 请输入手机号",false);
 	}).on("blur",function(){
 		var patrn=/^(13[0-9]|15[0-9]|18[0-9])\d{8}$/;
 		if(proPhone.val().match(patrn)){
-			validateTip(proPhone.next(),{"color":"green"},imgYes,true);
+			validateTip(proPhone.next(),green,imgYes,true);
 		}else{
-			validateTip(proPhone.next(),{"color":"red"},imgNo + " 您输入的手机号格式不正确",false);
+			validateTip(proPhone.next(),red,imgNo + " 您输入的手机号格式不正确",false);
 		}
 	});
 	

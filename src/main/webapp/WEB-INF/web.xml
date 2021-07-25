@@ -80,7 +80,17 @@
         <servlet-name>ProviderServlet</servlet-name>
         <url-pattern>/jsp/provider.do</url-pattern>
     </servlet-mapping>
-    
+
+
+    <servlet>
+        <servlet-name>register</servlet-name>
+        <servlet-class>com.gzw.servlet.user.RegisterServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>register</servlet-name>
+        <url-pattern>/register.do</url-pattern>
+    </servlet-mapping>
+
 
     <!-- session过期,三十分钟 -->
     <session-config>

@@ -5,17 +5,12 @@
 <head lang="en">
     <meta charset="UTF-8">
     <title>系统登录 - 超市订单管理系统</title>
-    <script type="text/javascript">
-        /* if(top.location!=self.location){
-              top.location=self.location;
-         } */
-    </script>
     <link type="text/css" rel="stylesheet" href="css/login.css" />
 </head>
 <body class="login_bg">
 <section class="loginBox">
     <header class="loginHeader">
-        <h1>超市订单管理系统</h1>
+        <h1>SuperMarket</h1>
     </header>
     <section class="loginCont">
         <form class="loginForm" action="${pageContext.request.contextPath }/login.do"  name="actionForm" id="actionForm"  method="post" >
@@ -23,7 +18,8 @@
             <div id="login-right">
                 <div class="login-info">${error}</div>
                 <div id="login-text" class="login-info" >
-                    登录
+                    <span>登录</span>
+                    <a href="${pageContext.request.contextPath}/register.jsp">注册</a>
                 </div>
                 <div id="login-input">
                     <div class="input-common" id="inputbox-one">

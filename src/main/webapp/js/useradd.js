@@ -8,6 +8,10 @@ var userRole = null;
 var addBtn = null;
 var backBtn = null;
 
+var green = {"color":"#437247","font-size":"15px"};
+var red = {"color":"#96251D","font-size":"15px"};
+var grey = {"color":"#999191","font-size":"15px"};
+
 
 $(function(){
 	userCode = $("#userCode");
@@ -46,7 +50,7 @@ $(function(){
 			}
 		},
 		error:function(data){//当访问时候，404，500 等非200的错误状态码
-			validateTip(userRole.next(),{"color":"red"},imgNo+" 获取用户角色列表error",false);
+			validateTip(userRole.next(),red,imgNo+" 获取用户角色列表error",false);
 		}
 	});
 	
@@ -67,85 +71,85 @@ $(function(){
 			dataType:"json",//ajax接口（请求url）返回的数据类型
 			success:function(data){//data：返回数据（json对象）
 				if(data.userCode == "exist"){//账号已存在，错误提示
-					validateTip(userCode.next(),{"color":"red"},imgNo+ " 该用户账号已存在",false);
+					validateTip(userCode.next(),red,imgNo+ " 该用户账号已存在",false);
 				}else{//账号可用，正确提示
-					validateTip(userCode.next(),{"color":"green"},imgYes+" 该账号可以使用",true);
+					validateTip(userCode.next(),green,imgYes+" 该账号可以使用",true);
 				}
 			},
 			error:function(data){//当访问时候，404，500 等非200的错误状态码
-				validateTip(userCode.next(),{"color":"red"},imgNo+" 您访问的页面不存在",false);
+				validateTip(userCode.next(),red,imgNo+" 您访问的页面不存在",false);
 			}
 		});
 		
 		
 	}).bind("focus",function(){
 		//显示友情提示
-		validateTip(userCode.next(),{"color":"#666666"},"* 用户编码是您登录系统的账号",false);
+		validateTip(userCode.next(),grey,"* 用户编码是您登录系统的账号",false);
 	}).focus();
 	
 	userName.bind("focus",function(){
-		validateTip(userName.next(),{"color":"#666666"},"* 用户名长度必须是大于1小于10的字符",false);
+		validateTip(userName.next(),grey,"* 用户名长度必须是大于1小于10的字符",false);
 	}).bind("blur",function(){
 		if(userName.val() != null && userName.val().length > 1
 				&& userName.val().length < 10){
-			validateTip(userName.next(),{"color":"green"},imgYes,true);
+			validateTip(userName.next(),green,imgYes,true);
 		}else{
-			validateTip(userName.next(),{"color":"red"},imgNo+" 用户名输入的不符合规范，请重新输入",false);
+			validateTip(userName.next(),red,imgNo+" 用户名输入的不符合规范，请重新输入",false);
 		}
 		
 	});
 	
 	userPassword.bind("focus",function(){
-		validateTip(userPassword.next(),{"color":"#666666"},"* 密码长度必须是大于6小于20",false);
+		validateTip(userPassword.next(),grey,"* 密码长度必须是大于6小于20",false);
 	}).bind("blur",function(){
 		if(userPassword.val() != null && userPassword.val().length > 6
 				&& userPassword.val().length < 20 ){
-			validateTip(userPassword.next(),{"color":"green"},imgYes,true);
+			validateTip(userPassword.next(),green,imgYes,true);
 		}else{
-			validateTip(userPassword.next(),{"color":"red"},imgNo + " 密码输入不符合规范，请重新输入",false);
+			validateTip(userPassword.next(),red,imgNo + " 密码输入不符合规范，请重新输入",false);
 		}
 	});
 	
 	ruserPassword.bind("focus",function(){
-		validateTip(ruserPassword.next(),{"color":"#666666"},"* 请输入与上面一只的密码",false);
+		validateTip(ruserPassword.next(),grey,"* 请输入与上面一只的密码",false);
 	}).bind("blur",function(){
 		if(ruserPassword.val() != null && ruserPassword.val().length > 6
 				&& ruserPassword.val().length < 20 && userPassword.val() == ruserPassword.val()){
-			validateTip(ruserPassword.next(),{"color":"green"},imgYes,true);
+			validateTip(ruserPassword.next(),green,imgYes,true);
 		}else{
-			validateTip(ruserPassword.next(),{"color":"red"},imgNo + " 两次密码输入不一致，请重新输入",false);
+			validateTip(ruserPassword.next(),red,imgNo + " 两次密码输入不一致，请重新输入",false);
 		}
 	});
 	
 	
 	birthday.bind("focus",function(){
-		validateTip(birthday.next(),{"color":"#666666"},"* 点击输入框，选择日期",false);
+		validateTip(birthday.next(),grey,"* 点击输入框，选择日期",false);
 	}).bind("blur",function(){
 		if(birthday.val() != null && birthday.val() != ""){
-			validateTip(birthday.next(),{"color":"green"},imgYes,true);
+			validateTip(birthday.next(),green,imgYes,true);
 		}else{
-			validateTip(birthday.next(),{"color":"red"},imgNo + " 选择的日期不正确,请重新输入",false);
+			validateTip(birthday.next(),red,imgNo + " 选择的日期不正确,请重新输入",false);
 		}
 	});
 	
 	phone.bind("focus",function(){
-		validateTip(phone.next(),{"color":"#666666"},"* 请输入手机号",false);
+		validateTip(phone.next(),grey,"* 请输入手机号",false);
 	}).bind("blur",function(){
 		var patrn=/^(13[0-9]|15[0-9]|18[0-9])\d{8}$/;
 		if(phone.val().match(patrn)){
-			validateTip(phone.next(),{"color":"green"},imgYes,true);
+			validateTip(phone.next(),green,imgYes,true);
 		}else{
-			validateTip(phone.next(),{"color":"red"},imgNo + " 您输入的手机号格式不正确",false);
+			validateTip(phone.next(),red,imgNo + " 您输入的手机号格式不正确",false);
 		}
 	});
 	
 	userRole.bind("focus",function(){
-		validateTip(userRole.next(),{"color":"#666666"},"* 请选择用户角色",false);
+		validateTip(userRole.next(),grey,"* 请选择用户角色",false);
 	}).bind("blur",function(){
 		if(userRole.val() != null && userRole.val() > 0){
-			validateTip(userRole.next(),{"color":"green"},imgYes,true);
+			validateTip(userRole.next(),green,imgYes,true);
 		}else{
-			validateTip(userRole.next(),{"color":"red"},imgNo + " 请重新选择用户角色",false);
+			validateTip(userRole.next(),red,imgNo + " 请重新选择用户角色",false);
 		}
 	});
 	

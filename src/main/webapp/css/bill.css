@@ -1,14 +1,13 @@
 :root{
-    --blue: #C0DEEC;
-    --deepBlue: #8EC0DA;
-    --darkBlue: #0b0f12;
-    --dark: #374c5b;
-    --white: #FFF3F8;
+    --blue:#C0DEEC;
+    --deepBlue:#8EC0DA;
+    --darkBlue:#628496;
+    --white: #ffffff;
 }
 
 /* 商品列表 */
 #billAdd-box {
-    border: 2px solid var(--deepBlue);
+    border: 2px solid var(--white);
     border-radius: 8px;
     position: relative;
     height: 75%;
@@ -41,18 +40,15 @@
           color: #FFF3F8;
           font-size: 15px;
       }
+#providerId {
+    display: inline-block;
+    height: 30px;
+    outline: none;
+    border-radius: 5px;
+}
 #list-7 input {
     width: 20px;
     height: 20px;
-}
-#list-8 {
-    display: flex;
-    width: 60% !important;
-    justify-content: space-between;
-}
-#list-8 input {
-    width: 100px !important;
-    height: 40px !important;
 }
 #billAdd-box label {
     font-size: 20px;
@@ -68,8 +64,67 @@
     border: 2px solid #FFF3F8;
     background-color: rgba(0,0,0,0);
 }
-
-
+.providerAddBtn {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+    width: 90%;
+    height: 50px;
+}
+.providerAddBtn input {
+    display: inline-block;
+    width: 150px;
+    height: 50px !important;
+}
+.billBackBtn input{
+    width: 150px;
+    height: 50px;
+    color: #FFFFFF;
+    font-size: 20px;
+    font-weight: bold;
+    border-radius: 10px;
+    background-color: rgba(0,0,0,0);
+    border: 3px solid #FFFFFF;
+}
+.billBackBtn input:hover {
+    background-color: #7eabc1;
+}
+.billBackBtn input:active {
+    background-color: #FFFFFF;
+    color: var(--deepBlue);
+}
+.billAddBtn {
+    margin: 0 auto;
+    position: absolute;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    bottom: 10%;
+    left: 50%;
+    transform: translate(-50%,0);
+    height: 50px;
+    width: 90%;
+}
+.billAddBtn input{
+    display: inline-block;
+    height: 50px !important;
+    width: 120px;
+    font-weight: bold;
+    color: #FFFFFF;
+}
+.billAddBtn input:hover {
+    background-color: #678d9e !important;
+}
+.billAddBtn input:active {
+    background-color: #FFFFFF !important;
+    color: var(--deepBlue);
+}
+.providerView {
+    width: 450px !important;
+}
+.providerView p{
+    width: 70%;
+}
 
 /* 商品列表结束 */
 

@@ -40,7 +40,7 @@
             <div class="bill-common" id="list-6">
                 <label >供应商：</label>
                 <select name="providerId" id="providerId">
-
+                    <option value ="xxx">xxxxx</option>
                 </select>
                 <font color="red"></font>
             </div>
@@ -49,8 +49,8 @@
                 <input type="radio" name="isPayment" value="1" checked="checked">未付款
                 <input type="radio" name="isPayment" value="2" >已付款
             </div>
-            <div class="providerAddBtn bill-common" id="list-8">
-                <input type="button" name="add" id="add" value="保存">
+            <div class="billAddBtn">
+                <input type="button" id="add" name="add" value="保存">
                 <input type="button" id="back" name="back" value="返回" >
             </div>
         </form>

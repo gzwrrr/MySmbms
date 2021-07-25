@@ -3,6 +3,10 @@ var newpassword = null;
 var rnewpassword = null;
 var saveBtn = null;
 
+var green = {"color":"#437247","font-size":"15px"};
+var red = {"color":"#96251D","font-size":"15px"};
+var grey = {"color":"#999191","font-size":"15px"};
+
 $(function(){
 	oldpassword = $("#oldpassword");
 	newpassword = $("#newpassword");
@@ -22,46 +26,46 @@ $(function(){
 			dataType:"json",
 			success:function(data){
 				if(data.result == "true"){//旧密码正确
-					validateTip(oldpassword.next(),{"color":"green"},imgYes,true);
+					validateTip(oldpassword.next(),green,imgYes,true);
 				}else if(data.result == "false"){//旧密码输入不正确
-					validateTip(oldpassword.next(),{"color":"red"},imgNo + " 原密码输入不正确",false);
+					validateTip(oldpassword.next(),red,imgNo + " 原密码输入不正确",false);
 				}else if(data.result == "sessionerror"){//当前用户session过期，请重新登录
-					validateTip(oldpassword.next(),{"color":"red"},imgNo + " 当前用户session过期，请重新登录",false);
+					validateTip(oldpassword.next(),red,imgNo + " 当前用户session过期，请重新登录",false);
 				}else if(data.result == "error"){//旧密码输入为空
-					validateTip(oldpassword.next(),{"color":"red"},imgNo + " 请输入旧密码",false);
+					validateTip(oldpassword.next(),red,imgNo + " 请输入旧密码",false);
 				}
 			},
 			error:function(data){
 				//请求出错
-				validateTip(oldpassword.next(),{"color":"red"},imgNo + " 请求错误"+path,false);
+				validateTip(oldpassword.next(),red,imgNo + " 请求错误"+path,false);
 			}
 		});
 
 
 	}).on("focus",function(){
-		validateTip(oldpassword.next(),{"color":"#666666"},"* 请输入原密码",false);
+		validateTip(oldpassword.next(),grey,"* 请输入原密码",false);
 	});
 
 	newpassword.on("focus",function(){
-		validateTip(newpassword.next(),{"color":"#666666"},"* 密码长度必须是大于6小于20",false);
+		validateTip(newpassword.next(),grey,"* 密码长度必须是大于6小于20",false);
 	}).on("blur",function(){
 		if(newpassword.val() != null && newpassword.val().length > 5
 			&& newpassword.val().length < 20 ){
-			validateTip(newpassword.next(),{"color":"green"},imgYes,true);
+			validateTip(newpassword.next(),green,imgYes,true);
 		}else{
-			validateTip(newpassword.next(),{"color":"red"},imgNo + " 密码输入不符合规范，请重新输入",false);
+			validateTip(newpassword.next(),red,imgNo + " 密码输入不符合规范，请重新输入",false);
 		}
 	});
 
 
 	rnewpassword.on("focus",function(){
-		validateTip(rnewpassword.next(),{"color":"#666666"},"* 请输入与上面一致的密码",false);
+		validateTip(rnewpassword.next(),grey,"* 请输入与上面一致的密码",false);
 	}).on("blur",function(){
 		if(rnewpassword.val() != null && rnewpassword.val().length > 5
 			&& rnewpassword.val().length < 20 && newpassword.val() == rnewpassword.val()){
-			validateTip(rnewpassword.next(),{"color":"green"},imgYes,true);
+			validateTip(rnewpassword.next(),green,imgYes,true);
 		}else{
-			validateTip(rnewpassword.next(),{"color":"red"},imgNo + " 两次密码输入不一致，请重新输入",false);
+			validateTip(rnewpassword.next(),red,imgNo + " 两次密码输入不一致，请重新输入",false);
 		}
 	});
 
