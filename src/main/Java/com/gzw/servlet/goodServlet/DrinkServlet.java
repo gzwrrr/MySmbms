@@ -14,6 +14,13 @@ public class DrinkServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.getRequestDispatcher("drink.jsp").forward(req, resp);
+        String method = req.getParameter("method");
+        int goodId = Integer.parseInt(req.getParameter("goodId"));
+
+        if (method != null && method.equals("page")){
+            new DailyServlet().getDailyList(req,resp,"drink.jsp");
+        }else if (method != null && method.equals("GoodsList")){
+            new DailyServlet().toBuyPage(req,resp,goodId);
+        }
     }
 }

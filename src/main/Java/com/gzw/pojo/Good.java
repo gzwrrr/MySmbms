@@ -14,17 +14,9 @@ public class Good {
     private  Integer createdBy;
     private  String url;
     private  Integer quantity;
-    private  Integer area;
-    private String  desc;
-    private  Integer offOrNot;
-
-    public Integer getOffOrNot() {
-        return offOrNot;
-    }
-
-    public void setOffOrNot(Integer offOrNot) {
-        this.offOrNot = offOrNot;
-    }
+    private Integer area;
+    private String desc;
+    private Integer offOrNot;
 
     public Integer getArea() {
         return area;
@@ -42,10 +34,13 @@ public class Good {
         this.desc = desc;
     }
 
+    public Integer getOffOrNot() {
+        return offOrNot;
+    }
 
-
-
-
+    public void setOffOrNot(Integer offOrNot) {
+        this.offOrNot = offOrNot;
+    }
 
     public Integer getQuantity() {
         return quantity;
@@ -113,12 +108,11 @@ public class Good {
       this.setGoodID(null);
       this.setGoodName((String) paras[0]);
       this.setGoodPrice((Double) paras[1]);
-    this.setUrl((String) paras[2]);
+      this.setUrl((String) paras[2]);
       this.setCreatedDate(new Date());
       this.setCreatedBy((Integer) req.getSession().getAttribute("userId"));
+      this.setArea((Integer) paras[3]);
+      this.setDesc((String) paras[4]);
+      this.setOffOrNot((Integer) paras[5]);
    }
-
-
-
-
 }
