@@ -14,7 +14,7 @@
 <div id="head">
     <div class="y-center"  id="market-icon"></div>
     <div class="center" id="title"><span id="market-text">SuperMarket</span></div>
-    <div class="y-center" id="logout-box"><input class="button" type="button" name="logout" id="logout-button" value="注销" /></div>
+    <div class="y-center" id="logout-box"><a href="${pageContext.request.contextPath }/login.jsp"><input class="button" type="button" name="logout" id="logout-button" value="注销" /></a></div>
 </div>
 <div id="home">
     <!-- 轮播图 -->
@@ -105,7 +105,7 @@
         <div id="select-box">
             <ul>
                 <a href="${pageContext.request.contextPath }/jsp/drink.do?method=page"><li>饮料区</li></a>
-                <a href="${pageContext.request.contextPath }/jsp/daily.do"><li>日用品区</li></a>
-                <a href="${pageContext.request.contextPath }/jsp/vegetable.do"><li>蔬菜水果</li></a>
+                <a href="${pageContext.request.contextPath }/jsp/daily.do?method=page"><li>日用品区</li></a>
+                <a href="${pageContext.request.contextPath }/jsp/vegetable.do?method=page"><li>蔬菜水果</li></a>
             </ul>
         </div>
