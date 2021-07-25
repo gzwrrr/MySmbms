@@ -81,7 +81,7 @@
         <url-pattern>/jsp/provider.do</url-pattern>
     </servlet-mapping>
 
-
+    <!-- 注册 -->
     <servlet>
         <servlet-name>register</servlet-name>
         <servlet-class>com.gzw.servlet.user.RegisterServlet</servlet-class>
@@ -91,6 +91,35 @@
         <url-pattern>/register.do</url-pattern>
     </servlet-mapping>
 
+    <!--  饮料区 -->
+    <servlet>
+        <servlet-name>drink</servlet-name>
+        <servlet-class>com.gzw.servlet.goodServlet.DrinkServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>drink</servlet-name>
+        <url-pattern>/jsp/drink.do</url-pattern>
+    </servlet-mapping>
+
+    <!--  日用品区 -->
+    <servlet>
+        <servlet-name>daily</servlet-name>
+        <servlet-class>com.gzw.servlet.goodServlet.DailyServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>daily</servlet-name>
+        <url-pattern>/jsp/daily.do</url-pattern>
+    </servlet-mapping>
+
+    <!--  蔬菜水果区 -->
+    <servlet>
+        <servlet-name>vegetable</servlet-name>
+        <servlet-class>com.gzw.servlet.goodServlet.VegetableServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>vegetable</servlet-name>
+        <url-pattern>/jsp/vegetable.do</url-pattern>
+    </servlet-mapping>
 
     <!-- session过期,三十分钟 -->
     <session-config>
