@@ -1,0 +1,80 @@
+/* 供应商添加 */
+#providerAdd-box {
+    height: 80%;
+    width: 30%;
+    border: 2px solid #FFF3F8;
+    border-radius: 10px;
+    transition: all .5s ease;
+}
+#providerAdd-box:hover {
+    box-shadow: 2px 2px 2px 2px #536B79;
+}
+.provider-common {
+    position: absolute;
+    left: 50%;
+    width: 72%;
+    transform: translate(-50%,0);
+    color: #FFF3F8;
+    font-weight: 700;
+    font-size: 20px;
+}
+.provider-common input {
+    outline: none;
+    border-radius: 3px;
+    background-color: rgba(0,0,0,0);
+    border: 2px solid #FFF3F8;
+    height: 25px;
+    font-size: 15px;
+    color: #FFF3F8;
+}
+#pList-1 {
+    top: 6%;
+}#pList-2{
+     top: 16%;
+ }#pList-3{
+      top: 27%;
+  }#pList-4{
+       top: 38%;
+   }#pList-5{
+        top: 49%;
+    }#pList-6{
+         top: 61%;
+     }#pList-7{
+          top: 72%;
+      }#pList-8{
+           top: 80%;
+           display: flex;
+           justify-content: space-between;
+           width: 60%;
+           height: 40px;
+       }
+#pList-8 {
+    width: 68%;
+}
+#pList-8 input {
+    width: 120px;
+    height: 100%;
+    box-shadow: none;
+    transition: all 0s;
+}
+#pList-8 input:hover {
+    background-color: #678d9e !important;
+}
+#pList-8 input:active {
+    background-color: #FFFFFF !important;
+    color: var(--deepBlue);
+}
+
+#view-button {
+    transition: all 0s;
+}
+#view-button input:hover {
+    background-color: #678d9e !important;
+    box-shadow: none;
+    transition: all 0s;
+}
+#view-button input:active {
+    background-color: #FFFFFF !important;
+    color: var(--deepBlue);
+}
+/* 供应商添加结束 */

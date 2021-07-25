@@ -1,0 +1,153 @@
+:root{
+    --blue:#C0DEEC;
+    --blueDeep: #9bb3be;
+    --deepBlue:#8EC0DA;
+    --darkBlue:#628496;
+    --white: #FFF3F8;
+    --cardWhite: #FFFFFF;
+}
+*{
+    margin: 0;
+    padding: 0;
+}
+
+/* 登录界面 */
+.login_bg {
+    position: relative;
+    height: 100vh;
+    width: 100%;
+    background: var(--blue);
+}
+.loginHeader {
+    position: absolute;
+    left: 50%;
+    top: 5%;
+    transform: translate(-50%,0);
+    text-align: center;
+    line-height: 100px;
+    width: 400px;
+    font-size: 30px;
+    color: var(--white);
+    font-weight: bold;
+    height: 180px;
+    width: 100%;
+    background: var(--deepBlue) url("../images/bg-clouds.png") repeat-y scroll left top;
+    margin-top: -40px;
+}
+#login-left {
+    position: absolute;
+    top: 30%;
+    left: 15%;
+    width: 550px;
+    height: 380px;
+    background: url("../images/R-C.png") 0 center no-repeat;
+    background-size: cover;
+}
+#login-right {
+    position: absolute;
+    top: 30%;
+    left: 58%;
+    width: 400px;
+    height: 370px;
+    border-radius: 5px;
+    border: 5px solid var(--cardWhite);
+    font-size: 30px;
+    color: var(--cardWhite);
+    font-weight: bold;
+    transition: all .5s ease;
+}
+
+.login-info{
+    position: relative;
+    height: 50px;
+    width: 100%;
+    margin: 0 auto;
+    line-height: 50px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 25px;
+    color: var(--cardWhite);
+}
+a {
+    position: absolute;
+    right: 10%;
+    bottom: 0%;
+    background-color: rgba(0,0,0,0);
+    border-radius: 10px;
+    display: block;
+    height: 40px;
+    width: 80px;
+    line-height: 40px;
+    color: var(--cardWhite);
+    text-decoration: none;
+    font-size: 20px;
+    border: 3px solid var(--cardWhite);
+}
+a:hover {
+    background-color: var(--blueDeep);
+}
+a:active {
+    background-color: var(--cardWhite);
+    color: var(--blue);
+}
+.loginCont #login-right #login-text {
+    color: var(--cardWhite);
+    font-size: 30px;
+}
+#login-right:hover{
+    box-shadow: 2px 2px 2px 2px var(--deepBlue);
+    border-radius: 15px;
+}
+#login-input {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+.input-common {
+    width: 90%;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%,0);
+}
+#inputbox-one {
+    top: 8%;
+}
+#inputbox-two {
+    top: 30%;
+}
+.input-common input {
+    width: 70%;
+    height: 30px;
+    background-color: var(--blue);
+    border: none;
+    border-bottom: 3px solid var(--cardWhite);
+    padding: 0;
+    outline: none;
+    font-size: 25px;
+    font-weight: bold;
+    -webkit-box-shadow: 0 0 0 1000px var(--blue) inset;
+    color: var(--cardWhite);
+}
+.subBtn {
+    display: flex;
+    justify-content: space-around;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%,0);
+    top: 55%;
+    width: 80%;
+    height: 50px;
+}
+.subBtn input {
+    width: 120px;
+    height: 40px;
+    background-color: rgba(0,0,0,0);
+    border: 3px solid var(--cardWhite);
+    border-radius: 10px;
+    transition: all .5s ease;
+    color: var(--cardWhite);
+}
+.subBtn input:hover{
+    box-shadow: 0 2px 2px 2px var(--deepBlue);
+    font-size: 20px;
+}
