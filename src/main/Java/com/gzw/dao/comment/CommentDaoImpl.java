@@ -79,23 +79,8 @@ public class CommentDaoImpl implements CommentDao {
      return  commentList;
     }
 
-    @Override
-    public boolean likes(Connection connection, Integer commentId) {
-        int flag=0;
-        PreparedStatement preparedStatement=null;
-        Object []paras={commentId};
-        String sql="update comment set likes=likes+1 where commentId=?;";
-        try {
-            flag=BaseBao.execute(connection,sql,paras,preparedStatement);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }finally {
-            BaseBao.closeResource(null,preparedStatement,null);
-        }
-        if (flag>0)
-            return  true;
-        else return  false;
+
     }
 
-}
+
 

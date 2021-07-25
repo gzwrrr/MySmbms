@@ -6,7 +6,15 @@ public class Comment {
     private  Integer userId;
     private  Integer goodId;
     private  Integer likes;
-    private  Integer tag;
+    private  Integer stars;
+
+    public Integer getStars() {
+        return stars;
+    }
+
+    public void setStars(Integer stars) {
+        this.stars = stars;
+    }
 
     public Integer getLikes() {
         return likes;
@@ -16,13 +24,6 @@ public class Comment {
         this.likes = likes;
     }
 
-    public Integer getTag() {
-        return tag;
-    }
-
-    public void setTag(Integer tag) {
-        this.tag = tag;
-    }
 
     public String getContent() {
         return content;

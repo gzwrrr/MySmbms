@@ -1,6 +1,7 @@
 package com.gzw.servlet.goodServlet;
 
 import com.gzw.pojo.Good;
+import com.gzw.service.good.GoodServiceImpl;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
