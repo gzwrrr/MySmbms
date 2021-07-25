@@ -26,6 +26,7 @@
         </span>
         <div class="publicHeaderR">
             下午好！${userSession.userName }, 欢迎你！
+            <a id="logout" href="${pageContext.request.contextPath }/jsp/daily.do?method=page">商城页面</a>
             <a id="logout" href="${pageContext.request.contextPath }/jsp/logout.do">退出</a>
         </div>
     </div>
