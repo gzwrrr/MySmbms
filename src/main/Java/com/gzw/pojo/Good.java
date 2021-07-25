@@ -14,6 +14,34 @@ public class Good {
     private  Integer createdBy;
     private  String url;
     private  Integer quantity;
+    private  Integer area;
+    private String  desc;
+    private  Integer offOrNot;
+
+    public Integer getOffOrNot() {
+        return offOrNot;
+    }
+
+    public void setOffOrNot(Integer offOrNot) {
+        this.offOrNot = offOrNot;
+    }
+
+    public Integer getArea() {
+        return area;
+    }
+
+    public void setArea(Integer area) {
+        this.area = area;
+    }
+
+    public String getDesc() {
+        return desc;
+    }
+
+    public void setDesc(String desc) {
+        this.desc = desc;
+    }
+
 
 
 

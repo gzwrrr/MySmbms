@@ -13,5 +13,7 @@ public interface CommentService {
     public boolean delete(Comment comment) throws SQLException;
     //查询评论
     public List<Comment> query(Integer goodId) throws SQLException;
+    public boolean likes(Integer commentId);
+
 
 }

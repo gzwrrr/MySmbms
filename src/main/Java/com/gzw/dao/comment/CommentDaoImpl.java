@@ -16,8 +16,8 @@ public class CommentDaoImpl implements CommentDao {
     public boolean add(Connection connection, Comment comment) {
       int flag=0;
         PreparedStatement preparedStatement=null;
-        Object []paras={comment.getContent(),comment.getUserId(),comment.getGoodId()};
-        String sql="insert into smbms_comment(content,userId,goodId)values(?,?,?);";
+        Object []paras={comment.getContent(),comment.getUserId(),comment.getGoodId(),comment.getLikes(),comment.getStars()};
+        String sql="insert into smbms_comment(content,userId,goodId,likes,stars)values(?,?,?,?,?);";
         try {
             flag=BaseBao.execute(connection,sql,paras,preparedStatement);
         } catch (SQLException e) {
@@ -76,4 +76,24 @@ public class CommentDaoImpl implements CommentDao {
         }
      return  commentList;
     }
+
+    @Override
+    public boolean likes(Connection connection, Integer commentId) {
+        int flag=0;
+        PreparedStatement preparedStatement=null;
+        Object []paras={commentId};
+        String sql="update comment set likes=likes+1 where commentId=?;";
+        try {
+            flag=BaseBao.execute(connection,sql,paras,preparedStatement);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }finally {
+            BaseBao.closeResource(null,preparedStatement,null);
+        }
+        if (flag>0)
+            return  true;
+        else return  false;
+    }
+
 }
+

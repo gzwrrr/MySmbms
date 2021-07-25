@@ -134,6 +134,22 @@ public class GoodServiceImpl implements GoodService {
         return shoppingList;
     }
 
+    @Override
+    public List<Good> getGoodsInPage(Integer area, Integer offOrNot) {
+        Connection connection = null;
+        List<Good> goodList = null;
+        try {
+            connection = BaseBao.getConnection();
+            goodList = goodDao.getGoodsInPage(connection, area,offOrNot);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            BaseBao.closeResource(connection, null, null);
+        }
+        return goodList;
+    }
+
     public boolean addGoodIntoCar(GoodInCar goodInCar) {
         Connection connection = null;
         boolean flag = false;
@@ -160,12 +176,12 @@ public class GoodServiceImpl implements GoodService {
     }
 
     @Override
-    public boolean deleteGoodInCar(String goodName, Integer userId) {
+    public boolean deleteGoodInCar(String goodName, Integer userId,Integer payOrNot) {
         Connection connection = null;
         boolean flag = false;
         try {
             connection = BaseBao.getConnection();
-            if (goodDao.deleteGoodInCar(connection, goodName, userId))
+            if (goodDao.deleteGoodInCar(connection, goodName, userId,payOrNot))
                 flag = true;
         } catch (Exception E) {
             E.printStackTrace();
