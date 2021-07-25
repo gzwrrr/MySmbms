@@ -13,6 +13,4 @@ public interface CommentDao {
     
     public List<Comment> query(Connection connection, Integer goodId);
 
-    boolean likes(Connection connection, Integer commentId);
-
 }
