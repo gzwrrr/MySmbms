@@ -21,7 +21,7 @@ public interface GoodService {
     public Good getGoodByID(Integer goodID);
 
     //付款与取消付款,付款退款是对购物车内所有物品进行操作，payornot=1改为未付款状态，改为2是已付款状态
-    public boolean payOrNot(Integer userId, Integer payOrNot);
+    public boolean payOrNot(List<GoodInCar> goodInCarList, Integer payOrNot);
 
     //购物车/已购买清单的商品信息在smbms_address表 :addressDesc,productNumber，creationDate,productId,goodName，goodPrice
     //Object[]paras 是集合以上五个字段的数组，指的是用户购物车里单个商品信息

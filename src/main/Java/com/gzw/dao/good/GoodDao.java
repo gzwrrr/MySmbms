@@ -20,7 +20,7 @@ public interface GoodDao {
 
     public boolean deleteGoodInCar(Connection connection, String goodName, Integer userId);
 
-    public boolean payOrNot(Connection connection, Integer userId, Integer payornot);
+    public boolean payOrNot(Connection connection, List<GoodInCar> goodInCarList ,Integer payOrNot) throws SQLException;
 
     boolean modify(Connection connection, Good good);
 }

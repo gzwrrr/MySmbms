@@ -5,6 +5,24 @@ public class Comment {
     private String content;
     private  Integer userId;
     private  Integer goodId;
+    private  Integer likes;
+    private  Integer tag;
+
+    public Integer getLikes() {
+        return likes;
+    }
+
+    public void setLikes(Integer likes) {
+        this.likes = likes;
+    }
+
+    public Integer getTag() {
+        return tag;
+    }
+
+    public void setTag(Integer tag) {
+        this.tag = tag;
+    }
 
     public String getContent() {
         return content;

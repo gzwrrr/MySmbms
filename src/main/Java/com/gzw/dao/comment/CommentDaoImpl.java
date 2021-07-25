@@ -7,6 +7,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 
 public class CommentDaoImpl implements CommentDao {
 
@@ -46,8 +47,9 @@ public class CommentDaoImpl implements CommentDao {
             return  true;
         else return  false;
     }
-    public  Comment query(Connection connection,Integer goodId)
+    public List<Comment> query(Connection connection, Integer goodId)
     {
+        List<Comment> commentList=null;
         Comment comment=null;
         ResultSet resultSet=null;
         PreparedStatement preparedStatement=null;
@@ -62,7 +64,7 @@ public class CommentDaoImpl implements CommentDao {
                     comment.setContent(resultSet.getString("content"));
                     comment.setUserId(resultSet.getInt("userId"));
                     comment.setGoodId(resultSet.getInt("goodId"));
-
+            commentList.add(comment);
                 }
             } catch (SQLException e) {
                 e.printStackTrace();
@@ -72,6 +74,6 @@ public class CommentDaoImpl implements CommentDao {
                 }
             }
         }
-     return  comment;
+     return  commentList;
     }
 }

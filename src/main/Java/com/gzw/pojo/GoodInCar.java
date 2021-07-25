@@ -12,6 +12,15 @@ public class GoodInCar {
     private String addressDesc;
     private Date creationDate;
     private  String url;
+    private  Integer userId;
+
+    public Integer getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Integer userId) {
+        this.userId = userId;
+    }
 
     public String getUrl() {
         return url;

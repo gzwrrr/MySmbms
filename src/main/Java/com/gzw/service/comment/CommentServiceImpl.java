@@ -7,6 +7,7 @@ import com.gzw.pojo.Comment;
 
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.List;
 
 public class CommentServiceImpl implements CommentService {
 
@@ -54,17 +55,17 @@ public class CommentServiceImpl implements CommentService {
     }
 
     @Override
-    public Comment query(Integer goodId) throws SQLException {
-        Comment comment = null;
+    public List<Comment> query(Integer goodId) throws SQLException {
+        List<Comment>commentList=null;
         Connection connection = null;
         try {
             connection = BaseBao.getConnection();
-            comment = commentDao.query(connection, goodId);
+            commentList = commentDao.query(connection, goodId);
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
             BaseBao.closeResource(connection, null, null);
         }
-        return comment;
+        return commentList;
     }
 }

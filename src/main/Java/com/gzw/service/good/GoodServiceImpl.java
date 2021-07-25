@@ -100,12 +100,12 @@ public class GoodServiceImpl implements GoodService {
     }
 
     @Override
-    public boolean payOrNot(Integer userId, Integer payOrNot) {
+    public boolean payOrNot(List<GoodInCar> goodInCarList, Integer payOrNot) {
         Connection connection = null;
         boolean flag = false;
         try {
             connection = BaseBao.getConnection();
-            if (goodDao.payOrNot(connection, userId, payOrNot))
+            if (goodDao.payOrNot(connection, goodInCarList, payOrNot))
                 flag = true;
         } catch (Exception E) {
             E.printStackTrace();

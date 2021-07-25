@@ -13,6 +13,18 @@ public class Good {
     private Date createdDate;
     private  Integer createdBy;
     private  String url;
+    private  Integer quantity;
+
+
+
+
+    public Integer getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(Integer quantity) {
+        this.quantity = quantity;
+    }
 
     public Integer getGoodID() {
         return goodID;
