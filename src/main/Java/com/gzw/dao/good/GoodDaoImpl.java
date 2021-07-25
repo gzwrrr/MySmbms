@@ -220,8 +220,8 @@ public class GoodDaoImpl implements GoodDao {
                 good.setGoodName(resultSet.getString("goodName"));
                 good.setUrl(resultSet.getString("url"));
                 good.setDesc(resultSet.getString("desc"));
-//                good.setCreatedDate(resultSet.getDate("createdDate"));
-//                good.setCreatedBy(resultSet.getInt("createdBy"));
+                good.setCreatedDate(resultSet.getDate("createdDate"));
+                good.setCreatedBy(resultSet.getInt("createdBy"));
                 good.setQuantity(resultSet.getInt("quantity"));
                 good.setOffOrNot(resultSet.getInt("offOrNot"));
                 good.setArea(resultSet.getInt("area"));

@@ -16,8 +16,6 @@ public class Comment {
         this.stars = stars;
     }
 
-
-
     public Integer getLikes() {
         return likes;
     }
@@ -25,8 +23,6 @@ public class Comment {
     public void setLikes(Integer likes) {
         this.likes = likes;
     }
-
-
 
     public String getContent() {
         return content;

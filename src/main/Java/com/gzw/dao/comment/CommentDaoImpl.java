@@ -19,8 +19,10 @@ public class CommentDaoImpl implements CommentDao {
         if(connection == null)
             return false;
         PreparedStatement preparedStatement=null;
-        Object[] paras = {comment.getContent(),comment.getUserId(),comment.getGoodId()};
-        String sql="insert into smbms_comment (content,userId,goodId) values(?,?,?)";
+
+        Object[] paras={comment.getContent(),comment.getUserId(),comment.getGoodId(),comment.getLikes(),comment.getStars()};
+        String sql="insert into smbms_comment(content,userId,goodId,likes,stars)values(?,?,?,?,?);";
+
         try {
             flag=BaseBao.execute(connection,sql,paras,preparedStatement);
         } catch (SQLException e) {
@@ -47,6 +49,7 @@ public class CommentDaoImpl implements CommentDao {
         }
         return flag > 0;
     }
+
     public List<Comment> query(Connection connection, Integer goodId) {
         List<Comment> commentList = new ArrayList<>();
         Comment comment = new Comment();
@@ -64,7 +67,10 @@ public class CommentDaoImpl implements CommentDao {
                 comment.setContent(resultSet.getString("content"));
                 comment.setUserId(resultSet.getInt("userId"));
                 comment.setGoodId(resultSet.getInt("goodId"));
+                comment.setLikes(resultSet.getInt("likes"));
+                comment.setStars(resultSet.getInt("stars"));
                 commentList.add(comment);
+
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -78,4 +84,9 @@ public class CommentDaoImpl implements CommentDao {
     public boolean likes(Connection connection, Integer commentId) {
         return false;
     }
-}
+
+
+    }
+
+
+

@@ -38,12 +38,12 @@
                                 <img src="${good.url}" alt="">
                             </div>
                             <div class="normal-text"><span class="normal-text-one">${good.goodName}</span>
-                                <span class="normal-text-two">good.describe</span>
+                                <span class="normal-text-two">${good.desc}</span>
                             </div>
                             <div class="normal-likeAndBuy">
-                                <div class="normal-like-icon">价格：${good.price}</div>
-                                <div class="normal-goodCount">剩余数量:${good.count}</div>
-                                <a href="${pageContext.request.contextPath }/jsp/daily.do?method=normalGoodsList"><div class="normal-buy-text">购买 ></div></a>
+                                <div class="normal-like-icon">价格：${good.goodPrice}</div>
+                                <div class="normal-goodCount">剩余数量:${good.quantity}</div>
+                                <a href="${pageContext.request.contextPath }/jsp/daily.do?method=GoodsList&goodId=${good.goodID}"><div class="normal-buy-text">购买 ></div></a>
                             </div>
                         </div>
                     </div>
@@ -62,12 +62,12 @@
                     <div class="discount-text">
                         <div class="discount-good-text">
                             <span class="discount-title">${good.goodName}</span>
-                            <span class="discount-info">${good.describe}</span>
+                            <span class="discount-info">${good.desc}</span>
                         </div>
                         <div class="discount-likeAndBuy">
-                            <span class="discount-like">价格：${good.price}</span>
-                            <span class="discount-count">剩余数量：${good.count}</span>
-                            <a href="${pageContext.request.contextPath }/jsp/daily.do?method=discountGoodsList"><span class="discount-buy">购买 ></span></a>
+                            <span class="discount-like">价格：${good.goodPrice}</span>
+                            <span class="discount-count">剩余数量：${good.quantity}</span>
+                            <a href="${pageContext.request.contextPath }/jsp/daily.do?method=GoodsList&goodId=${good.goodID}"><span class="discount-buy">购买 ></span></a>
                         </div>
                     </div>
                 </div>
