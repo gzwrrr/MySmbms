@@ -68,4 +68,22 @@ public class CommentServiceImpl implements CommentService {
         }
         return commentList;
     }
+
+    @Override
+    public boolean likes(Integer commentId) {
+        Connection connection = null;
+        boolean flag = false;
+        try {
+            connection = BaseBao.getConnection();
+            if (commentDao.likes(connection, commentId))
+                flag = true;
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            BaseBao.closeResource(connection, null, null);
+        }
+        return flag;
+    }
+
+
 }

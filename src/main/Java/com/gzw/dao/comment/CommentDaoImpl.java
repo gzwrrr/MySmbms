@@ -16,8 +16,8 @@ public class CommentDaoImpl implements CommentDao {
     public boolean add(Connection connection, Comment comment) {
       int flag=0;
         PreparedStatement preparedStatement=null;
-        Object []paras={comment.getContent(),comment.getUserId(),comment.getGoodId()};
-        String sql="insert into smbms_comment(content,userId,goodId)values(?,?,?);";
+        Object []paras={comment.getContent(),comment.getUserId(),comment.getGoodId(),comment.getLikes(),comment.getStars()};
+        String sql="insert into smbms_comment(content,userId,goodId,likes,stars)values(?,?,?,?,?);";
         try {
             flag=BaseBao.execute(connection,sql,paras,preparedStatement);
         } catch (SQLException e) {
@@ -47,13 +47,13 @@ public class CommentDaoImpl implements CommentDao {
             return  true;
         else return  false;
     }
-    public List<Comment> query(Connection connection, Integer goodId)
+    public List<Comment> query(Connection connection, Integer commentId)
     {
         List<Comment> commentList=null;
         Comment comment=null;
         ResultSet resultSet=null;
         PreparedStatement preparedStatement=null;
-        Object[]paras={goodId};
+        Object[]paras={commentId};
         String sql="select * from smbms_comment where commentId=?;";
         if(connection!=null) {
             try {
@@ -64,7 +64,9 @@ public class CommentDaoImpl implements CommentDao {
                     comment.setContent(resultSet.getString("content"));
                     comment.setUserId(resultSet.getInt("userId"));
                     comment.setGoodId(resultSet.getInt("goodId"));
-            commentList.add(comment);
+                    comment.setLikes(resultSet.getInt("likes"));
+                    comment.setStars(resultSet.getInt("stars"));
+                    commentList.add(comment);
                 }
             } catch (SQLException e) {
                 e.printStackTrace();
@@ -76,4 +78,24 @@ public class CommentDaoImpl implements CommentDao {
         }
      return  commentList;
     }
+
+    @Override
+    public boolean likes(Connection connection, Integer commentId) {
+        int flag=0;
+        PreparedStatement preparedStatement=null;
+        Object []paras={commentId};
+        String sql="update comment set likes=likes+1 where commentId=?;";
+        try {
+            flag=BaseBao.execute(connection,sql,paras,preparedStatement);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }finally {
+            BaseBao.closeResource(null,preparedStatement,null);
+        }
+        if (flag>0)
+            return  true;
+        else return  false;
+    }
+
 }
+

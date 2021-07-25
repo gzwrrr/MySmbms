@@ -18,9 +18,10 @@ public class GoodDaoImpl implements GoodDao {
             PreparedStatement pstm = null;
             int flag = 0;
             if(null != connection){
-                String sql = "insert into smbms_good (goodName,goodPrice,createDate,createdBy,url,quantity)" +
-                        "values(?,?,?,?,?,?);";
-                Object[] params = {good.getGoodName(),good.getGoodPrice(),good.getCreatedDate(),good.getCreatedBy(),good.getUrl(),good.getQuantity()};
+                String sql = "insert into smbms_good (goodName,goodPrice,createDate,createdBy,url,quantity,area,desc,offOrNot)" +
+                        "values(?,?,?,?,?,?,?,?,?);";
+                Object[] params = {good.getGoodName(),good.getGoodPrice(),good.getCreatedDate(),good.getCreatedBy(),
+                        good.getUrl(),good.getQuantity(),good.getArea(),good.getDesc(),good.getOffOrNot()};
                 flag = BaseBao.execute(connection, sql, params,pstm);
                 BaseBao.closeResource(null, pstm, null);
             }
@@ -80,9 +81,7 @@ public class GoodDaoImpl implements GoodDao {
         Good good=null;
         Object [] paras= {goodID};
         String sql;
-        if(goodID!=null)
-            sql="select *  from smbms_good where goodId= ?;";
-        else sql="select * from smbms_good; ";
+        sql="select *  from smbms_good where goodId= ?;";
         if(connection!=null)
         {
             resultSet = BaseBao.execute(connection, pstm, resultSet, sql, paras);
@@ -95,6 +94,9 @@ public class GoodDaoImpl implements GoodDao {
                 good.setCreatedBy(resultSet.getInt("createdBy"));
                 good.setQuantity(resultSet.getInt("quantity"));
                 good.setUrl(resultSet.getString("url"));
+                good.setDesc(resultSet.getString("desc"));
+                good.setArea(resultSet.getInt("area"));
+                good.setOffOrNot(resultSet.getInt("offOrNot"));
             }
             BaseBao.closeResource(null, pstm, resultSet);
         }
@@ -114,8 +116,8 @@ public class GoodDaoImpl implements GoodDao {
         PreparedStatement pstm = null;
         int flag = 0;
         if(null != connection){
-            String sql = "insert into smbms_address (userId,goodId,goodName,goodPrice,goodNumber,addressDesc,creationDate,url,isPayment)" +
-                    "values(?,?,?,?,?,?,?,?,1);";
+            String sql = "insert into smbms_address (userId,goodName,goodPrice,goodNumber,addressDesc," +
+                    "creationDate,url,isPayment)" + "values(?,?,?,?,?,?,?,1);";
 
             flag = BaseBao.execute(connection, sql, paras,pstm);
             BaseBao.closeResource(null, pstm, null);
@@ -127,12 +129,12 @@ public class GoodDaoImpl implements GoodDao {
     }
 
     @Override
-    public boolean deleteGoodInCar(Connection connection, String goodName,Integer userId) {
+    public boolean deleteGoodInCar(Connection connection,  String goodName, Integer userId,Integer payOrNot) {
         PreparedStatement pstm = null;
-        Object [] paras={goodName,userId};
+        Object [] paras={goodName,userId,payOrNot};
         int flag = 0;
         if(null != connection){
-            String sql = "delete from smbms_address where goodName=? and userId=? and isPayment=1 ;";
+            String sql = "delete from smbms_address where goodName=? and userId=? and isPayment=? ;";
             try {
                 flag = BaseBao.execute(connection, sql, paras,pstm);
             } catch (SQLException e) {
@@ -186,10 +188,10 @@ public class GoodDaoImpl implements GoodDao {
         int flag = 0;
         PreparedStatement pstm = null;
         if(null != connection){
-            String sql = "update smbms_good set goodId=?,goodName=?,goodPrice=?," +
-                    "createdDate=?,createdBy=?,url=?,quantity=?;";
-            Object[] params = {good.getGoodID(),good.getGoodName(),good.getGoodPrice(),good.getCreatedDate(),
-                    good.getCreatedBy(),good.getUrl(),good.getQuantity()};
+            String sql = "update smbms_good set goodName=?,goodPrice=?," +
+                    "createdDate=?,createdBy=?,url=?,quantity=?,area=?,desc=?,offOrNot=?;";
+            Object[] params = {good.getGoodName(),good.getGoodPrice(),good.getCreatedDate(),
+                    good.getCreatedBy(),good.getUrl(),good.getQuantity(),good.getArea(),good.getDesc(),good.getOffOrNot()};
             try {
                 flag = BaseBao.execute(connection, sql, params, pstm);
             } catch (SQLException e) {
@@ -200,6 +202,34 @@ public class GoodDaoImpl implements GoodDao {
         if(flag>0)
         return true;
         else return false;
+    }
+
+    @Override
+    public List<Good>getGoodsInPage(Connection connection,Integer area,Integer offOrNot) throws  SQLException{
+        PreparedStatement pstm=null;
+        ResultSet resultSet=null;
+        List<Good> goodlist = new ArrayList<Good>();
+        Object [] paras= {area,offOrNot};
+        String sql="select * from good where area=? and offOrNot=?;";
+        if(connection!=null) {
+            resultSet = BaseBao.execute(connection, pstm, resultSet, sql, paras);
+            while (resultSet.next()) {
+                Good good = new Good();
+                good.setGoodID(resultSet.getInt("goodId"));
+                good.setGoodPrice(resultSet.getDouble("goodPrice"));
+                good.setGoodName(resultSet.getString("goodName"));
+                good.setUrl(resultSet.getString("url"));
+                good.setDesc(resultSet.getString("desc"));
+                good.setCreatedDate(resultSet.getDate("createdDate"));
+                good.setCreatedBy(resultSet.getInt("createdBy"));
+                good.setQuantity(resultSet.getInt("quantity"));
+                good.setOffOrNot(resultSet.getInt("offOrNot"));
+                good.setArea(resultSet.getInt("area"));
+                goodlist.add(good);
+            }
+            BaseBao.closeResource(null, pstm, resultSet);
+        }
+        return  goodlist;
     }
 
 }

@@ -18,9 +18,11 @@ public interface GoodDao {
 
     public boolean addGoodIntoCar(Connection connection, GoodInCar goodInCar) throws SQLException;
 
-    public boolean deleteGoodInCar(Connection connection, String goodName, Integer userId);
+    public boolean deleteGoodInCar(Connection connection, String goodName, Integer userId, Integer payOrNot);
 
-    public boolean payOrNot(Connection connection, List<GoodInCar> goodInCarList ,Integer payOrNot) throws SQLException;
+    public boolean payOrNot(Connection connection, List<GoodInCar> goodInCarList, Integer payOrNot) throws SQLException;
 
     boolean modify(Connection connection, Good good);
+
+    public List<Good>getGoodsInPage(Connection connection, Integer area, Integer offOrNot) throws SQLException;
 }

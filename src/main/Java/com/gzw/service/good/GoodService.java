@@ -28,11 +28,15 @@ public interface GoodService {
     //将商品加入购物车
     public boolean addGoodIntoCar(GoodInCar goodInCar);
 
-    //将商品从购物车内删除
-    public boolean deleteGoodInCar(String goodName, Integer userId);
+    //将商品从购物车内/已付款订单内删除
+    //payornot=1删除购物车内，改为2删除已付款清单
+    public boolean deleteGoodInCar(String goodName, Integer userId, Integer payOrNot);
 
     //得到用户的购物车清单/已购买清单,payornot=1是未付款，2是已付款，未付款是购物车，已付款是已购买清单
     public List<GoodInCar> getGoodList(Integer userID, Integer payOrNot);
+
+    //得到首页3X2个区域的商品List
+    public List<Good>getGoodsInPage(Integer area, Integer offOrNot);
 
 
 

@@ -1,7 +1,6 @@
 package com.gzw.servlet.goodServlet;
 
 import com.gzw.pojo.Good;
-import com.gzw.service.good.GoodServiceImpl;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -20,12 +19,12 @@ public class DailyServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String method = req.getParameter("method");
-        int goodId = Integer.parseInt(req.getParameter("goodId"));
+//        int goodId = Integer.parseInt(req.getParameter("goodId"));
 
         if (method != null && method.equals("page")){
             this.getDailyList(req,resp,"daily.jsp");
         }else if (method != null && method.equals("GoodsList")){
-            this.toBuyPage(req,resp,goodId);
+//            this.toBuyPage(req,resp,goodId);
         }
 
 
