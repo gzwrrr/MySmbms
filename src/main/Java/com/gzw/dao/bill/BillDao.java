@@ -10,13 +10,11 @@ public interface BillDao {
     // 增加订单
     public int add(Connection connection, Bill bill)throws Exception;
 
-
     // 获取订单
     public List<Bill> getBillList(Connection connection, Bill bill)throws Exception;
 
     // 通过billId删除订单
     public int deleteBillById(Connection connection, String delId)throws Exception;
-
 
     //通过billId获取订单
     public Bill getBillById(Connection connection, String id)throws Exception;

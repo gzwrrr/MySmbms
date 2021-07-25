@@ -69,7 +69,6 @@ public class BaseBao {
 
     // 关闭连接，释放资源
     public static boolean closeResource(Connection connection, PreparedStatement preparedStatement, ResultSet resultSet){
-        boolean flag = true;
         if (resultSet != null){
             try {
                 resultSet.close();
@@ -78,7 +77,7 @@ public class BaseBao {
             } catch (SQLException throwables) {
                 throwables.printStackTrace();
                 // 关闭失败
-                flag = false;
+                return false;
             }
         }
         if (preparedStatement != null){
@@ -89,7 +88,7 @@ public class BaseBao {
             } catch (SQLException throwables) {
                 throwables.printStackTrace();
                 // 关闭失败
-                flag = false;
+                return false;
             }
         }
         if (connection != null){
@@ -100,9 +99,9 @@ public class BaseBao {
             } catch (SQLException throwables) {
                 throwables.printStackTrace();
                 // 关闭失败
-                flag = false;
+                return false;
             }
         }
-        return flag;
+        return true;
     }
 }
