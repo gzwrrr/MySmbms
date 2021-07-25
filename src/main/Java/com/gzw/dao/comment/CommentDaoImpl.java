@@ -79,13 +79,7 @@ public class CommentDaoImpl implements CommentDao {
         }
         return commentList;
     }
-
-    @Override
-    public boolean likes(Connection connection, Integer commentId) {
-        return false;
-    }
-
-
+    
     }
 
 
