@@ -201,15 +201,26 @@ body {
 	width: 95%;
 	border-bottom: 1px solid #e6e6e6;
 }
+#star {
+	margin-top: 15px;
+	margin-left: 20px;
+}
+#star select{
+	outline: none;
+}
+#star-text {
+	font-size: 15px;
+}
 #edit-comment-box textarea {
 	display: block;
-	margin: 0 auto;
+	margin: 15px auto 0;
 	overflow: hidden;
 	border-radius: 6px;
 	padding: 5px;
 	outline: none;
 }
-#edit-comment-box span {
+#edit-comment-box #writeDown {
+	display: inline-block;
 	position: absolute;
 	bottom: 6%;
 	left: 5%;

@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -60,14 +59,25 @@
 
 
         <div id="comment">
-            <div id="edit-comment-box">
-                <textarea rows="10" cols="58"></textarea>
-                <span>写下你的想法吧...</span>
-                <div id="edit-submit">
-                    <input type="submit" value="提交" />
+            <form action="" method="">
+                <div id="edit-comment-box">
+                    <div id="star">
+                        评分：
+                        <select name="star">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                        </select>
+                    </div>
+                    <textarea rows="7" cols="58"></textarea>
+                    <div id="writeDown">写下你的想法吧...</div>
+                    <div id="edit-submit">
+                        <input type="submit" value="提交" />
+                    </div>
                 </div>
-            </div>
-
+            </form>
             <c:if comments="${commentsList != null }">
                 <c:forEach var="comment" items="${commentsList}">
                     <div class="comment-item">
@@ -76,8 +86,9 @@
                             <span class="comment-time">时间：xx-xx-xx</span>
                         </div>
                         <div class="comment-right">
-                            <span>评价/标签：</span>
-                            <ul><li>好吃</li><li>便宜</li><li>推荐</li></ul>
+                            <div id="star-text">
+                                评分（5分满分）：
+                            </div>
                             <div class="comment-like">点赞数：xxx</div>
                             <div class="delete-button"><input type="submit" class="delete" value="删除" /></div>
                         </div>

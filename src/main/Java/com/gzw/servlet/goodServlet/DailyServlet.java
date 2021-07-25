@@ -36,7 +36,7 @@ public class DailyServlet extends HttpServlet {
         List<Good> hotGoodList = new ArrayList<>();
 
         // 获取商品列表
-        GoodServiceImpl goodService = new GoodServiceImpl();
+//        GoodServiceImpl goodService = new GoodServiceImpl();
 //        normalGoodList = goodService.getList(area,offOrNot);
 //        hotGoodList = goodService.getList(area,offOrNot);
 
