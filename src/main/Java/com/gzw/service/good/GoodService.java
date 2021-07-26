@@ -2,6 +2,7 @@ package com.gzw.service.good;
 
 import com.gzw.pojo.Good;
 import com.gzw.pojo.GoodInCar;
+import com.gzw.pojo.GoodsImgUrl;
 import com.gzw.pojo.User;
 
 import java.sql.Connection;
@@ -38,6 +39,7 @@ public interface GoodService {
     //得到首页3X2个区域的商品List
     public List<Good>getGoodsInPage(Integer area, Integer offOrNot);
 
-
+    //通过goodId得到图片链接
+    public List<GoodsImgUrl> getUrlById(Integer goodId);
 
 }

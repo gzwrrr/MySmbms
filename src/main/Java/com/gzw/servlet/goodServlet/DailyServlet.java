@@ -2,6 +2,7 @@ package com.gzw.servlet.goodServlet;
 
 import com.gzw.pojo.Comment;
 import com.gzw.pojo.Good;
+import com.gzw.pojo.GoodsImgUrl;
 import com.gzw.service.comment.CommentServiceImpl;
 import com.gzw.service.good.GoodServiceImpl;
 import com.gzw.util.Constants;
@@ -109,11 +110,15 @@ public class DailyServlet extends HttpServlet {
         req.setAttribute("goodId",goodId);
         req.setAttribute("url",good.getUrl());
 
+        // 返回评论
         CommentServiceImpl commentService = new CommentServiceImpl();
         List<Comment> commentList = commentService.query(goodId);
-        // 返回评论
         req.setAttribute("commentsList",commentList);
 
+
+        // 返回图片列表
+        List<GoodsImgUrl> urlsList = goodService.getUrlById(Integer.valueOf(goodId));
+        req.setAttribute("urlsList",urlsList);
 
         req.getRequestDispatcher("buyPage.jsp").forward(req,resp);
     }

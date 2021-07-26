@@ -5,6 +5,7 @@ import com.gzw.dao.good.GoodDao;
 import com.gzw.dao.good.GoodDaoImpl;
 import com.gzw.pojo.Good;
 import com.gzw.pojo.GoodInCar;
+import com.gzw.pojo.GoodsImgUrl;
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -198,6 +199,22 @@ public class GoodServiceImpl implements GoodService {
 
     }
 
+    @Override
+    public List<GoodsImgUrl> getUrlById(Integer goodId) {
+        Connection connection = null;
+        List<GoodsImgUrl> url = null;
+        try {
+            connection = BaseBao.getConnection();
+            url = goodDao.getUrlById(connection, goodId);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            BaseBao.closeResource(connection, null, null);
+        }
+        return url;
+    }
+
     public static void main(String[] args) {
         GoodServiceImpl goodService = new GoodServiceImpl();
         GoodInCar goodInCar = new GoodInCar();
@@ -210,7 +227,8 @@ public class GoodServiceImpl implements GoodService {
 //        goodInCar.setCreationDate(new Date());
 //        goodInCar.setIsPayment(1);
 //        System.out.println(goodService.addGoodIntoCar(goodInCar));
-        System.out.println(goodService.getGoodList(16,1));
+//        System.out.println(goodService.getGoodList(16,1));
+        System.out.println(goodService.getUrlById(1));
 
     }
 

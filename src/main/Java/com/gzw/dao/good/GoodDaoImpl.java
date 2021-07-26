@@ -2,6 +2,7 @@ package com.gzw.dao.good;
 import com.gzw.dao.BaseBao;
 import com.gzw.pojo.Good;
 import com.gzw.pojo.GoodInCar;
+import com.gzw.pojo.GoodsImgUrl;
 import org.junit.jupiter.api.Test;
 
 import java.sql.Connection;
@@ -233,6 +234,27 @@ public class GoodDaoImpl implements GoodDao {
         return  goodlist;
     }
 
+
+    @Override
+    public List<GoodsImgUrl> getUrlById(Connection connection, Integer goodId) throws SQLException {
+        PreparedStatement pstm = null;
+        ResultSet resultSet = null;
+        Object[] paras = {goodId};
+        String sql = "select *  from smbms_url where goodId= ?;";
+        List<GoodsImgUrl> url = new ArrayList<>();
+        if (connection == null) {
+            return null;
+        }
+        resultSet = BaseBao.execute(connection, pstm, resultSet, sql, paras);
+        while (resultSet.next()) {
+            GoodsImgUrl goodsImgUrl = new GoodsImgUrl();
+            goodsImgUrl.setUrl(resultSet.getString("url"));
+            goodsImgUrl.setGoodId(resultSet.getInt("goodId"));
+            url.add(goodsImgUrl);
+        }
+        BaseBao.closeResource(null, pstm, resultSet);
+        return url;
+    }
 
     @Test
     public void test() throws SQLException {

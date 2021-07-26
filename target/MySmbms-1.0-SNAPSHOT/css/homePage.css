@@ -234,6 +234,16 @@ li {
 	background-color: var(--theme);
 	border-radius: 10px;
 }
+#manyi {
+	background: url("../images/manyi.png") 0 center no-repeat;
+}
+#tianran {
+	background: url("../images/tianran.png") 0 center no-repeat;
+}
+#zaixian {
+	background: url("../images/zaixian.png") 0 center no-repeat;
+}
+
 #introduce-box ul {
 	display: flex;
 	justify-content: space-around;
@@ -353,12 +363,12 @@ li {
 	font-size: 20px;
 	background-color: var(--theme);
 }
-#hotSale-Text textarea {
-	background-color: rgba(0,0,0,0);
+#hotSale-Text pre {
 	border: none;
 	font-size: 18px;
 	font-weight: bold;
 	color: var(--white);
+	background-color: var(--theme);
 }
 /* 热卖区结束 */
 /* 商品 */
@@ -424,6 +434,7 @@ li {
 	white-space: nowrap;
 	text-overflow: ellipsis;
 	overflow: hidden;
+	margin-top: 5px;
 }
 .normal-likeAndBuy {
 	position: relative;
@@ -469,7 +480,7 @@ li {
 }
 .discount-box {
 	width: 24%;
-	height: 320px;
+	height: 280px;
 	background-color: var(--cardWhite);
 	border-radius: 5px;
 	overflow: hidden;
@@ -492,14 +503,19 @@ li {
 .discount-img img:hover {
 	transform: scale(1.1);
 }
+
 .discount-text {
 	margin: 0 auto;
-	width: 70%;
+	width: 90%;
+	height: 47%;
 	padding: 10px;
 }
 .discount-good-text {
-	word-wrap:break-word;
-	/* word-break:normal */
+	/* word-wrap:break-word; */
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	height: 50px;
 }
 .discount-likeAndBuy {
 	position: relative;
@@ -509,14 +525,25 @@ li {
 .discount-like {
 	position: absolute;
 	left: 0;
-	top: 10%;
+	bottom: 60%;
+	width: 100%;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	overflow: hidden;
 	height: 25px;
 	color: var(--money);
 	font-weight: 500;
 }
 .discount-count {
 	position: absolute;
-	bottom: 25%;
+	bottom: 20%;
+	width: 110px;
+	font-size: 12px;
+	height: 30px;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	line-height: 30px;
 }
 .discount-likeAndBuy a {
 	text-decoration: none;

@@ -9,23 +9,22 @@
 <div id="all-goods">
     <div id="hotSale-box">
         <div id="hotSale-img">
-            <img src="https://tse1-mm.cn.bing.net/th/id/R-C.a6d8bce8060522c71a59cb5db27ccdd0?rik=vXuQI4BTSXQaBg&riu=http%3a%2f%2fimage.qianye88.com%2fpic%2f8dbc8d8dd6376795a936662dd4c03155&ehk=yA1izoxl4DOxTIar6P9K%2bcNwMGzU0BWZdbZE6LAS9Ts%3d&risl=&pid=ImgRaw" >
+            <img src="https://st-gdx.dancf.com/gaodingx/0/uxms/design/20200214-153533-ff54.png?x-oss-process=image/resize,w_563/interlace,1,image/format,webp" >
         </div>
         <div id="hotSale-Text">
-                <textarea rows="12" cols="35" style="overflow: hidden;">
-                    经过严格人工筛选的蔬菜
-                    纯天然匠心打造。经过严格人工筛选的蔬菜
-                    纯天然匠心打造。
-                    经过严格人工筛选的蔬菜
-                    纯天然匠心打造。经过严格人工筛选的蔬菜
-                    纯天然匠心打造。
-                    经过严格人工筛选的蔬菜
-                    纯天然匠心打造。经过严格人工筛选的蔬菜
-                    纯天然匠心打造。
-                    经过严格人工筛选的蔬菜
-                    纯天然匠心打造。经过严格人工筛选的蔬菜
-                    纯天然匠心打造。
-                </textarea>
+    <pre>
+    爱品质，爱生活。
+
+    追求生活品质，共享绿色丝锐。
+
+    纯天然匠心打造。健康快乐生活，
+
+    丝锐品质雕琢。
+
+    你想要的，丝锐为你一一呈现。
+
+    日用百货集散地，丝锐品质心演绎。
+    </pre>
         </div>
     </div>
     <div id="goods-box">

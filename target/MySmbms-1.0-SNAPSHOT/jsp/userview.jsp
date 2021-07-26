@@ -11,8 +11,7 @@
             <p><strong>2.用户名称：</strong><span>${user.userName }</span></p>
             <p><strong>3.用户性别：</strong>
             	<span>
-            		<c:if test="${user.gender == 1 }">男</c:if>
-					<c:if test="${user.gender == 2 }">女</c:if>
+            		user.gender
 				</span>
 			</p>
             <p><strong>4.出生日期：</strong><span>${user.birthday }</span></p>

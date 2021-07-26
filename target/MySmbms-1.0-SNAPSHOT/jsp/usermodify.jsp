@@ -19,7 +19,7 @@
                     <label >用户性别：</label>
                     <select name="gender" id="gender">
 						<c:choose>
-							<c:when test="${user.gender == 1 }">
+							<c:when test="${user.gender == \"男\" }">
 								<option value="1" selected="selected">男</option>
 					    		<option value="2">女</option>
 							</c:when>

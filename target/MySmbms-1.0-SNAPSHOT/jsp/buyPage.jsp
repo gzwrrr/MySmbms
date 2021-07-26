@@ -58,9 +58,9 @@
     <div id="comment-box">
 
         <div id="good-imgs">
-                <c:forEach var="url" items="${urlsList}">
+                <c:forEach var="goodsImgUrl" items="${urlsList}">
                     <div class="good-img">
-                        <img src="${url}" alt="">
+                        <img src="${goodsImgUrl.url}" alt="">
                     </div>
                 </c:forEach>
         </div>

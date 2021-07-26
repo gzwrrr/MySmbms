@@ -123,6 +123,7 @@ public class ShoppingCartServlet extends HttpServlet {
         goodInCar.setCreationDate(new Date());
         goodInCar.setUserId((Integer) req.getSession().getAttribute("userId"));
 
+        System.out.println(goodInCar);
         GoodServiceImpl goodService  =new GoodServiceImpl();
         boolean flag = goodService.addGoodIntoCar(goodInCar);
         if (flag) {

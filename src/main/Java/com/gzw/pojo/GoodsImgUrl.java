@@ -7,6 +7,15 @@ public class GoodsImgUrl {
     private Integer goodId;
     private String url;
 
+    @Override
+    public String toString() {
+        return "GoodsImgUrl{" +
+                "id=" + id +
+                ", goodId=" + goodId +
+                ", url='" + url + '\'' +
+                '}';
+    }
+
     public Integer getId() {
         return id;
     }

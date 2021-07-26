@@ -60,7 +60,7 @@
         <div id="good-imgs">
                 <c:forEach var="goodsImgUrl" items="${urlsList}">
                     <div class="good-img">
-                        <img src="${goodsImgUrl}" alt="">
+                        <img src="${goodsImgUrl.url}" alt="">
                     </div>
                 </c:forEach>
         </div>

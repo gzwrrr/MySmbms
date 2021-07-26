@@ -2,6 +2,7 @@ package com.gzw.dao.good;
 
 import com.gzw.pojo.Good;
 import com.gzw.pojo.GoodInCar;
+import com.gzw.pojo.GoodsImgUrl;
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -25,4 +26,6 @@ public interface GoodDao {
     boolean modify(Connection connection, Good good);
 
     public List<Good> getGoodsInPage(Connection connection, Integer area, Integer offOrNot) throws SQLException;
+
+    public List<GoodsImgUrl> getUrlById(Connection connection, Integer goodId) throws SQLException;
 }
