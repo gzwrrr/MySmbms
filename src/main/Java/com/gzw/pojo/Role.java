@@ -11,6 +11,18 @@ public class Role {
     private Integer modifyBy;
     private Date modifyDate;
 
+    @Override
+    public String toString() {
+        return "Role{" +
+                "id=" + id +
+                ", roleCode='" + roleCode + '\'' +
+                ", roleName='" + roleName + '\'' +
+                ", createdBy=" + createdBy +
+                ", creationDate=" + creationDate +
+                ", modifyBy=" + modifyBy +
+                ", modifyDate=" + modifyDate +
+                '}';
+    }
 
     public Integer getId() {
         return id;

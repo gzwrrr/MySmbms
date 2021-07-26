@@ -18,36 +18,20 @@ public class Good {
     private String desc;
     private Integer offOrNot;
 
-    public Integer getArea() {
-        return area;
-    }
-
-    public void setArea(Integer area) {
-        this.area = area;
-    }
-
-    public String getDesc() {
-        return desc;
-    }
-
-    public void setDesc(String desc) {
-        this.desc = desc;
-    }
-
-    public Integer getOffOrNot() {
-        return offOrNot;
-    }
-
-    public void setOffOrNot(Integer offOrNot) {
-        this.offOrNot = offOrNot;
-    }
-
-    public Integer getQuantity() {
-        return quantity;
-    }
-
-    public void setQuantity(Integer quantity) {
-        this.quantity = quantity;
+    @Override
+    public String toString() {
+        return "Good{" +
+                "goodID=" + goodID +
+                ", goodName='" + goodName + '\'' +
+                ", goodPrice=" + goodPrice +
+                ", createdDate=" + createdDate +
+                ", createdBy=" + createdBy +
+                ", url='" + url + '\'' +
+                ", quantity=" + quantity +
+                ", area=" + area +
+                ", desc='" + desc + '\'' +
+                ", offOrNot=" + offOrNot +
+                '}';
     }
 
     public Integer getGoodID() {
@@ -98,12 +82,39 @@ public class Good {
         this.url = url;
     }
 
+    public Integer getQuantity() {
+        return quantity;
+    }
 
+    public void setQuantity(Integer quantity) {
+        this.quantity = quantity;
+    }
 
+    public Integer getArea() {
+        return area;
+    }
 
+    public void setArea(Integer area) {
+        this.area = area;
+    }
 
+    public String getDesc() {
+        return desc;
+    }
 
-   public void setGood(Object [] paras, HttpServletRequest req)
+    public void setDesc(String desc) {
+        this.desc = desc;
+    }
+
+    public Integer getOffOrNot() {
+        return offOrNot;
+    }
+
+    public void setOffOrNot(Integer offOrNot) {
+        this.offOrNot = offOrNot;
+    }
+
+    public void setGood(Object [] paras, HttpServletRequest req)
    {
       this.setGoodID(null);
       this.setGoodName((String) paras[0]);

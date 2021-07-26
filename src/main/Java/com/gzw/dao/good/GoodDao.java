@@ -14,7 +14,7 @@ public interface GoodDao {
 
     public List<GoodInCar> getGoodList(Connection connection, Integer userID, Integer payOrNot) throws SQLException;
 
-    public Good getGoodByID(Connection connection, Integer goodID) throws SQLException;
+    public Good getGoodByID(Connection connection, String goodID) throws SQLException;
 
     public boolean addGoodIntoCar(Connection connection, GoodInCar goodInCar) throws SQLException;
 
@@ -24,5 +24,5 @@ public interface GoodDao {
 
     boolean modify(Connection connection, Good good);
 
-    public List<Good>getGoodsInPage(Connection connection, Integer area, Integer offOrNot) throws SQLException;
+    public List<Good> getGoodsInPage(Connection connection, Integer area, Integer offOrNot) throws SQLException;
 }

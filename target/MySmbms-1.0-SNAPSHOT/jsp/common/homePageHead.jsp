@@ -14,7 +14,9 @@
 <div id="head">
     <div class="y-center"  id="market-icon"></div>
     <div class="center" id="title"><span id="market-text">SuperMarket</span></div>
-    <div class="y-center" id="logout-box"><a href="${pageContext.request.contextPath }/login.jsp"><input class="button" type="button" name="logout" id="logout-button" value="注销" /></a></div>
+    <div class="y-center" id="logout-box">
+        <a href="${pageContext.request.contextPath }/jsp/shoppingCart.do?method=toCart"><input class="button" type="button" name="logout" value="购物车" /></a>
+        <a href="${pageContext.request.contextPath }/login.jsp"><input class="button" type="button" name="logout" id="logout-button" value="注销" /></a></div>
 </div>
 <div id="home">
     <!-- 轮播图 -->

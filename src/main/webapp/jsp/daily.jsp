@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@include file="/jsp/common/homePageHead.jsp"%>
     <div id="location">
         日用品区
@@ -30,9 +32,8 @@
             <div class="title" id="goods-normal-title">
                 挑你喜欢
             </div>
-            <c:if goods="${dailyGoodList != null }">
-                <c:forEach var="good" items="${dailyGoodList}">
                     <div id="goods-normal">
+                        <c:forEach var="good" items="${dailyGoodList}" varStatus="status">
                         <div class="good-normal">
                             <div class="normal-img">
                                 <img src="${good.url}" alt="">
@@ -46,15 +47,13 @@
                                 <a href="${pageContext.request.contextPath }/jsp/daily.do?method=GoodsList&goodId=${good.goodID}"><div class="normal-buy-text">购买 ></div></a>
                             </div>
                         </div>
+                        </c:forEach>
                     </div>
-                </c:forEach>
-            </c:if>
             <div class="title" id="goods-discount-title">
                 优惠商品
             </div>
-            <c:if goods="${dailyHotGoodList != null }">
-            <c:forEach var="good" items="${dailyHotGoodList}">
             <div id="goods-discount">
+                <c:forEach var="good" items="${dailyHotGoodList}" varStatus="status">
                 <div class="discount-box">
                     <div class="discount-img">
                         <img src="${good.url}" >
@@ -71,9 +70,8 @@
                         </div>
                     </div>
                 </div>
+                </c:forEach>
             </div>
-            </c:forEach>
-            </c:if>
         </div>
     </div>
 </div>

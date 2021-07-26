@@ -69,8 +69,13 @@ public class User {
         this.userPassword = userPassword;
     }
 
-    public Integer getGender() {
-        return gender;
+    public String getGender() {
+        if (this.gender==1){
+            return "男";
+        }else if(this.gender==2){
+            return "女";
+        }
+        return "男";
     }
 
     public void setGender(Integer gender) {

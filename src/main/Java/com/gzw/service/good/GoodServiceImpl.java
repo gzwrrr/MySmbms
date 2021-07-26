@@ -8,6 +8,7 @@ import com.gzw.pojo.GoodInCar;
 
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.Date;
 import java.util.List;
 
 
@@ -84,7 +85,7 @@ public class GoodServiceImpl implements GoodService {
 
 
     @Override
-    public Good getGoodByID(Integer goodID) {
+    public Good getGoodByID(String goodID) {
         Connection connection = null;
         Good good = null;
         try {
@@ -133,6 +134,9 @@ public class GoodServiceImpl implements GoodService {
         }
         return shoppingList;
     }
+
+
+
 
     @Override
     public List<Good> getGoodsInPage(Integer area, Integer offOrNot) {
@@ -193,4 +197,21 @@ public class GoodServiceImpl implements GoodService {
         return flag;
 
     }
+
+    public static void main(String[] args) {
+        GoodServiceImpl goodService = new GoodServiceImpl();
+        GoodInCar goodInCar = new GoodInCar();
+//        goodInCar.setUrl("xxx");
+//        goodInCar.setAddressDesc("xxx");
+//        goodInCar.setGoodNumber(2);
+//        goodInCar.setGoodPrice(2.0);
+//        goodInCar.setGoodName("xxx");
+//        goodInCar.setGoodID(1);
+//        goodInCar.setCreationDate(new Date());
+//        goodInCar.setIsPayment(1);
+//        System.out.println(goodService.addGoodIntoCar(goodInCar));
+        System.out.println(goodService.getGoodList(16,1));
+
+    }
+
 }

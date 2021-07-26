@@ -13,6 +13,31 @@ public class GoodInCar {
     private Date creationDate;
     private  String url;
     private  Integer userId;
+    private Integer isPayment;
+    private Integer id;
+
+    @Override
+    public String toString() {
+        return "GoodInCar{" +
+                "goodID=" + goodID +
+                ", goodName='" + goodName + '\'' +
+                ", goodPrice=" + goodPrice +
+                ", goodNumber=" + goodNumber +
+                ", addressDesc='" + addressDesc + '\'' +
+                ", creationDate=" + creationDate +
+                ", url='" + url + '\'' +
+                ", userId=" + userId +
+                ", isPayment=" + isPayment +
+                '}';
+    }
+
+    public Integer getIsPayment() {
+        return isPayment;
+    }
+
+    public void setIsPayment(Integer isPayment) {
+        this.isPayment = isPayment;
+    }
 
     public Integer getUserId() {
         return userId;

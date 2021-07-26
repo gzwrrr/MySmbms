@@ -47,6 +47,7 @@ body {
 	box-shadow: 2px 2px 2px 2px var(--themeDeep);
 }
 #head {
+	position: relative;
 	margin: 0 auto;
 	height: 50px;
 	width: var(--frameWidth);
@@ -57,6 +58,30 @@ body {
 	color: var(--white);
 	font-weight: bold;
 	margin-bottom: 5px;
+}
+#back {
+	display: block;
+	position: absolute;
+	right: 5%;
+	top: 50%;
+	color: white;
+	font-size: 18px;
+	border: 2px solid white;
+	padding: 0;
+	height: 30px;
+	width: 150px;
+	margin: 0;
+	line-height: 30px;
+	border-radius: 5px;
+	transform: translate(0,-50%);
+	text-decoration: none;
+}
+#back:hover {
+	background-color: var(--themeDeep);
+}
+#back:active {
+	background-color: white;
+	color: var(--theme);
 }
 #body {
 	margin: 0 auto;
@@ -84,9 +109,6 @@ body {
 	border-radius: 10px;
 	background: linear-gradient(135deg, rgba(248, 248, 248, 1.0) 0%,rgba(246,246,246,1) 100%);
 	box-shadow: -4px -4px 10px -8px rgba(255,255,255,1), 4px 4px 10px -8px rgba(0,0,0,.3);
-}
-.card-frame:active {
-	box-shadow: -4px -4px 10px -8px rgba(255, 255, 255, 1) inset, 4px 4px 10px -8px rgba(0, 0, 0, .3) inset;
 }
 #left {
 	width: 20%;
@@ -128,7 +150,6 @@ body {
 	margin: 10px;
 	width: 150px;
 	height: 120px;
-	background-color: #353535;
 	border-radius: 5px;
 	overflow: hidden;
 }
@@ -166,12 +187,27 @@ body {
 	color: #818181;
 }
 .read {
+	display: flex;
+	flex-direction: column;
 	position: absolute;
 	right: 5%;
 	bottom: 8%;
 	font-size: 15px;
 	font-weight: bold;
 	color: var(--black);
+}
+a {
+	text-decoration: none;
+	margin-top: 5px;
+}
+a:hover {
+	transform: scale(1.05);
+}
+.delete {
+	color: darkred !important;
+}
+.look {
+	color: black;
 }
 #right {
 	width: 40%;

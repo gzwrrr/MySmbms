@@ -2,6 +2,7 @@ package com.gzw.dao.good;
 import com.gzw.dao.BaseBao;
 import com.gzw.pojo.Good;
 import com.gzw.pojo.GoodInCar;
+import org.junit.jupiter.api.Test;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -75,18 +76,18 @@ public class GoodDaoImpl implements GoodDao {
     @Override
     //显示单个商品的信息
     //当参数为null时显示全部商品
-    public Good getGoodByID(Connection connection, Integer goodID)throws SQLException {
+    public Good getGoodByID(Connection connection, String goodID)throws SQLException {
         PreparedStatement pstm=null;
         ResultSet resultSet=null;
-        Good good=null;
         Object [] paras= {goodID};
+        Good good=null;
         String sql;
-        sql="select *  from smbms_good where goodId= ?;";
+        sql="select *  from smbms_good where goodId= ?";
         if(connection!=null)
         {
             resultSet = BaseBao.execute(connection, pstm, resultSet, sql, paras);
             while (resultSet.next()) {
-
+                good = new Good();
                 good.setGoodID(resultSet.getInt("goodId"));
                 good.setGoodName(resultSet.getString("goodName"));
                 good.setGoodPrice(resultSet.getDouble("goodPrice"));
@@ -100,7 +101,7 @@ public class GoodDaoImpl implements GoodDao {
             }
             BaseBao.closeResource(null, pstm, resultSet);
         }
-        return  good;
+        return good;
 
     }
 
@@ -112,14 +113,14 @@ public class GoodDaoImpl implements GoodDao {
     public boolean addGoodIntoCar(Connection connection , GoodInCar goodInCar)throws SQLException
     {
             Object[] paras={goodInCar.getUserId(),goodInCar.getGoodID(),goodInCar.getGoodName(),goodInCar.getGoodPrice()
-                    ,goodInCar.getGoodNumber(),goodInCar.getAddressDesc(),goodInCar.getCreationDate(),goodInCar.getUrl()};
+                    ,goodInCar.getGoodNumber(),goodInCar.getAddressDesc(),goodInCar.getCreationDate(),goodInCar.getUrl(),goodInCar.getIsPayment()};
         PreparedStatement pstm = null;
         int flag = 0;
         if(null != connection){
-            String sql = "insert into smbms_address (userId,goodName,goodPrice,goodNumber,addressDesc," +
-                    "creationDate,url,isPayment)" + "values(?,?,?,?,?,?,?,1);";
+            String sql = "insert into smbms_address (userId,goodId,goodName,goodPrice,goodNumber,addressDesc,creationDate,url,isPayment)"
+                    + "values(?,?,?,?,?,?,?,?,?);";
 
-            flag = BaseBao.execute(connection, sql, paras,pstm);
+            flag = BaseBao.execute(connection, sql, paras, pstm);
             BaseBao.closeResource(null, pstm, null);
         }
 
@@ -205,12 +206,12 @@ public class GoodDaoImpl implements GoodDao {
     }
 
     @Override
-    public List<Good>getGoodsInPage(Connection connection,Integer area,Integer offOrNot) throws  SQLException{
+    public List<Good> getGoodsInPage(Connection connection,Integer area,Integer offOrNot) throws  SQLException{
         PreparedStatement pstm=null;
         ResultSet resultSet=null;
         List<Good> goodlist = new ArrayList<Good>();
         Object [] paras= {area,offOrNot};
-        String sql="select * from good where area=? and offOrNot=?;";
+        String sql="select * from smbms_good where area=? and offOrNot=?;";
         if(connection!=null) {
             resultSet = BaseBao.execute(connection, pstm, resultSet, sql, paras);
             while (resultSet.next()) {
@@ -232,4 +233,11 @@ public class GoodDaoImpl implements GoodDao {
         return  goodlist;
     }
 
+
+    @Test
+    public void test() throws SQLException {
+        GoodDaoImpl goodDao = new GoodDaoImpl();
+        Connection connection = BaseBao.getConnection();
+        System.out.println(goodDao.getGoodByID(connection,"6"));
+    }
 }

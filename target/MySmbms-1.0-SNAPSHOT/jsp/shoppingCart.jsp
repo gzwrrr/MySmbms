@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,9 +9,10 @@
     <title></title>
     <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath }/css/shoppingCart.css" />
 </head>
-<body>
+<body onload="judge()">
 <div id="head">
     个人信息
+    <a id="back" href="${pageContext.request.contextPath }/jsp/daily.do?method=page">返回首页</a>
 </div>
 <div id="body">
     <div id="left">
@@ -19,11 +21,11 @@
         </div>
         <div id="p-context">
             <ul>
-                <li>姓名：xxx</li>
-                <li>性别：xxx</li>
-                <li>生日：xxx</li>
-                <li>电话号码：xxxx</li>
-                <li>住址：xxxx</li>
+                <li>姓名：${userName}</li>
+                <li>性别：${gender}</li>
+                <li>生日：${birthday}</li>
+                <li>电话号码：${phoneNumber}</li>
+                <li>住址：${address}</li>
             </ul>
         </div>
     </div>
@@ -31,203 +33,58 @@
         <div class="title" id="cart">
             购物车
         </div>
-        <div class="card-frame cart-item">
-            <div class="cart-img">
-                <img src="https://tse1-mm.cn.bing.net/th/id/R-C.98455b29ded70af025bd69579686fc6a?rik=%2fli3I88Kacojlg&riu=http%3a%2f%2fpicture.ik123.com%2fuploads%2fallimg%2f200317%2f12-20031G02004.jpg&ehk=X%2bwRGNBs56n20adp04RvSER%2fwK4RGLS6y8n1Em5yaJM%3d&risl=&pid=ImgRaw" alt="">
+        <c:forEach var="cart" items="${shoppingCartList}">
+            <div class="card-frame cart-item">
+                <div class="cart-img">
+                    <img src="${cart.url}" alt="">
+                </div>
+                <div class="cart-right">
+                    <ul>
+                        <li>${cart.goodName}</li>
+                        <li>价格：${cart.goodPrice}</li>
+                        <li>数量：${cart.goodNumber}</li>
+                        <li>时间：${cart.creationDate}</li>
+                    </ul>
+                </div>
+                <div class="read">
+                    <a onclick="return del();" class="delete" href="${pageContext.request.contextPath }/jsp/shoppingCart.do?method=del&goodName=${cart.goodName}&payOrNot=1">删除</a>
+                    <a href="${pageContext.request.contextPath }/jsp/shoppingCart.do?method=toBuyPage&goodId=${cart.goodID}" class="look">查看 ></a>
+                    <input type="hidden" name="del" id="del" value="${del}" />
+                </div>
             </div>
-            <div class="cart-right">
-                <ul>
-                    <li>xxxxxx</li>
-                    <li>价格：xxxxx</li>
-                    <li>数量：xxxxx</li>
-                    <li>时间：xx-xx-xx</li>
-                </ul>
-            </div>
-            <div class="read">
-                查看 >
-            </div>
-        </div>
-        <div class="card-frame cart-item">
-            <div class="cart-img">
-                <img src="https://tse1-mm.cn.bing.net/th/id/R-C.98455b29ded70af025bd69579686fc6a?rik=%2fli3I88Kacojlg&riu=http%3a%2f%2fpicture.ik123.com%2fuploads%2fallimg%2f200317%2f12-20031G02004.jpg&ehk=X%2bwRGNBs56n20adp04RvSER%2fwK4RGLS6y8n1Em5yaJM%3d&risl=&pid=ImgRaw" alt="">
-            </div>
-            <div class="cart-right">
-                <ul>
-                    <li>xxxxxx</li>
-                    <li>价格：xxxxx</li>
-                    <li>数量：xxxxx</li>
-                    <li>时间：xx-xx-xx</li>
-                </ul>
-            </div>
-            <div class="read">
-                查看 >
-            </div>
-        </div>
-        <div class="card-frame cart-item">
-            <div class="cart-img">
-                <img src="https://tse1-mm.cn.bing.net/th/id/R-C.98455b29ded70af025bd69579686fc6a?rik=%2fli3I88Kacojlg&riu=http%3a%2f%2fpicture.ik123.com%2fuploads%2fallimg%2f200317%2f12-20031G02004.jpg&ehk=X%2bwRGNBs56n20adp04RvSER%2fwK4RGLS6y8n1Em5yaJM%3d&risl=&pid=ImgRaw" alt="">
-            </div>
-            <div class="cart-right">
-                <ul>
-                    <li>xxxxxx</li>
-                    <li>价格：xxxxx</li>
-                    <li>数量：xxxxx</li>
-                    <li>时间：xx-xx-xx</li>
-                </ul>
-            </div>
-            <div class="read">
-                查看 >
-            </div>
-        </div>
-        <div class="card-frame cart-item">
-            <div class="cart-img">
-                <img src="https://tse1-mm.cn.bing.net/th/id/R-C.98455b29ded70af025bd69579686fc6a?rik=%2fli3I88Kacojlg&riu=http%3a%2f%2fpicture.ik123.com%2fuploads%2fallimg%2f200317%2f12-20031G02004.jpg&ehk=X%2bwRGNBs56n20adp04RvSER%2fwK4RGLS6y8n1Em5yaJM%3d&risl=&pid=ImgRaw" alt="">
-            </div>
-            <div class="cart-right">
-                <ul>
-                    <li>xxxxxx</li>
-                    <li>价格：xxxxx</li>
-                    <li>数量：xxxxx</li>
-                    <li>时间：xx-xx-xx</li>
-                </ul>
-            </div>
-            <div class="read">
-                查看 >
-            </div>
-        </div>
-        <div class="card-frame cart-item">
-            <div class="cart-img">
-                <img src="https://tse1-mm.cn.bing.net/th/id/R-C.98455b29ded70af025bd69579686fc6a?rik=%2fli3I88Kacojlg&riu=http%3a%2f%2fpicture.ik123.com%2fuploads%2fallimg%2f200317%2f12-20031G02004.jpg&ehk=X%2bwRGNBs56n20adp04RvSER%2fwK4RGLS6y8n1Em5yaJM%3d&risl=&pid=ImgRaw" alt="">
-            </div>
-            <div class="cart-right">
-                <ul>
-                    <li>xxxxxx</li>
-                    <li>价格：xxxxx</li>
-                    <li>数量：xxxxx</li>
-                    <li>时间：xx-xx-xx</li>
-                </ul>
-            </div>
-            <div class="read">
-                查看 >
-            </div>
-        </div>
-        <div class="card-frame cart-item">
-            <div class="cart-img">
-                <img src="https://tse1-mm.cn.bing.net/th/id/R-C.98455b29ded70af025bd69579686fc6a?rik=%2fli3I88Kacojlg&riu=http%3a%2f%2fpicture.ik123.com%2fuploads%2fallimg%2f200317%2f12-20031G02004.jpg&ehk=X%2bwRGNBs56n20adp04RvSER%2fwK4RGLS6y8n1Em5yaJM%3d&risl=&pid=ImgRaw" alt="">
-            </div>
-            <div class="cart-right">
-                <ul>
-                    <li>xxxxxx</li>
-                    <li>价格：xxxxx</li>
-                    <li>数量：xxxxx</li>
-                    <li>时间：xx-xx-xx</li>
-                </ul>
-            </div>
-            <div class="read">
-                查看 >
-            </div>
-        </div>
-        <div class="card-frame cart-item">
-            <div class="cart-img">
-                <img src="https://tse1-mm.cn.bing.net/th/id/R-C.98455b29ded70af025bd69579686fc6a?rik=%2fli3I88Kacojlg&riu=http%3a%2f%2fpicture.ik123.com%2fuploads%2fallimg%2f200317%2f12-20031G02004.jpg&ehk=X%2bwRGNBs56n20adp04RvSER%2fwK4RGLS6y8n1Em5yaJM%3d&risl=&pid=ImgRaw" alt="">
-            </div>
-            <div class="cart-right">
-                <ul>
-                    <li>xxxxxx</li>
-                    <li>价格：xxxxx</li>
-                    <li>数量：xxxxx</li>
-                    <li>时间：xx-xx-xx</li>
-                </ul>
-            </div>
-            <div class="read">
-                查看 >
-            </div>
-        </div>
+        </c:forEach>
+
     </div>
     <div id="right">
         <div class="title" id="bought">
             已购买
         </div>
-        <div class="card-frame cart-item">
-            <div class="cart-img">
-                <img src="https://tse1-mm.cn.bing.net/th/id/R-C.98455b29ded70af025bd69579686fc6a?rik=%2fli3I88Kacojlg&riu=http%3a%2f%2fpicture.ik123.com%2fuploads%2fallimg%2f200317%2f12-20031G02004.jpg&ehk=X%2bwRGNBs56n20adp04RvSER%2fwK4RGLS6y8n1Em5yaJM%3d&risl=&pid=ImgRaw" alt="">
+        <c:forEach var="good" items="${boughtList}">
+            <div class="card-frame cart-item">
+                <div class="cart-img">
+                    <img src="${good.url}" alt="">
+                </div>
+                <div class="cart-right">
+                    <ul>
+                        <li>${good.goodName}</li>
+                        <li>价格：${good.goodPrice}</li>
+                        <li>数量：${good.goodNumber}</li>
+                        <li>时间：${good.creationDate}</li>
+                    </ul>
+                </div>
+                <div class="read">
+                    <a onclick="return del();" class="delete" href="${pageContext.request.contextPath }/jsp/shoppingCart.do?method=del&goodName=${good.goodName}&payOrNot=2">删除</a>
+                    <a href="${pageContext.request.contextPath }/jsp/shoppingCart.do?method=toBuyPage&goodId=${good.goodID}" class="look">查看 ></a>
+                </div>
             </div>
-            <div class="cart-right">
-                <ul>
-                    <li>xxxxxx</li>
-                    <li>价格：xxxxx</li>
-                    <li>数量：xxxxx</li>
-                    <li>时间：xx-xx-xx</li>
-                </ul>
-            </div>
-            <div class="read">
-                查看 >
-            </div>
-        </div><div class="card-frame cart-item">
-        <div class="cart-img">
-            <img src="https://tse1-mm.cn.bing.net/th/id/R-C.98455b29ded70af025bd69579686fc6a?rik=%2fli3I88Kacojlg&riu=http%3a%2f%2fpicture.ik123.com%2fuploads%2fallimg%2f200317%2f12-20031G02004.jpg&ehk=X%2bwRGNBs56n20adp04RvSER%2fwK4RGLS6y8n1Em5yaJM%3d&risl=&pid=ImgRaw" alt="">
-        </div>
-        <div class="cart-right">
-            <ul>
-                <li>xxxxxx</li>
-                <li>价格：xxxxx</li>
-                <li>数量：xxxxx</li>
-                <li>时间：xx-xx-xx</li>
-            </ul>
-        </div>
-        <div class="read">
-            查看 >
-        </div>
-    </div>
-        <div class="card-frame cart-item">
-            <div class="cart-img">
-                <img src="https://tse1-mm.cn.bing.net/th/id/R-C.98455b29ded70af025bd69579686fc6a?rik=%2fli3I88Kacojlg&riu=http%3a%2f%2fpicture.ik123.com%2fuploads%2fallimg%2f200317%2f12-20031G02004.jpg&ehk=X%2bwRGNBs56n20adp04RvSER%2fwK4RGLS6y8n1Em5yaJM%3d&risl=&pid=ImgRaw" alt="">
-            </div>
-            <div class="cart-right">
-                <ul>
-                    <li>xxxxxx</li>
-                    <li>价格：xxxxx</li>
-                    <li>数量：xxxxx</li>
-                    <li>时间：xx-xx-xx</li>
-                </ul>
-            </div>
-            <div class="read">
-                查看 >
-            </div>
-        </div>
-        <div class="card-frame cart-item">
-            <div class="cart-img">
-                <img src="https://tse1-mm.cn.bing.net/th/id/R-C.98455b29ded70af025bd69579686fc6a?rik=%2fli3I88Kacojlg&riu=http%3a%2f%2fpicture.ik123.com%2fuploads%2fallimg%2f200317%2f12-20031G02004.jpg&ehk=X%2bwRGNBs56n20adp04RvSER%2fwK4RGLS6y8n1Em5yaJM%3d&risl=&pid=ImgRaw" alt="">
-            </div>
-            <div class="cart-right">
-                <ul>
-                    <li>xxxxxx</li>
-                    <li>价格：xxxxx</li>
-                    <li>数量：xxxxx</li>
-                    <li>时间：xx-xx-xx</li>
-                </ul>
-            </div>
-            <div class="read">
-                查看 >
-            </div>
-        </div>
-        <div class="card-frame cart-item">
-            <div class="cart-img">
-                <img src="https://tse1-mm.cn.bing.net/th/id/R-C.98455b29ded70af025bd69579686fc6a?rik=%2fli3I88Kacojlg&riu=http%3a%2f%2fpicture.ik123.com%2fuploads%2fallimg%2f200317%2f12-20031G02004.jpg&ehk=X%2bwRGNBs56n20adp04RvSER%2fwK4RGLS6y8n1Em5yaJM%3d&risl=&pid=ImgRaw" alt="">
-            </div>
-            <div class="cart-right">
-                <ul>
-                    <li>xxxxxx</li>
-                    <li>价格：xxxxx</li>
-                    <li>数量：xxxxx</li>
-                    <li>时间：xx-xx-xx</li>
-                </ul>
-            </div>
-            <div class="read">
-                查看 >
-            </div>
-        </div>
+        </c:forEach>
+
     </div>
 </div>
 </body>
+<script type="text/javascript" src="${pageContext.request.contextPath }/js/time.js" charset="utf-8"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath }/js/jquery-1.8.3.min.js" charset="utf-8"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath }/js/common.js" charset="utf-8"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath }/calendar/WdatePicker.js" charset="utf-8"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath }/js/shoppingCart.js" charset="utf-8"></script>
 </html>

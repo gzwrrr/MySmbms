@@ -63,6 +63,7 @@ body {
 }
 #good-detials {
 	display: flex;
+	background-color: #000000;
 	width: 100%;
 	border-radius: 10px;
 	overflow: hidden;
@@ -118,8 +119,11 @@ body {
 }
 #good-count {
 	display: inline-block;
+	margin-right: 10px;
+	align-items: center;
 }
 #good-count input {
+	display: inline-block;
 	margin: 0;
 	padding: 0;
 	height: 30px;
@@ -127,30 +131,45 @@ body {
 }
 #good-count input:nth-child(2){
 	text-align: center;
-	height: 25px;
+	height: 30px;
 	width: 50px;
-}
-#good-count input:nth-child(2n-1){
-	width: 50px;
-	font-weight: bold;
+	border-radius: 5px;
 	border: 1px solid var(--theme);
 	color: var(--theme);
+	padding: 0;
 	font-size: 20px;
+	line-height: 30px;
+
+}
+#good-count input:nth-child(2n-1){
+	padding: 0;
+	width: 50px;
+	height: 32px;
+	font-weight: bold;
+	border: 0;
+	color: var(--theme);
+	font-size: 20px;
+	box-sizing: border-box;
 	box-shadow: none;
+	border: 1px solid var(--theme);
 }
 #good-count input:nth-child(2n-1):hover{
 	background-color: var(--theme);
 	color: var(--white);
 }
+#good-buy {
+	width: 100%;
+}
 #good-buy input {
 	height: 50px;
-	width: 120px;
+	width: 136px;
 	border-radius: 5px;
 	font-size: 16px;
 	font-weight: bold;
 	color: var(--white);
 	background-color: var(--theme);
 	box-shadow: none;
+	border: 0;
 }
 #good-buy input:hover {
 	background-color: var(--themeDeep);
@@ -251,7 +270,7 @@ body {
 	margin: 10px auto;
 	width: 95%;
 	height: 150px;
-	border-bottom: 2px solid var(--white);	
+	border-bottom: 2px solid var(--white);
 }
 .comment-left {
 	position: relative;
@@ -354,5 +373,5 @@ body {
 	color: #818181;
 	font-size: 20px;
 	font-weight: bold;
-	
+
 }

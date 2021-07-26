@@ -18,7 +18,7 @@ public interface GoodService {
     public boolean modify(Good good);
 
     //通过商品Id获取货物
-    public Good getGoodByID(Integer goodID);
+    public Good getGoodByID(String goodID);
 
     //付款与取消付款,付款退款是对购物车内所有物品进行操作，payornot=1改为未付款状态，改为2是已付款状态
     public boolean payOrNot(List<GoodInCar> goodInCarList, Integer payOrNot);

@@ -295,8 +295,6 @@ public class UserServlet extends HttpServlet {
         req.setAttribute("queryUserName",queryNameInfo);
         req.setAttribute("queryUserRole",queryUserRoleInfo);
 
-        System.out.println();
-
         // 返回前端页面
         req.getRequestDispatcher("userlist.jsp").forward(req,resp);
     }

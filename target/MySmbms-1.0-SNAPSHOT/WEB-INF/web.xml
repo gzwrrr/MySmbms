@@ -121,6 +121,27 @@
         <url-pattern>/jsp/vegetable.do</url-pattern>
     </servlet-mapping>
 
+    <!-- 购买 -->
+    <servlet>
+        <servlet-name>bought</servlet-name>
+        <servlet-class>com.gzw.servlet.goodOfUser.BoughtServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>bought</servlet-name>
+        <url-pattern>/jsp/bought.do</url-pattern>
+    </servlet-mapping>
+
+    <!-- 购物车 -->
+    <servlet>
+        <servlet-name>shoppingCart</servlet-name>
+        <servlet-class>com.gzw.servlet.goodOfUser.ShoppingCartServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+    <servlet-name>shoppingCart</servlet-name>
+    <url-pattern>/jsp/shoppingCart.do</url-pattern>
+    </servlet-mapping>
+
+
     <!-- session过期,三十分钟 -->
     <session-config>
         <session-timeout>30</session-timeout>
