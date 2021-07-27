@@ -15,7 +15,6 @@ function judgeBuy(){
 
     if(add!==null&&add==="success"){
         alert("购买成功!");
-        window.location.href=referer;
     }else if (error!==null&&error==="pwdFail"){
         alert("密码错误!");
     }

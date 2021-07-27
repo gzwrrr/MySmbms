@@ -60,7 +60,6 @@ function bought(){
         dataType:"json",
         success:function(data){
             if(data.result == "true"){//删除成功：移除删除行
-                alert(goodId);
                 window.location.href=path+"/jsp/bought.do?method=toBoughtPage&goodName="+goodName
                     +"&goodPrice="+goodPrice+"&goodId="+goodId+"&goodNumber="+num;
             }

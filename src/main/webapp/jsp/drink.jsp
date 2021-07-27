@@ -4,7 +4,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@include file="/jsp/common/homePageHead.jsp"%>
 <div id="location">
-    饮料区
+    饮料零食区
 </div>
 <div id="all-goods">
     <div id="hotSale-box">

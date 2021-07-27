@@ -27,7 +27,7 @@
                     <li>${title}</li>
                     <li><div id="price-box"><span>价格:</span><span>${price}</span></div></li>
                     <li>剩余数量：${count}</li>
-                    <li>评论数：${commentCount}</li>
+<%--                    <li>评论数：${commentCount}</li>--%>
                     <li>${desc}</li>
                     <li>
                         购买数量：

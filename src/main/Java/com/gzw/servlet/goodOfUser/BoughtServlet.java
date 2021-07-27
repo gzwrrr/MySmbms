@@ -40,7 +40,6 @@ public class BoughtServlet extends HttpServlet {
     }
 
     private void confirmBuy(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
-        System.out.println("jjjjjjjjj");
         String goodName = req.getParameter("goodName");
         String goodPrice = req.getParameter("goodPrice");
         String goodNumber = req.getParameter("goodNumber");
@@ -70,11 +69,9 @@ public class BoughtServlet extends HttpServlet {
             boolean flag = goodService.confirmBuy(goodsOfUser,goodId);
             boolean flagTwo = goodService.decreaseQuantity(goodNumber,goodId);
             if (flag&&flagTwo){
-                System.out.println("ssssssssssss");
                 req.setAttribute("add","success");
                 req.getRequestDispatcher("bought.jsp").forward(req,resp);
             }else {
-                System.out.println("fffffffffffffffffffffff");
                 req.setAttribute("error","pwdFail");
                 req.getRequestDispatcher("bought.jsp").forward(req,resp);
             }
