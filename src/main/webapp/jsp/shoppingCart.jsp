@@ -47,6 +47,7 @@
                     </ul>
                 </div>
                 <div class="read">
+                    <a id="buy" href="${pageContext.request.contextPath }/jsp/bought.do?method=toBoughtPage&goodName=${cart.goodName}&goodPrice=${cart.goodPrice}&goodNumber=${cart.goodNumber}&goodId=${cart.goodID}">购买</a>
                     <a onclick="return del();" class="delete" href="${pageContext.request.contextPath }/jsp/shoppingCart.do?method=del&goodName=${cart.goodName}&payOrNot=1">删除</a>
                     <a href="${pageContext.request.contextPath }/jsp/shoppingCart.do?method=toBuyPage&goodId=${cart.goodID}" class="look">查看 ></a>
                     <input type="hidden" name="del" id="del" value="${del}" />
@@ -73,7 +74,8 @@
                     </ul>
                 </div>
                 <div class="read">
-                    <a onclick="return del();" class="delete" href="${pageContext.request.contextPath }/jsp/shoppingCart.do?method=del&goodName=${good.goodName}&payOrNot=2">删除</a>
+
+<%--                    <a onclick="return del();" class="delete" href="${pageContext.request.contextPath }/jsp/shoppingCart.do?method=del&goodName=${good.goodName}&payOrNot=2">删除</a>--%>
                     <a href="${pageContext.request.contextPath }/jsp/shoppingCart.do?method=toBuyPage&goodId=${good.goodID}" class="look">查看 ></a>
                 </div>
             </div>

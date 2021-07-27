@@ -1,11 +1,16 @@
-var path = $("#path").val();
+var path = document.getElementById("path").value;
+var goodName = document.getElementById("goodName").value;
+var goodPrice = document.getElementById("goodPrice").value;
+var num = document.getElementById("num").value;
+var goodId = document.getElementById("goodId").value;
+
 
 function add(){
     document.getElementById('num').value++;
 }
 
 function sub(){
-    if (document.getElementById('num').value>0){
+    if (document.getElementById('num').value>1){
         document.getElementById('num').value--;
     }else {
         alert("不能再减了!");
@@ -13,9 +18,9 @@ function sub(){
 }
 
 $(function (){
-    $("#plus").on("click",function (){
-        add();
-    })
+    // $("#plus").on("click",function (){
+    //     add();
+    // })
 
     $("#sub").on("click",function (){
         sub();
@@ -45,30 +50,33 @@ function judgeDel(){
     }
 }
 
+
 // 直接购买
 function bought(){
     $.ajax({
         type:"POST",
         url:path+"/jsp/bought.do",
-        data:{method:"bought",billid:obj.attr("billid")},
+        data:{method:"bought"},
         dataType:"json",
         success:function(data){
-            if(data.delResult == "true"){//删除成功：移除删除行
-                cancleBtn();
-                obj.parents("tr").remove();
-            }else if(data.delResult == "false"){//删除失败
-                //alert("对不起，删除订单【"+obj.attr("billcc")+"】失败");
-                changeDLGContent("对不起，删除订单【"+obj.attr("billcc")+"】失败");
-            }else if(data.delResult == "notexist"){
-                //alert("对不起，订单【"+obj.attr("billcc")+"】不存在");
-                changeDLGContent("对不起，订单【"+obj.attr("billcc")+"】不存在");
+            if(data.result == "true"){//删除成功：移除删除行
+                alert(goodId);
+                window.location.href=path+"/jsp/bought.do?method=toBoughtPage&goodName="+goodName
+                    +"&goodPrice="+goodPrice+"&goodId="+goodId+"&goodNumber="+num;
             }
         },
         error:function(data){
-            alert("对不起，删除失败");
+            alert("对不起，购买失败");
+            alert(path);
         }
     });
 }
+
+$(function (){
+    $("#bought").on("click",function (){
+        bought();
+    })
+})
 
 // 加入购物车
 function shoppingCart(){

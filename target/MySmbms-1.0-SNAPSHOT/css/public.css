@@ -14,11 +14,6 @@ body{
     font-size: 13px;
     background: var(--deepBlue);
 }
-/* .clear:after{
-    content: '';
-    display: block;
-    clear: both;
-} */
 a{
     text-decoration: none;
 }

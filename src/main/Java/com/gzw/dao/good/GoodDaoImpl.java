@@ -3,6 +3,8 @@ import com.gzw.dao.BaseBao;
 import com.gzw.pojo.Good;
 import com.gzw.pojo.GoodInCar;
 import com.gzw.pojo.GoodsImgUrl;
+import com.gzw.pojo.GoodsOfUser;
+import com.gzw.service.good.GoodServiceImpl;
 import org.junit.jupiter.api.Test;
 
 import java.sql.Connection;
@@ -10,6 +12,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class GoodDaoImpl implements GoodDao {
@@ -254,6 +257,51 @@ public class GoodDaoImpl implements GoodDao {
         }
         BaseBao.closeResource(null, pstm, resultSet);
         return url;
+    }
+
+    @Override
+    public boolean decreaseQuantity(Connection connection, String decreaseNum, String goodId) throws SQLException {
+        int flag = 0;
+        PreparedStatement pstm = null;
+        if(null != connection){
+            String sql = "update smbms_good set quantity = quantity-? where goodId = ?;";
+            Object[] params = {decreaseNum,goodId};
+            try {
+                flag = BaseBao.execute(connection, sql, params, pstm);
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+            BaseBao.closeResource(null, pstm, null);
+        }
+        if(flag>0){
+            return true;
+        }else {
+            return false;
+        }
+    }
+
+    @Override
+    public boolean confirmBuy(Connection connection, GoodsOfUser goodsOfUser, String goodId) throws SQLException {
+        PreparedStatement pstm = null;
+        int flag = 0;
+        if(null != connection){
+            GoodServiceImpl goodService = new GoodServiceImpl();
+            Good good  =goodService.getGoodByID(goodId);
+            String sql = "insert into smbms_address (contact,addressDesc,tel," +
+                    "creationDate,userId,goodName,goodId,goodNumber,goodPrice,isPayment,url) " +
+                    "values(?,?,?,?,?,?,?,?,?,?,?)";
+            Object[] params = {goodsOfUser.getContact(),good.getDesc(),goodsOfUser.getTel(),
+                    new Date(),goodsOfUser.getUserId(),goodsOfUser.getGoodName(),goodId,goodsOfUser.getGoodNumber(),
+                    goodsOfUser.getGoodPrice(),"2",good.getUrl()
+            };
+            flag = BaseBao.execute(connection, sql, params ,pstm);
+            BaseBao.closeResource(null, pstm, null);
+        }
+        if (flag>0){
+            return true;
+        }else {
+            return false;
+        }
     }
 
     @Test

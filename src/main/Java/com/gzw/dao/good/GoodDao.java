@@ -3,6 +3,7 @@ package com.gzw.dao.good;
 import com.gzw.pojo.Good;
 import com.gzw.pojo.GoodInCar;
 import com.gzw.pojo.GoodsImgUrl;
+import com.gzw.pojo.GoodsOfUser;
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -28,4 +29,8 @@ public interface GoodDao {
     public List<Good> getGoodsInPage(Connection connection, Integer area, Integer offOrNot) throws SQLException;
 
     public List<GoodsImgUrl> getUrlById(Connection connection, Integer goodId) throws SQLException;
+
+    public boolean decreaseQuantity(Connection connection, String decreaseNum,String goodId) throws SQLException;
+
+    public boolean confirmBuy(Connection connection, GoodsOfUser goodsOfUser, String goodId) throws SQLException;
 }

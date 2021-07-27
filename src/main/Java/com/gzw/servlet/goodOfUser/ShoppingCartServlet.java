@@ -123,10 +123,16 @@ public class ShoppingCartServlet extends HttpServlet {
         goodInCar.setCreationDate(new Date());
         goodInCar.setUserId((Integer) req.getSession().getAttribute("userId"));
 
-        System.out.println(goodInCar);
+
+        boolean flagOne = false;
+        boolean flagTwo = false;
         GoodServiceImpl goodService  =new GoodServiceImpl();
-        boolean flag = goodService.addGoodIntoCar(goodInCar);
-        if (flag) {
+        // 添加商品到购物车
+        flagOne = goodService.addGoodIntoCar(goodInCar);
+        // 减少对应商品的数目
+        flagTwo = goodService.decreaseQuantity(goodNumber,goodId);
+
+        if (flagOne&&flagTwo) {
             req.setAttribute("added","success");
         }else {
             req.setAttribute("added","fail");

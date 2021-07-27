@@ -69,6 +69,8 @@ public class UserServiceImpl implements UserService {
 
         return user;
     }
+
+
     @Override
     public List<User> getUserList(String queryUserName, int queryUserRole, int currentPageNo, int pageSize) {
         Connection connection = null;
@@ -83,6 +85,9 @@ public class UserServiceImpl implements UserService {
         }
         return userList;
     }
+
+
+
     @Override
     public User selectUserCodeExist(String userCode) {
         Connection connection = null;

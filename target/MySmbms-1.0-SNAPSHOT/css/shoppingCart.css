@@ -214,3 +214,6 @@ a:hover {
 	background-color: var(--cardWhite);
 	border-radius: 5px;
 }
+#buy {
+	color: black;
+}

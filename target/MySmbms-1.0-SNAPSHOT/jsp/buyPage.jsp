@@ -11,6 +11,7 @@
 </head>
 <input type="hidden" id="deleted" value='${deleted}'>
 <input type="hidden" id="added" name="added" value="${added}">
+<input type="hidden" id="path" name="path" value="${pageContext.request.contextPath }" />
 <body onload="judgeDel()">
 <div id="head">
     购买页面
@@ -32,20 +33,20 @@
                         购买数量：
                         <div id="good-count">
                             <input class="button" id="sub" onclick="sub()" type="button" value="-"/>
-                            <input type="text" id="num" name="num" value="0" />
+                            <input type="text" id="num" name="num" value="1" />
                             <input class="button" id="plus" onclick="add()" type="button" value="+"/>
                         </div>件
                     </li>
                     <li><div id="good-buy">
-                        <input id="bought" class="button" type="submit" value="立即购买" />
+                        <input id="bought" class="button" type="button" value="立即购买" />
                         <input id="shoppingCart" class="button" type="submit" value="加入购物车" />
                         <a href="${pageContext.request.contextPath }/jsp/shoppingCart.do?method=toCart"><input style="border: none" type="button" name="toCart" id="toCart" value="查看购物车" /></a>
                         <a href="${pageContext.request.contextPath }/jsp/daily.do?method=page"><input style="border: none" type="button" name="toCart" value="返回首页" /></a>
-                        <input type="hidden" name="goodId" value="${goodId}">
-                        <input type="hidden" name="goodName" value="${title}">
-                        <input type="hidden" name="goodPrice" value="${price}">
-                        <input type="hidden" name="addressDesc" value="${desc}">
-                        <input type="hidden" name="goodUrl" value="${url}">
+                        <input type="hidden" id="goodId" name="goodId" value="${goodId}">
+                        <input type="hidden" id="goodName" name="goodName" value="${title}">
+                        <input type="hidden" id="goodPrice" name="goodPrice" value="${price}">
+                        <input type="hidden" id="addressDesc" name="addressDesc" value="${desc}">
+                        <input type="hidden" id="goodUrl" name="goodUrl" value="${url}">
                     </div></li>
                 </ul>
             </div>

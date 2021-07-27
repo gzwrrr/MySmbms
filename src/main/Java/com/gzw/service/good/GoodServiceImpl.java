@@ -6,6 +6,7 @@ import com.gzw.dao.good.GoodDaoImpl;
 import com.gzw.pojo.Good;
 import com.gzw.pojo.GoodInCar;
 import com.gzw.pojo.GoodsImgUrl;
+import com.gzw.pojo.GoodsOfUser;
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -215,6 +216,36 @@ public class GoodServiceImpl implements GoodService {
         return url;
     }
 
+    @Override
+    public boolean decreaseQuantity(String decreaseNum, String goodId) {
+        Connection connection = null;
+        boolean flag = false;
+        try {
+            connection = BaseBao.getConnection();
+            flag = goodDao.decreaseQuantity(connection,decreaseNum,goodId);
+        }catch (Exception e){
+            e.printStackTrace();
+        }finally {
+            BaseBao.closeResource(connection,null,null);
+        }
+        return flag;
+    }
+
+    @Override
+    public boolean confirmBuy(GoodsOfUser goodsOfUser, String goodId) {
+        Connection connection = null;
+        boolean flag = false;
+        try {
+            connection = BaseBao.getConnection();
+            flag = goodDao.confirmBuy(connection,goodsOfUser,goodId);
+        }catch (Exception e){
+            e.printStackTrace();
+        }finally {
+            BaseBao.closeResource(connection,null,null);
+        }
+        return flag;
+    }
+
     public static void main(String[] args) {
         GoodServiceImpl goodService = new GoodServiceImpl();
         GoodInCar goodInCar = new GoodInCar();
@@ -228,8 +259,9 @@ public class GoodServiceImpl implements GoodService {
 //        goodInCar.setIsPayment(1);
 //        System.out.println(goodService.addGoodIntoCar(goodInCar));
 //        System.out.println(goodService.getGoodList(16,1));
-        System.out.println(goodService.getUrlById(1));
+//        System.out.println(goodService.getUrlById(1));
 
+        System.out.println(goodService.decreaseQuantity("1","1"));
     }
 
 }

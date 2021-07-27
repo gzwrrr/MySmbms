@@ -1,11 +1,9 @@
 package com.gzw.service.good;
 
-import com.gzw.pojo.Good;
-import com.gzw.pojo.GoodInCar;
-import com.gzw.pojo.GoodsImgUrl;
-import com.gzw.pojo.User;
+import com.gzw.pojo.*;
 
 import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.List;
 
 public interface GoodService {
@@ -42,4 +40,9 @@ public interface GoodService {
     //通过goodId得到图片链接
     public List<GoodsImgUrl> getUrlById(Integer goodId);
 
+    // 减少商品数量
+    public boolean decreaseQuantity(String decreaseNum, String goodId);
+
+    // 购买商品
+    public boolean confirmBuy(GoodsOfUser goodsOfUser, String goodId);
 }
